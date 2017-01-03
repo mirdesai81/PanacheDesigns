@@ -10,5 +10,26 @@
 </head>
 <body>
   <app-root>Loading...</app-root>
+  <script type="application/javascript">
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+    function toggleNav() {
+      if($('#hamburger').hasClass('is-active')) {
+        $("#side-nav").css("width","0");
+        $("#main").css("margin-left","auto");
+        $("#hamburger").removeClass("is-active");
+      } else {
+        $("#side-nav").css("width","250px");
+        $("#main").css("margin-left","250px");
+        $("#hamburger").addClass("is-active");
+      }
+    }
+
+   /* /!* Set the width of the side navigation to 0 and the left margin of the page content to 0 *!/
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "auto";
+      $("#hamburger").removeClass("is-active");
+    }*/
+  </script>
 </body>
 </html>

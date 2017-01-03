@@ -32,3 +32,8 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+*.iml
+*.ipr
+*.iws
+.idea
+

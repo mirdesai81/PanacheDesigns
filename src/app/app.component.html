@@ -1,3 +1,174 @@
-<h1>
-  {{title}}
-</h1>
+<div id="side-nav" class="sidenav bg-inverse">
+  <a href="#">Home</a>
+  <a href="#">Products</a>
+  <a href="#">Checkout</a>
+  <a href="#">Sign Out</a>
+</div>
+<div class="container" id="main">
+  <div class="row">
+    <div class="col-md-12 ">
+      <div class="product-menu navbar  navbar-fixed-top navbar-dark bg-inverse">
+        <div>
+         <!-- <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+          -->
+          <!--<div class="collapse navbar-toggleable-md" id="navbarResponsive">-->
+          <button class="hamburger hamburger--collapse" id="hamburger" type="button" onclick="toggleNav();">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+            <!--<a href="#" class="navbar-brand" >{{title}}</a>
+            <ul class="nav navbar-nav">
+              <li class="nav-item active"><a class="nav-link">Home<span class="sr-only">(current)</span></a></li>
+              <li class="nav-item"><a class="nav-link">Products</a></li>
+              <li class="nav-item"><a class="nav-link">Checkout</a></li>
+              <li class="nav-item"><a class="nav-link">Sign Out</a></li>
+            </ul>-->
+            <form class="form-inline float-xs-right">
+              <input type="text" class="form-control" placeholder="user name" />
+              <input type="password" class="form-control" placeholder="password" />
+              <button class="btn btn-outline-primary" type="submit">Login</button>
+            </form>
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="jumbotron">
+      <h1 class="display-3">FRESH ORGANIC FOOD MARKET</h1>
+      <p class="lead">Save lot of money buying locally grown food</p>
+      <hr class="my-2">
+      <p>Open 7 days a week from 8:00 AM to 11:00 PM</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 ">
+       <img class="img-fluid centered-block product-item" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=1110%C3%97350&w=1100&h=350" alt="">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-xs-6 col-sm-4">
+      <div class="container">
+        <div class="row padding-top">
+          <form class="">
+            <div class="form-group">
+              <label for="search" >Search Products</label>
+              <input class="form-control" type="text" id="search" name="search" placeholder="Search..." />
+            </div>
+          </form>
+        </div>
+        <div class="row padding-top">
+          <div class="card">
+            <div class="card-header">Categories</div>
+            <div class="card-block">
+              <div class="list-group">
+                <a href="#" class="list-group-item">All</a>
+                <a href="#" class="list-group-item">Meat</a>
+                <a href="#" class="list-group-item">Seafood</a>
+                <a href="#" class="list-group-item">Grocery</a>
+                <a href="#" class="list-group-item">Fruits & Vegetables</a>
+                <a href="#" class="list-group-item">Home Furniture</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 col-xs-6 col-sm-8 ">
+      <div class="row">
+        <div class="col-md-4 col-xs-12 col-sm-6">
+          <div class="card">
+            <img class="img-fluid centered-block product-item card-img-top rounded mx-auto d-block" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=270%C3%97150&w=270&h=150" alt="">
+            <div class="card-block text-xs-center">
+              <h4 class="card-title">Product 1</h4>
+              <h4 class="card-subtitle"><span class="tag tag-pill tag-info">$10</span></h4>
+              <hr class="my-2">
+              <p class="card-text">The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more. </p>
+              <div class="btn-group" role="group">
+                <button class="btn btn-primary">Buy</button>
+                <button class="btn btn-info">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-6">
+          <div class="card">
+            <img class="img-fluid centered-block product-item card-img-top rounded mx-auto d-block" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=270%C3%97150&w=270&h=150" alt="">
+            <div class="card-block text-xs-center">
+              <h4 class="card-title">Product 1</h4>
+              <h4 class="card-subtitle"><span class="tag tag-pill tag-info">$10</span></h4>
+              <hr class="my-2">
+              <p class="card-text">The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more. </p>
+              <div class="btn-group" role="group">
+                <button class="btn btn-primary">Buy</button>
+                <button class="btn btn-info">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-6">
+          <div class="card">
+            <img class="img-fluid centered-block product-item card-img-top rounded mx-auto d-block" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=270%C3%97150&w=270&h=150" alt="">
+            <div class="card-block text-xs-center">
+              <h4 class="card-title">Product 1</h4>
+              <h4 class="card-subtitle"><span class="tag tag-pill tag-info">$10</span></h4>
+              <hr class="my-2">
+              <p class="card-text">The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more. </p>
+              <div class="btn-group" role="group">
+                <button class="btn btn-primary">Buy</button>
+                <button class="btn btn-info">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-6">
+          <div class="card">
+            <img class="img-fluid centered-block product-item card-img-top rounded mx-auto d-block" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=270%C3%97150&w=270&h=150" alt="">
+            <div class="card-block text-xs-center">
+              <h4 class="card-title">Product 1</h4>
+              <h4 class="card-subtitle"><span class="tag tag-pill tag-info">$10</span></h4>
+              <hr class="my-2">
+              <p class="card-text">The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more. </p>
+              <div class="btn-group" role="group">
+                <button class="btn btn-primary">Buy</button>
+                <button class="btn btn-info">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-12 col-sm-6">
+          <div class="card">
+            <img class="img-fluid centered-block product-item card-img-top rounded mx-auto d-block" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=270%C3%97150&w=270&h=150" alt="">
+            <div class="card-block text-xs-center">
+              <h4 class="card-title">Product 1</h4>
+              <h4 class="card-subtitle"><span class="tag tag-pill tag-info">$10</span></h4>
+              <hr class="my-2">
+              <p class="card-text">The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more. </p>
+              <div class="btn-group" role="group">
+                <button class="btn btn-primary">Buy</button>
+                <button class="btn btn-info">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="product-menu navbar navbar-light bg-faded">
+        <a href="#" class="navbar-brand" >{{title}}</a>
+        <ul class="nav navbar-nav">
+          <li class="nav-item active"><a class="nav-link">Home<span class="sr-only">(current)</span></a></li>
+          <li class="nav-item"><a class="nav-link">Products</a></li>
+          <li class="nav-item"><a class="nav-link">Checkout</a></li>
+          <li class="nav-item"><a class="nav-link">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
