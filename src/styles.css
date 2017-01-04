@@ -23,16 +23,14 @@ body {
   left: 0;
   z-index : 1;
   overflow-x: hidden;
-  padding-top: 2rem;
   position: fixed;
   transition: 0.5s;
-  padding-top: 51px;
   margin-top: 51px;
 }
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 24px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
