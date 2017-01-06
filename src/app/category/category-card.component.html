@@ -1,0 +1,13 @@
+<div class="col-md-4 col-xs-12 col-sm-6">
+  <div class="card">
+    <img class="img-fluid centered-block product-item card-img-top rounded mx-auto d-block" [src]="category.image" alt="{{category.title}}">
+    <div class="card-block text-xs-center">
+      <h4 class="card-title">{{category.title}}</h4>
+      <hr class="my-2">
+      <p class="card-text">{{category.desc}}</p>
+      <div class="btn-group" role="group">
+        <button class="btn btn-info" (click)="browse()">Browse</button>
+      </div>
+    </div>
+  </div>
+</div>

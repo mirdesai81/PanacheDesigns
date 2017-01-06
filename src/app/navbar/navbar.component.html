@@ -1,3 +1,23 @@
-<p>
-  navbar works!
-</p>
+<div id="side-nav" class="sidenav bg-inverse">
+  <a [href]="navItem.href" [class.active]="navItem.active" *ngFor="let navItem of navItems">{{navItem.label}}</a>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 ">
+      <div class="product-menu navbar  navbar-fixed-top navbar-dark bg-inverse">
+        <div>
+          <button class="hamburger hamburger--collapse" id="hamburger" type="button" onclick="toggleNav();">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+          <form class="form-inline float-xs-right">
+            <input type="text" class="form-control" placeholder="user name" />
+            <input type="password" class="form-control" placeholder="password" />
+            <button class="btn btn-outline-primary" type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

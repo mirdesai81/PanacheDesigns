@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/hamburgers/dist/hamburgers.css";
+@import "../node_modules/font-awesome/css/font-awesome.css";
 
 body {
   padding-top: 51px;
@@ -28,6 +29,7 @@ body {
   margin-top: 51px;
 }
 
+
 /* The navigation menu links */
 .sidenav a {
   padding: 8px 8px 8px 8px;
@@ -39,10 +41,11 @@ body {
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover, .offcanvas a:focus, .sidenav a:visited{
+.sidenav a:hover,  .sidenav a.active {
   color: #f1f1f1;
-  border-bottom: 2px solid #0275d8;
+  border-left: 4px solid #0275d8;
 }
+
 
 /* Position and style the close button (top right corner) */
 .sidenav .closebtn {
@@ -57,6 +60,10 @@ body {
 #main {
   transition: margin-left .5s;
   padding: 20px;
+}
+
+.search {
+  background-color: #fff;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -85,3 +92,41 @@ body {
   margin-top: 0.75rem;
 }
 
+.color-inverse {
+  color: #373a3c !important;
+}
+
+.input-group > #search {
+  border-right: 0px;
+}
+
+.form-control:focus ~ .search {
+ /* color: #55595c;
+  background-color: #fff;*/
+  border-color: #66afe9;
+  outline: none;
+}
+
+.form-control:focus + .search .color-inverse {
+  color : #66afe9 !important;
+}
+
+.carousel-control.left {
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(102, 175, 233, 0.7)), to(rgba(102, 175, 233, 0.3)));
+  background-image: -webkit-linear-gradient(left, rgba(102, 175, 233, 0.7) 0%, rgba(102, 175, 233, 0.3) 100%);
+  background-image: -o-linear-gradient(left, rgba(102, 175, 233, 0.7) 0%, rgba(102, 175, 233, 0.3) 100%);
+  background-image: linear-gradient(to right, rgba(102, 175, 233, 0.7) 0%, rgba(102, 175, 233, 0.3) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66afe9', endColorstr='#afd5f4', GradientType=1);
+}
+
+.carousel-control.right {
+  right: 0;
+  left: auto;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(102, 175, 233, 0.3)), to(rgba(102, 175, 233, 0.7)));
+  background-image: -webkit-linear-gradient(left, rgba(102, 175, 233, 0.3) 0%, rgba(102, 175, 233, 0.7) 100%);
+  background-image: -o-linear-gradient(left, rgba(102, 175, 233, 0.3) 0%, rgba(102, 175, 233, 0.7) 100%);
+  background-image: linear-gradient(to right, rgba(102, 175, 233, 0.3) 0%, rgba(102, 175, 233, 0.7) 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#afd5f4', endColorstr='#66afe9', GradientType=1);
+}
