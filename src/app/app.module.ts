@@ -6,17 +6,22 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {CategoryModule} from './category/category.module';
-
+import {ProductModule} from './products/product.module';
+import {routing} from "./app.routes";
+import {HomeComponent} from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    CategoryModule
+    routing,
+    CategoryModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]

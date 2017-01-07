@@ -1,98 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container" id="main">
-  <div class="row">
-    <div class="jumbotron">
-      <h1 class="display-3">FRESH ORGANIC FOOD MARKET</h1>
-      <p class="lead">Save lot of money buying locally grown food</p>
-      <hr class="my-2">
-      <p>Open 7 days a week from 8:00 AM to 11:00 PM</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 ">
-      <!-- Carousel container -->
-      <div id="carousel-categories" class="carousel slide" data-ride="carousel">
-
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#carousel-categories"
-              *ngFor="let category of slideCategories;let first=first; let i=index"
-              [attr.data-slide-to]="i" [ngClass]="{active: first}"></li>
-        </ol>
-
-        <!-- Content -->
-        <div class="carousel-inner" role="listbox">
-
-          <div *ngFor="let category of slideCategories;let first=first"
-               class="carousel-item" [ngClass]="{active: first}">
-            <app-category-slide
-              [category]="category" (select)="selectCategory($event)">
-            </app-category-slide>
-          </div>
-
-        </div>
-
-        <!-- Previous/Next controls -->
-        <a class="left carousel-control" href="#carousel-categories" role="button" data-slide="prev">
-          <span class="icon-prev" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-categories" role="button" data-slide="next">
-          <span class="icon-next" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-
-      </div>
-    </div>
-  </div>
-
- <!-- <div class="row">
-    <div class="col-md-3 col-xs-6 col-sm-4">
-      <div class="container">
-        <div class="row padding-top">
-          <form class="">
-            <div class="form-group">
-              <label for="search" >Search Products</label>
-                <div class="input-group">
-                <input class="form-control" type="text" id="search" name="search" placeholder="Search..." />
-                <span class="input-group-addon search" >
-                  <i class="fa fa-search color-inverse"></i>
-                </span>
-                </div>
-            </div>
-          </form>
-        </div>
-        <div class="row padding-top">
-          <div class="card">
-            <div class="card-header">Categories</div>
-            <div class="card-block">
-              <div class="list-group">
-                <a href="#" class="list-group-item">All</a>
-                <a href="#" class="list-group-item">Meat</a>
-                <a href="#" class="list-group-item">Seafood</a>
-                <a href="#" class="list-group-item">Grocery</a>
-                <a href="#" class="list-group-item">Fruits & Vegetables</a>
-                <a href="#" class="list-group-item">Home Furniture</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-9 col-xs-6 col-sm-8 ">
-      <div class="row">
-        <app-category-card *ngFor="let category of cardCategories"
-                           [category]="category" (select)="selectCategory($event)">
-        </app-category-card>
-      </div>
-    </div>
-  </div>-->
-  <div class="row">
-    <app-category-card *ngFor="let category of cardCategories"
-                       [category]="category" (select)="selectCategory($event)">
-    </app-category-card>
-  </div>
-  <div class="row">
+  <router-outlet></router-outlet>
+</div>
+<div class="row">
     <div class="col-md-12">
       <div class="product-menu navbar navbar-light bg-faded">
         <a href="#" class="navbar-brand" >{{title}}</a>
@@ -104,6 +14,6 @@
         </ul>
       </div>
     </div>
-  </div>
 </div>
+
 
