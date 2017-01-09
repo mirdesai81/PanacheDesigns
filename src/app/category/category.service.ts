@@ -1,3 +1,5 @@
+import {Injectable} from '@angular/core'
+
 export class Category {
   id : string;
   title : string;
@@ -6,12 +8,20 @@ export class Category {
   imageS : string;
 }
 
-// Slide Categories
-var categories: Category[] = [
-   { id: '1', title: 'Bread & Bakery',
-     imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
-     imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
-     desc: 'The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more.' },
+class CategoryNotFoundException extends Error {
+  constructor(message? : string) {
+    super(message);
+  }
+}
+
+@Injectable()
+export class CategoryService {
+  // Slide Categories
+  categories: Category[] = [
+  { id: '1', title: 'Bread & Bakery',
+    imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
+    imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
+    desc: 'The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more.' },
   { id: '2', title: 'Takeaway',
     imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
     imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
@@ -34,21 +44,20 @@ var categories: Category[] = [
     desc: 'A variety of fresh fruits and vegetables.' }
 ];
 
-export function getCategories() {
-  return categories;
+
+  getCategories() {
+  return this.categories;
 }
 
-export function getCategory(id : string) {
-  for(let i = 0; i < categories.length; i++) {
-    if(categories[i].id === id) {
-      return categories[i];
+  getCategory(id : string) {
+  for(let i = 0; i < this.categories.length; i++) {
+    if(this.categories[i].id === id) {
+      return this.categories[i];
     }
   }
   throw new CategoryNotFoundException(`Category ${id} is not found!!!`);
 }
 
-export class CategoryNotFoundException extends Error {
-  constructor(message? : string) {
-    super(message);
-  }
 }
+
+

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {Category, getCategories} from "./category";
+import {Category, CategoryService} from "./category.service";
 
 @Component({
   selector : 'app-category-list',
@@ -8,10 +8,10 @@ import {Category, getCategories} from "./category";
 })
 export class CategoryListComponent {
 
-  categories : Category[] = getCategories();
+  categories : Category[];
 
-  constructor(private router : Router) {
-
+  constructor(private router : Router,private categoryService : CategoryService) {
+    this.categories = this.categoryService.getCategories();
   }
 
   filterProducts(category : Category) {

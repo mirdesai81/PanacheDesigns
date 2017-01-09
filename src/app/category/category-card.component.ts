@@ -1,6 +1,6 @@
 import {Component,Input,Output, EventEmitter} from '@angular/core';
 import {Router} from '@angular/router'
-import {Category} from './category';
+import {Category} from './category.service';
 @Component({
   selector : 'app-category-card',
   templateUrl : './category-card.component.html'

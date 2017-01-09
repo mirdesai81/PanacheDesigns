@@ -1,5 +1,5 @@
 import {Component,Input,Output, EventEmitter} from '@angular/core';
-import {Category} from './category';
+import {Category} from './category.service';
 @Component({
   selector : 'app-category-slide',
   templateUrl : './category-slide.component.html'

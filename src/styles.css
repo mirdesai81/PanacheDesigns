@@ -111,7 +111,7 @@ body {
   color : #66afe9 !important;
 }
 
-.carousel-control.left {
+/*.carousel-control.left {
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(102, 175, 233, 0.7)), to(rgba(102, 175, 233, 0.3)));
   background-image: -webkit-linear-gradient(left, rgba(102, 175, 233, 0.7) 0%, rgba(102, 175, 233, 0.3) 100%);
   background-image: -o-linear-gradient(left, rgba(102, 175, 233, 0.7) 0%, rgba(102, 175, 233, 0.3) 100%);
@@ -129,4 +129,34 @@ body {
   background-image: linear-gradient(to right, rgba(102, 175, 233, 0.3) 0%, rgba(102, 175, 233, 0.7) 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#afd5f4', endColorstr='#66afe9', GradientType=1);
+}*/
+
+.card-deck {
+  width: 100%;
 }
+
+
+
+@media (min-width: 576px) {
+  .card-deck {
+    display: flex;
+  }
+
+  .card-deck .card {
+   /* flex: 0 0 250px;*/
+    width: 230px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    vertical-align: top;
+    margin: 0 0.8rem;
+  }
+/*
+  .card {
+    max-width: 250px;
+  }*/
+}
+
+.list-group a {
+  cursor : pointer;
+}
+

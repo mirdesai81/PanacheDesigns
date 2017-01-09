@@ -1,7 +1,6 @@
 import { Component,Input } from '@angular/core';
-import {Category} from "../category/category";
-import {getCategories} from "../category/category";
-import {getCategory} from "../category/category";
+import {Category,CategoryService} from "../category/category.service";
+
 
 @Component({
   selector: 'app-welcome',
@@ -10,13 +9,17 @@ import {getCategory} from "../category/category";
 export class HomeComponent {
   title = 'Dream Bean';
 
+  constructor(private categoryService : CategoryService) {
+
+  }
+
   /*@Input() category : Category;*/
 
   // Slide Categories
-  slideCategories: Category[] = [getCategory('1'), getCategory('2'), getCategory('3')];
+  slideCategories: Category[] = [this.categoryService.getCategory('1'), this.categoryService.getCategory('2'), this.categoryService.getCategory('3')];
 
   // Card categories
-  cardCategories: Category[] = getCategories();
+  cardCategories: Category[] = this.categoryService.getCategories();
 
   selectCategory(category: Category) {
     console.log('Selected category', category.title);
