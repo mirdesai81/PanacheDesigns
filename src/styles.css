@@ -2,6 +2,8 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/hamburgers/dist/hamburgers.css";
 @import "../node_modules/font-awesome/css/font-awesome.css";
+@import "../node_modules/mdbootstrap/css/bootstrap.css";
+@import "../node_modules/mdbootstrap/css/mdb.css";
 
 body {
   padding-top: 51px;
@@ -158,5 +160,14 @@ body {
 
 .list-group a {
   cursor : pointer;
+}
+
+.navbar .btn, .card-block .btn {
+  margin: 0 auto;
+}
+
+.btn.btn-md , .btn-md {
+  font-size: 0.7rem;
+  padding: 0.5rem 0.8rem;
 }
 

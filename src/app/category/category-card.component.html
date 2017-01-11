@@ -1,13 +1,24 @@
 <div class="col-md-4 col-xs-12 col-sm-6">
+  <!--Card-->
   <div class="card">
-    <img class="img-fluid centered-block product-item card-img-top rounded mx-auto d-block" [src]="category.imageS" alt="{{category.title}}">
+
+    <!--Card image-->
+    <div class="view overlay hm-white-slight">
+      <img [src]="category.imageS" alt="{{category.title}}" class="img-fluid" [style.width.%]="100" >
+      <a>
+        <div class="mask"></div>
+      </a>
+    </div>
+    <!--/.Card image-->
+
+    <!--Card content-->
     <div class="card-block text-xs-center">
       <h4 class="card-title">{{category.title}}</h4>
       <hr class="my-2">
       <p class="card-text">{{category.desc}}</p>
       <div class="btn-group" role="group">
-        <button class="btn btn-info" (click)="filterCategory(category)">Browse</button>
+        <button class="btn btn-primary" (click)="filterCategory(category)">Browse</button>
       </div>
     </div>
-  </div>
+    <!--/.Card content-->
 </div>

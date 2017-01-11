@@ -1,20 +1,29 @@
 <div class="card-deck-wrapper">
   <div class="card-deck">
     <div class="card" *ngFor="let product of products">
-      <div class="card-header text-xs-center">
+     <!-- <div class="card-header text-xs-center">
         {{product.title}}
+      </div>-->
+      <!--<img class="img-fluid card-img-top" [src]="product.imageS" [style.width.%]="100"  alt="{{product.title}}">-->
+      <!--Card image-->
+      <div class="view overlay hm-white-slight">
+        <img [src]="product.imageS" [style.width.%]="100"  alt="{{product.title}}" class="img-fluid" alt="">
+        <a>
+          <div class="mask text-xs-center h3-responsive white-text">{{product.title}}</div>
+        </a>
       </div>
-      <img class="img-fluid card-img-top" [src]="product.imageS" [style.width.%]="100"  alt="{{product.title}}">
+      <!--/.Card image-->
       <div class="card-block text-xs-center" [ngClass]="setClasses(product)">
         <h4 class="card-text" >Price: ${{product.price}}</h4>
-
       </div>
-      <div class="card-footer text-xs-center">
-        <a class="btn btn-primary btn-sm" href="#" (click)="buy(product)">Buy Now</a>
-        <a class="btn btn-info btn-sm" [routerLink]="['/product',product.id]">More Details...</a>
+      <div class="card-block text-xs-center">
+        <a class="btn btn-primary btn-md" href="#" (click)="buy(product)">Buy Now</a>
+        <a class="btn btn-info btn-md" [routerLink]="['/product',product.id]">More Details...</a>
       </div>
       <div class="card-block">
         <p class="card-text">{{product.desc}}</p>
+       <!-- <a class="btn-primary btn-sm" href="#" (click)="buy(product)">Buy Now</a>
+        <a class="btn-info btn-sm" [routerLink]="['/product',product.id]">More Details...</a>-->
       </div>
     </div>
   </div>
