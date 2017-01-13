@@ -91,7 +91,7 @@ body {
 }
 
 .card {
-  margin-top: 0.75rem;
+  /*margin-top: 0.75rem;*/
 }
 
 .color-inverse {
@@ -170,4 +170,68 @@ body {
   font-size: 0.7rem;
   padding: 0.5rem 0.8rem;
 }
+
+
+.search-link i {
+  margin: 0.5rem;
+  color: #4285F4;
+}
+
+
+input[type=text]:focus:not([readonly]) + .search-link,
+input[type=password]:focus:not([readonly]) + .search-link,
+input[type=email]:focus:not([readonly]) + .search-link,
+input[type=url]:focus:not([readonly]) + .search-link,
+input[type=time]:focus:not([readonly]) + .search-link,
+input[type=date]:focus:not([readonly]) + .search-link,
+input[type=datetime-local]:focus:not([readonly]) + .search-link,
+input[type=tel]:focus:not([readonly]) + .search-link,
+input[type=number]:focus:not([readonly]) + .search-link,
+input[type=search-md]:focus:not([readonly]) + .search-link,
+input[type=search]:focus:not([readonly]) + .search-link,
+textarea.md-textarea:focus:not([readonly]) + .search-link {
+  color: #4285F4;
+}
+
+/*.z-depth-1, .jumbotron, .card, .list-group, .btn{
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.btn:hover {
+  box-shadow: 0 10px 16px rgba(0,0,0,0.25), 0 8px 8px rgba(0,0,0,0.22);
+}*/
+
+.btn {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3), 0 3px 3px -4px rgba(0,0,0,0.35),0 1px 7px 0 rgba(0, 0, 0, 0.12);
+}
+
+.btn:hover, .btn-secondary.active, .btn-secondary.dropdown-toggle, .btn-primary.active, .btn-default.active, .btn-success.active, .btn-info.active, .btn-warning.active, .btn-danger.active, .pager li a:hover, .btn-elegant.active, .btn-unique.active, .btn-pink.active, .btn-purple.active, .btn-deep-purple.active, .btn-indigo.active, .btn-cyan.active, .btn-light-green.active, .btn-dark-green.active, .btn-lime.active, .btn-yellow.active, .btn-amber.active, .btn-orange.active, .btn-deep-orange.active, .btn-brown.active, .btn-blue-grey.active, .btn-mdb.active {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 4px -5px rgba(0,0,0,0.24),0 4px 9px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navbar-dark form i {
+  color: #fff;
+}
+
+.view .overlay-title {
+  position : absolute;
+  text-align: center;
+  left : 0;
+  top: 0;
+  color : #fff;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.view .price {
+  position : absolute;
+  text-align: center;
+  right : 0;
+  bottom: 0;
+  color : #fff;
+  text-transform: uppercase;
+  padding : 0.2rem 0.4rem;
+}
+
 

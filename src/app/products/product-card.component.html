@@ -6,16 +6,22 @@
       </div>-->
       <!--<img class="img-fluid card-img-top" [src]="product.imageS" [style.width.%]="100"  alt="{{product.title}}">-->
       <!--Card image-->
-      <div class="view overlay hm-white-slight">
+      <div class="view overlay hm-blue-light">
         <img [src]="product.imageS" [style.width.%]="100"  alt="{{product.title}}" class="img-fluid" alt="">
+        <div class="overlay-title">
+          {{product.title}}
+        </div>
+        <span class="price h4-responsive" [ngClass]="setClasses(product)">
+          ${{product.price}}
+        </span>
         <a>
-          <div class="mask text-xs-center h3-responsive white-text">{{product.title}}</div>
+          <div class="mask"></div>
         </a>
       </div>
       <!--/.Card image-->
-      <div class="card-block text-xs-center" [ngClass]="setClasses(product)">
+      <!--<div class="card-block text-xs-center" [ngClass]="setClasses(product)">
         <h4 class="card-text" >Price: ${{product.price}}</h4>
-      </div>
+      </div>-->
       <div class="card-block text-xs-center">
         <a class="btn btn-primary btn-md" href="#" (click)="buy(product)">Buy Now</a>
         <a class="btn btn-info btn-md" [routerLink]="['/product',product.id]">More Details...</a>

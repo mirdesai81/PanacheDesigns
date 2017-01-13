@@ -1,14 +1,22 @@
 <!--<form class="">-->
-    <div class="form-group">
-      <label for="search" >Search Products</label>
-      <div class="input-group">
-        <input class="form-control" #search type="text" id="search" name="search" placeholder="Search..." />
+    <div>
+      <div class="form-inline">
+      <!--  <input class="form-control" #search type="text" id="search" name="search" placeholder="Search..." />
                <span class="input-group-addon search" >
                  <i class="fa fa-search color-inverse"></i>
                </span>
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="button" (click)="searchProduct(search.value)">Go!</button>
-                </span>
+                </span>-->
+
+        <div class="md-form form-group" [style.margin-right.rem]="0">
+          <input class="form-control" #search type="text" id="search" name="search" />
+          <label for="search" data-error="wrong" data-success="right">Search Products</label>
+          <a  (click)="searchProduct(search.value)" class="search-link" ><i class="fa fa-2x fa-search"></i></a>
+        </div>
+       <!-- <div class="md-form form-group">
+
+        </div>-->
       </div>
     </div>
 <!--</form>-->

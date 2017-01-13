@@ -12,9 +12,10 @@ export class ProductCardComponent {
   }
 
   setClasses(product : Product) {
+
     return {
-      "card-danger" : product.isSpecial,
-      "card-inverse" : product.isSpecial
+      "rgba-red-light" : product.isSpecial,
+      "rgba-blue-light" : !product.isSpecial
     };
   }
 
