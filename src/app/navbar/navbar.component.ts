@@ -15,10 +15,10 @@ export interface INavItem {
 export class NavbarComponent implements OnInit {
   appName : string = "Dream Bean";
   navItems : INavItem[] = [
-    { href : '#',label : 'Home', active : true},
-    { href : '#',label : 'Products', active : false},
-    { href : '#',label : 'Checkout', active : false},
-    { href : '#',label : 'Sign out', active : false},
+    { href : '/welcome',label : 'Home', active : true},
+    { href : '/products',label : 'Products', active : false},
+    { href : '/checkout',label : 'Checkout', active : false},
+    { href : '/signout',label : 'Sign out', active : false},
   ];
   constructor() { }
 

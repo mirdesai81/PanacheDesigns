@@ -5,7 +5,7 @@
     <!--Card image-->
     <div class="view overlay hm-white-slight">
       <img [src]="category.imageS" alt="{{category.title}}" class="img-fluid" [style.width.%]="100" >
-      <a>
+      <a (click)="filterCategory(category)">
         <div class="mask"></div>
       </a>
     </div>
@@ -21,4 +21,5 @@
       </div>
     </div>
     <!--/.Card content-->
+</div>
 </div>

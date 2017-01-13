@@ -1,5 +1,5 @@
 <div id="side-nav" class="sidenav bg-inverse">
-  <a [href]="navItem.href" [class.active]="navItem.active" *ngFor="let navItem of navItems">{{navItem.label}}</a>
+  <a routerLink="{{navItem.href}}" [class.active]="navItem.active" *ngFor="let navItem of navItems">{{navItem.label}}</a>
 </div>
 <div class="container">
   <div class="row">
@@ -20,14 +20,14 @@
 
             <div class="md-form form-group">
               <i class="fa fa-envelope prefix"></i>
-              <input type="email" id="form91" class="form-control validate">
-              <label for="form91" data-error="wrong" data-success="right">Type your email</label>
+              <input type="email" id="email" class="form-control validate">
+              <label for="email" data-error="wrong" data-success="right">Type your email</label>
             </div>
 
             <div class="md-form form-group">
               <i class="fa fa-lock prefix"></i>
-              <input type="password" id="form92" class="form-control validate">
-              <label for="form92" data-error="wrong" data-success="right">Type your password</label>
+              <input type="password" id="password" class="form-control validate">
+              <label for="password" data-error="wrong" data-success="right">Type your password</label>
             </div>
 
             <div class="md-form form-group">
