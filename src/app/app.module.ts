@@ -10,12 +10,13 @@ import {CategoryModule} from './category/category.module';
 import {ProductModule} from './products/product.module';
 import {routing} from "./app.routes";
 import {HomeComponent} from './home/home.component';
+import {CartModule} from './cart/cart.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +24,8 @@ import {HomeComponent} from './home/home.component';
     HttpModule,
     routing,
     CategoryModule,
-    ProductModule
+    ProductModule,
+    CartModule
   ],
   providers: [{provide : LocationStrategy, useClass : PathLocationStrategy}],
   bootstrap: [AppComponent]

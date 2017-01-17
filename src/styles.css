@@ -83,7 +83,7 @@ body {
 }
 
 .hamburger-box {
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 .padding-top {
@@ -234,4 +234,40 @@ textarea.md-textarea:focus:not([readonly]) + .search-link {
   padding : 0.2rem 0.4rem;
 }
 
+.cart-item {
+  /*margin: 0 auto;
+  width : 30%;*/
+  padding : 0.6rem 0.8rem;
+}
 
+.navbar-nav .menu-container a {
+  padding-top: 0px;
+  position: relative;
+  display: block;
+}
+
+
+.menu-text {
+  position: absolute;
+  top : 3px;
+  right : 18px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%/50%;
+  /*border: 1px solid #fff;*/
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.menu-container .dropdown-toggle::after {
+  display: none;
+}
+
+.menu-container i {
+  font-size: 2.5rem;
+  margin-bottom: 6px;
+}
+
+.navbar .cart-btn a:last-child {
+  margin-right: 1.2rem;
+}

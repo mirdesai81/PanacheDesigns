@@ -1,0 +1,41 @@
+<ul class="nav navbar-nav float-xs-left">
+  <li class="nav-item dropdown menu-container">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-shopping-cart deep-orange-text"></i><span class="menu-text">{{cart.count}}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-left">
+      <div *ngIf="cart.count" class="cart-item">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+          </thead>
+          <tr *ngFor="let item of cart.items">
+            <td>{{item.product.title}}</td>
+            <td>{{item.product.price | currency:'USD':true:'1.2-2'}}</td>
+            <td>{{item.count}}</td>
+            <td>{{item.amount | currency:'USD':true:'1.2-2'}}</td>
+          </tr>
+        </table>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="float-xs-right">
+              <b>Total:{{cart.amount | currency:'USD':true:'1.2-2'}}</b>
+            </div>
+          </div>
+        </div>
+        <div class="row cart-btn">
+          <div class="col-md-12">
+            <a routerLink="['/cart']" class="btn btn-primary float-xs-right"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
+            <a routerLink="['/checkout']" class="btn btn-success float-xs-right"><i class="fa fa-credit-card" aria-hidden="true"></i> Checkout</a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!cart.count">
+        <h4>Cart is empty</h4>
+      </div>
+    </div>
+  </li>
+</ul>

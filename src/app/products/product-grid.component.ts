@@ -1,13 +1,14 @@
 import {Component,Input} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Product,ProductService} from './product.service';
+import {CartService} from "../cart/cart.service";
 @Component({
   selector : 'app-product-grid',
   templateUrl : './product-grid.component.html'
 })
 export class ProductGridComponent {
   products : any = [];
-  constructor(private route : ActivatedRoute,private productService : ProductService) {
+  constructor(private route : ActivatedRoute,private productService : ProductService,private cartService : CartService) {
 
     this.route.queryParams.subscribe(params => {
       let category : string = params['category'];
@@ -42,6 +43,10 @@ export class ProductGridComponent {
     }
 
     return products;
+  }
+
+  addProductToCart(product : Product) {
+    this.cartService.addProduct(product);
   }
 }
 
