@@ -1,0 +1,63 @@
+<div class="container" id="main">
+  <div class="row">
+    <div class="col-md-5">
+      <img [src]="product.imageL" class="img-fluid" [style.height.%]="100" alt="{{product.title}}">
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title">{{product.title}}</h4>
+          <p class="card-text">{{product.desc}}</p>
+        </div>
+        <ul class="list-group list-group-flush no-shadow">
+          <li class="list-group-item">Product Code : {{product.id}}</li>
+          <li class="list-group-item">Category : {{product.categoryId | categoryTitle}}</li>
+        </ul>
+        <div class="card-block">
+          <p class="card-text">Availability: In Stock</p>
+        </div>
+        <div class="card-footer card-inverse card-danger rgba-red-strong" *ngIf="product.isSpecial">
+          <p class="card-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
+        </div>
+        <div class="card-footer card-inverse rgba-blue-strong" *ngIf="!product.isSpecial">
+          <p class="card-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-block">
+          <form class="">
+            <div class="form-group row">
+              <div class="col-xs-3">
+                <label for="quantity" class="form-control-static">Quantity</label>
+              </div>
+              <div class="col-xs-9">
+                <p class="form-control-static text-xs-left">{{quantity}}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xs-3">
+                <label for="amount" class="form-control-static">Amount</label>
+              </div>
+              <div class="col-xs-9">
+                <p class="form-control-static text-xs-left">{{amount | currency:'USD':true:'1.2-2'}}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xs-12">
+                <a class="btn btn-primary btn-block" (click)="addToCart()">Add to Cart</a>
+                <a class="btn btn-warning btn-block" [style.marginTop.rem]="0.4" (click)="removeFromCart()">Remove from Cart</a>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-xs-12">
+                <a routerLink="['/products']" class="btn btn-outline-secondary btn-block">Continue Shopping</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

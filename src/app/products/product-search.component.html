@@ -10,9 +10,9 @@
                 </span>-->
 
         <div class="md-form form-group" [style.margin-right.rem]="0">
-          <input class="form-control" #search type="text" id="search" name="search" />
+          <input class="form-control" #search type="text" (keyup)="searchChanged($event)" id="search" name="search" />
           <label for="search" data-error="wrong" data-success="right">Search Products</label>
-          <a  (click)="searchProduct(search.value)" class="search-link" ><i class="fa fa-2x fa-search"></i></a>
+          <a  (click)="searchProduct(search.value)" *ngIf="!disabled"  class="search-link" ><i class="fa fa-2x fa-search"></i></a>
         </div>
        <!-- <div class="md-form form-group">
 

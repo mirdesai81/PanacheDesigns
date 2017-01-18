@@ -210,6 +210,16 @@ textarea.md-textarea:focus:not([readonly]) + .search-link {
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 4px -5px rgba(0,0,0,0.24),0 4px 9px 0 rgba(0, 0, 0, 0.1);
 }
 
+.card, .jumbotron {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.4), 0 2px 2px -3px rgba(0,0,0,0.45),0 1px 6px 0 rgba(0, 0, 0, 0.22);
+  transition: all 0.3s linear;
+}
+
+.card:hover {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3), 0 2px 4px -5px rgba(0,0,0,0.34),0 4px 9px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
 .navbar-dark form i {
   color: #fff;
 }
@@ -249,8 +259,8 @@ textarea.md-textarea:focus:not([readonly]) + .search-link {
 
 .menu-text {
   position: absolute;
-  top : 3px;
-  right : 18px;
+  top : 0px;
+  left : 32px;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%/50%;
@@ -265,9 +275,15 @@ textarea.md-textarea:focus:not([readonly]) + .search-link {
 
 .menu-container i {
   font-size: 2.5rem;
-  margin-bottom: 6px;
+  /*margin-bottom: 6px;*/
 }
 
 .navbar .cart-btn a:last-child {
   margin-right: 1.2rem;
+}
+
+.card .no-shadow {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }

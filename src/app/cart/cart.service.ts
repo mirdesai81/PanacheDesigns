@@ -19,7 +19,7 @@ export interface CartItem {
 export class CartService {
   cart : Cart = new Cart();
 
-  addProduct(product : Product) {
+  addProduct(product : Product) : CartItem {
     let item :  CartItem = this.findItem(product.id);
 
     if(item) {
@@ -36,11 +36,12 @@ export class CartService {
     }
     this.cart.count++;
     this.cart.amount += product.price;
-    console.log(product);
-    console.log(this.cart);
+    /*console.log(product);
+    console.log(this.cart);*/
+    return item
   }
 
-  removeProduct(product : Product) {
+  removeProduct(product : Product) : CartItem {
     let item :  CartItem = this.findItem(product.id);
 
     if(item) {
@@ -52,6 +53,8 @@ export class CartService {
       this.cart.count--;
       this.cart.amount -= product.price;
     }
+
+    return item;
   }
 
   removeItem(item : CartItem) {

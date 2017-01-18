@@ -6,7 +6,21 @@ import {Product} from './product.service';
   templateUrl : './product-search.component.html'
 })
 export class ProductSearchComponent {
+  disabled : boolean = true;
+
+
   constructor(private router : Router) {
+
+  }
+
+  searchChanged(event : KeyboardEvent) {
+    let element:HTMLInputElement = <HTMLInputElement>event.target;
+
+    if(element.value) {
+      this.disabled = false;
+    } else {
+      this.disabled = true;
+    }
 
   }
 
