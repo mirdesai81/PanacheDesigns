@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
     { href : '/products',label : 'Products', active : false},
     { href : '/checkout',label : 'Checkout', active : false},
     { href : '/signout',label : 'Sign out', active : false},
+    { href : '/register',label : 'Register', active : false}
   ];
   constructor() { }
 
