@@ -1,5 +1,7 @@
 <div id="side-nav" class="sidenav bg-inverse">
-  <a routerLink="{{navItem.href}}" [class.active]="navItem.active" *ngFor="let navItem of navItems">{{navItem.label}}</a>
+  <ul>
+    <li *ngFor="let navItem of navItems"><a routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a></li>
+  </ul>
 </div>
 <div class="container">
   <div class="row">
