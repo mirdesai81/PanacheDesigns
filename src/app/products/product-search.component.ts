@@ -1,27 +1,33 @@
-import {Component,} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Product} from './product.service';
+import {FormControl} from '@angular/forms'
 @Component({
   selector : 'app-product-search',
   templateUrl : './product-search.component.html'
 })
-export class ProductSearchComponent {
+export class ProductSearchComponent implements OnInit {
   disabled : boolean = true;
-
+  searchControl : FormControl;
 
   constructor(private router : Router) {
 
   }
 
-  searchChanged(event : KeyboardEvent) {
-    let element:HTMLInputElement = <HTMLInputElement>event.target;
-
-    if(element.value) {
+  searchChanged(value : string) {
+    if(value) {
       this.disabled = false;
     } else {
       this.disabled = true;
     }
 
+  }
+
+  ngOnInit() {
+    this.searchControl = new FormControl();
+    this.searchControl.valueChanges.subscribe((value : string) => {
+      this.searchChanged(value);
+    });
   }
 
   searchProduct(value : String) {

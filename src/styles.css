@@ -177,19 +177,12 @@ body {
   color: #4285F4;
 }
 
+.search-link-disabled i {
+  margin: 0.5rem;
+  color: #e5e5e5;
+}
 
-input[type=text]:focus:not([readonly]) + .search-link,
-input[type=password]:focus:not([readonly]) + .search-link,
-input[type=email]:focus:not([readonly]) + .search-link,
-input[type=url]:focus:not([readonly]) + .search-link,
-input[type=time]:focus:not([readonly]) + .search-link,
-input[type=date]:focus:not([readonly]) + .search-link,
-input[type=datetime-local]:focus:not([readonly]) + .search-link,
-input[type=tel]:focus:not([readonly]) + .search-link,
-input[type=number]:focus:not([readonly]) + .search-link,
-input[type=search-md]:focus:not([readonly]) + .search-link,
-input[type=search]:focus:not([readonly]) + .search-link,
-textarea.md-textarea:focus:not([readonly]) + .search-link {
+input[type=text]:focus:not([readonly]) + .search-link,input[type=text]:focus:not([readonly]) + .search-link-disabled {
   color: #4285F4;
 }
 
