@@ -1,6 +1,15 @@
-# DreamBean
+# Angular 2 E-Commerce App using Boostrap 4
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
+
+## Node install
+Install [NodeJs](https://nodejs.org/en/download/) version 6.9.4 includes npm 3.10.10.
+
+## Angular CLI Install
+run `npm install angular-cli -g`.
+
+## Dependency Install
+Navigate to project root path and run `npm install` to install all dependencies
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
