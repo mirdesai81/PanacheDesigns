@@ -14,20 +14,8 @@ function toggleNav() {
   }
 }
 
-/* /!* Set the width of the side navigation to 0 and the left margin of the page content to 0 *!/
- function closeNav() {
- document.getElementById("mySidenav").style.width = "0";
- document.getElementById("main").style.marginLeft = "auto";
- $("#hamburger").removeClass("is-active");
- }*/
-/*
- Waves.init();*/
-/*$(document).ready(function() {
-  Waves.attach('.btn',['waves-button', 'waves-float', 'waves-light']);
-  Waves.attach('.card',null);
-});*/
 $(document).ready(function() {
-  function toggleNav() {
+/*  function toggleNav() {
     if($('#hamburger').hasClass('is-active')) {
       $("#side-nav").css("width","0");
       $("#main").css("margin-left","auto");
@@ -37,9 +25,8 @@ $(document).ready(function() {
       $("#main").css("margin-left","250px");
       $("#hamburger").addClass("is-active");
     }
-  }
+  }*/
 
   Waves.attach('.btn',['waves-light']);
-  /*Waves.attach('.card',null);*/
 });
 

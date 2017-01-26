@@ -1,0 +1,68 @@
+<div class="jumbotron">
+  <h2>Template Driven Form</h2>
+  <form #form="ngForm" (ngSubmit)="handle(form.value)">
+    <fieldset>
+      <div class="form-group">
+        <label for="name">User Name</label>
+        <input type="text" id="name" name="name" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" ngModel required>
+        <p class="form-text text-muted">The password must be more than 8 characters long.</p>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" ngModel required>
+      </div>
+      <div class="form-check">
+        <label>Gender</label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-inline">
+          <input type="radio" class="form-check-input" name="gender" value="Male" ngModel> Male
+        </label>
+        <label class="form-check-inline">
+          <input type="radio" class="form-check-input" name="gender" value="Female" ngModel> Female
+        </label>
+      </div>
+    </fieldset>
+    <fieldset ngModelGroup="contact">
+      <div class="form-group">
+        <label for="address1">Address 1</label>
+        <input type="text" id="address1" name="address1" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="address2">Address 2</label>
+        <input type="text" id="address2" name="address2" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" name="city" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="zip">Zip</label>
+        <input type="text" id="zip" name="zip" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="zip">Country</label>
+        <input type="text" id="country" name="country" ngModel>
+      </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Save</button>
+  </form>
+  <pre>{{form.value | json }}</pre>
+ <!-- <pre>Validation status : {{form.status | json }}</pre>-->
+</div>
