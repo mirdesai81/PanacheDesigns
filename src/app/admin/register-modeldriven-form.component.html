@@ -1,19 +1,27 @@
 <div class="jumbotron">
   <h2>Model Driven Form</h2>
-  <form [formGroup]="registerForm" novalidate (ngSubmit)="handleSubmit(registerForm.value)">
+  <form [formGroup]="registerForm" novalidate *ngIf="active" (ngSubmit)="handleSubmit(registerForm.value)">
     <fieldset>
       <div class="form-group">
         <label >User Name</label>
         <input type="text" formControlName="userName"  >
       </div>
+      <div *ngIf="formErrors.userName" class="alert alert-danger">
+        {{formErrors.userName}}
+      </div>
       <div class="form-group">
         <label >Password</label>
         <input type="password" formControlName="password"  >
-        <p class="form-text text-muted">The password must be more than 8 characters long.</p>
+      </div>
+      <div *ngIf="formErrors.password" class="alert alert-danger">
+        {{formErrors.password}}
       </div>
       <div class="form-group">
         <label >Email</label>
         <input type="email" formControlName="email"  >
+      </div>
+     <div *ngIf="formErrors.email" class="alert alert-danger">
+        {{formErrors.email}}
       </div>
       <div class="form-group">
         <label >First Name</label>
@@ -33,6 +41,13 @@
         <label class="form-check-inline">
           <input type="radio" class="form-check-input" formControlName="gender" value="Female" > Female
         </label>
+      </div>
+      <div class="form-group">
+        <label >Phone</label>
+        <input type="text"  formControlName="phone"  >
+      </div>
+      <div *ngIf="formErrors.phone" class="alert alert-danger">
+        {{formErrors.phone}}
       </div>
     </fieldset>
     <fieldset formGroupName="contact">
@@ -54,7 +69,10 @@
       </div>
       <div class="form-group">
         <label >Zip</label>
-        <input type="text"  formControlName="zip" >
+        <input type="text"  formControlName="zip"  >
+      </div>
+      <div *ngIf="formErrors.zip" class="alert alert-danger">
+        {{formErrors.zip}}
       </div>
       <div class="form-group">
         <label >Country</label>
@@ -64,6 +82,7 @@
     <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Save</button>
   </form>
   <pre>{{registerForm.value | json }}</pre>
+  <pre>{{registerForm.controls['userName'].valid}}</pre>
   <!--<pre>Validation status : {{ registerForm.status }}</pre>-->
  <!-- <pre>Events Changes: {{events | json}}</pre>-->
 </div>

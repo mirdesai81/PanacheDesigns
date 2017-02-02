@@ -12,12 +12,18 @@ import {routing} from "./app.routes";
 import {HomeComponent} from './home/home.component';
 import {CartModule} from './cart/cart.module';
 import {RegisterModule} from './admin/register.module';
+import {PhoneValidator} from "./shared/phone.validator";
+import {ZipValidator} from "./shared/zip.validator";
+import {EmailValidator} from "./shared/email.validator";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    ZipValidator,
+    PhoneValidator,
+    EmailValidator
   ],
   imports: [
     BrowserModule,
