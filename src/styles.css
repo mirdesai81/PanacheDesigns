@@ -281,6 +281,13 @@ input[type=text]:focus:not([readonly]) + .search-link,input[type=text]:focus:not
   box-shadow: none;
 }
 
+.product-card .card-block {
+  padding: 0.5rem;
+}
+
+.clip-content-box {
+  /*background-clip: content-box;*/
+}
 .ng-valid[required] , .ng-valid.required {
   border-left: 2px solid lightseagreen;
 }

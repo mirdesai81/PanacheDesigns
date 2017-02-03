@@ -1,6 +1,6 @@
 <div class="card-deck-wrapper">
   <div class="card-deck">
-    <div class="card" *ngFor="let product of products">
+    <div class="card product-card" *ngFor="let product of products">
      <!-- <div class="card-header text-xs-center">
         {{product.title}}
       </div>-->
@@ -22,8 +22,8 @@
       <!--<div class="card-block text-xs-center" [ngClass]="setClasses(product)">
         <h4 class="card-text" >Price: ${{product.price}}</h4>
       </div>-->
-      <div class="card-block text-xs-center">
-        <a class="btn btn-primary btn-md" (click)="buy(product)">Buy Now</a>
+      <div class="card-block">
+        <a class="btn btn-primary btn-md" (click)="buy(product)">Add to Cart</a>
         <a class="btn btn-info btn-md" [routerLink]="['/product',product.id]">More Details...</a>
       </div>
       <div class="card-block">
