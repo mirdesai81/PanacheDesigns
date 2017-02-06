@@ -15,24 +15,25 @@ import {RegisterModule} from './admin/register.module';
 import {PhoneValidator} from "./shared/phone.validator";
 import {ZipValidator} from "./shared/zip.validator";
 import {EmailValidator} from "./shared/email.validator";
+import {CheckoutModule} from './checkout/checkout.module';
+import {NavbarModule} from "./navbar/navbar.module";
+import {HomeModule} from "./home/home.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    ZipValidator,
-    PhoneValidator,
-    EmailValidator
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     routing,
+    NavbarModule,
     CategoryModule,
     ProductModule,
     CartModule,
-    RegisterModule
+    RegisterModule,
+    CheckoutModule
   ],
   providers: [{provide : LocationStrategy, useClass : PathLocationStrategy}],
   bootstrap: [AppComponent]
