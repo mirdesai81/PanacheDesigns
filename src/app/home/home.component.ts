@@ -21,7 +21,7 @@ export class HomeComponent {
   // Card categories
   cardCategories: Category[] = this.categoryService.getCategories();
 
-  selectCategory(category: Category) {
+  /*selectCategory(category: Category) {
     console.log('Selected category', category.title);
-  }
+  }*/
 }

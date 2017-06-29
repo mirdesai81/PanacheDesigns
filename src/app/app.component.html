@@ -2,18 +2,21 @@
 <div class="container" id="main">
   <router-outlet></router-outlet>
 </div>
-<div class="row">
-    <div class="col-md-12">
-      <div class="product-menu navbar navbar-light bg-faded">
-        <a href="#" class="navbar-brand" >{{title}}</a>
-        <ul class="nav navbar-nav">
-          <li class="nav-item"><a class="nav-link">Home<span class="sr-only">(current)</span></a></li>
-          <li class="nav-item"><a class="nav-link">Products</a></li>
-          <li class="nav-item"><a class="nav-link">Checkout</a></li>
-          <li class="nav-item"><a class="nav-link">Sign Out</a></li>
-        </ul>
-      </div>
-    </div>
+
+<div class="product-menu navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#footerText"
+          aria-controls="footerText" aria-expanded="false" aria-label="Toggle Navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a href="#" class="navbar-brand" >{{title}}</a>
+  <div class="collapse navbar-collapse" id="footerText">
+    <ul class="nav navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link">Home<span class="sr-only">(current)</span></a></li>
+      <li class="nav-item"><a class="nav-link">Products</a></li>
+      <li class="nav-item"><a class="nav-link">Checkout</a></li>
+      <li class="nav-item"><a class="nav-link">Sign Out</a></li>
+    </ul>
+  </div>
 </div>
 
 

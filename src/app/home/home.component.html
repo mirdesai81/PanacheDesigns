@@ -85,10 +85,11 @@
      </div>
    </div>
  </div>-->
-<div class="row" [style.margin-top.rem]="0.5">
-  <app-category-card *ngFor="let category of cardCategories"
-                     [category]="category" (select)="selectCategory($event)">
+<!--<div class="row" [style.margin-top.rem]="0.5">
+  <app-category-card *ngFor="let category of cardCategories; let index = index; let count = count"
+                     [category]="category" [currentCount]="count" (select)="selectCategory($event)">
   </app-category-card>
-</div>
+</div>-->
+<app-category-grid></app-category-grid>
 
 
