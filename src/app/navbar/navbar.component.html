@@ -3,38 +3,34 @@
     <li *ngFor="let navItem of navItems"><a routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a></li>
   </ul>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 ">
-      <div class="product-menu navbar  navbar-fixed-top navbar-dark bg-inverse">
-        <div>
-          <button class="hamburger hamburger--collapse float-xs-left" id="hamburger" type="button" onclick="toggleNav();">
+
+<div class="product-menu navbar fixed-top navbar-inverse bg-inverse">
+  <div>
+    <button class="hamburger hamburger--collapse float-md-left" id="hamburger" type="button" onclick="toggleNav();">
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
-          </button>
-          <app-cart-menu></app-cart-menu>
-          <form class="form-inline float-xs-right">
+    </button>
+    <app-cart-menu></app-cart-menu>
+    <form class="form-inline float-md-right">
 
-            <div class="md-form form-group">
-              <i class="fa fa-envelope prefix"></i>
-              <input type="email" id="email" class="form-control validate">
-              <label for="email" data-error="wrong" data-success="right">Type your email</label>
-            </div>
-
-            <div class="md-form form-group">
-              <i class="fa fa-lock prefix"></i>
-              <input type="password" id="password" class="form-control validate">
-              <label for="password" data-error="wrong" data-success="right">Type your password</label>
-            </div>
-
-            <div class="md-form form-group">
-              <a href="" class="btn btn-secondary">Login</a>
-            </div>
-
-          </form>
-        </div>
+      <div class="md-form form-group">
+        <i class="fa fa-envelope prefix"></i>
+        <input type="email" id="email" class="form-control validate">
+        <label for="email" data-error="wrong" data-success="right">Type your email</label>
       </div>
-    </div>
+
+      <div class="md-form form-group">
+        <i class="fa fa-lock prefix"></i>
+        <input type="password" id="password" class="form-control validate">
+        <label for="password" data-error="wrong" data-success="right">Type your password</label>
+      </div>
+
+      <div class="md-form form-group">
+        <a href="" class="btn btn-secondary">Login</a>
+      </div>
+
+    </form>
   </div>
 </div>
+
