@@ -28,8 +28,8 @@
         "../node_modules/mdbootstrap/js/mdb.js",
         "app-main.js"
       ],
+      "environmentSource" : "environments/environment.ts",
       "environments": {
-        "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
