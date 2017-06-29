@@ -6,16 +6,17 @@ import {Category} from './category.service';
   templateUrl : './category-card.component.html'
 })
 export class CategoryCardComponent {
- @Input() category : Category;
- @Output() select : EventEmitter<Category> = new EventEmitter<Category>();
+ @Input() categories : Category[];
+ @Input() currentCount : number;
+ /*@Output() select : EventEmitter<Category> = new EventEmitter<Category>();*/
 
   constructor(private router : Router) {
 
   }
 
-  browse() {
+ /* browse() {
     this.select.emit(this.category);
-  }
+  }*/
 
   filterCategory(category : Category) {
     this.router.navigate(['/products'],{queryParams : { category : category.id}});
