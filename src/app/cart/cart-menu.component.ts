@@ -9,7 +9,7 @@ import {CartService} from "./cart.service";
 })
 export class CartMenuComponent implements OnInit {
 
-  private cart : Cart;
+  cart : Cart;
   constructor(private cartService : CartService) {
     this.cart = this.cartService.cart;
   }
