@@ -9,7 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {CategoryModule} from './category/category.module';
 import {ProductModule} from './products/product.module';
 import {routing} from "./app.routes";
-import {HomeComponent} from './home/home.component';
+import {HomeModule} from './home/home.module';
 import {CartModule} from './cart/cart.module';
 import {RegisterModule} from './admin/register.module';
 import {PhoneValidator} from "./shared/phone.validator";
@@ -17,18 +17,18 @@ import {ZipValidator} from "./shared/zip.validator";
 import {EmailValidator} from "./shared/email.validator";
 import {CheckoutModule} from './checkout/checkout.module';
 import {NavbarModule} from "./navbar/navbar.module";
-import {HomeModule} from "./home/home.module";
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     routing,
     NavbarModule,
+    HomeModule,
     CategoryModule,
     ProductModule,
     CartModule,
