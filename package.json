@@ -36,7 +36,7 @@
     "node-waves": "^0.7.5",
     "rxjs": "^5.4.1",
     "ts-helpers": "^1.1.1",
-    "typescript": "^2.3.4",
+    "typescript": "2.3.4",
     "zone.js": "^0.8.12"
   },
   "devDependencies": {
