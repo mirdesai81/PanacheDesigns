@@ -1,0 +1,12 @@
+<div class="product-menu navbar navbar-toggleable-md navbar-light bg-faded fixed-bottom">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#footerText"
+          aria-controls="footerText" aria-expanded="false" aria-label="Toggle Navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a href="#" class="navbar-brand" >{{title}}</a>
+  <div class="collapse navbar-collapse" id="footerText">
+    <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item" *ngFor="let navItem of navItems"><a  class="nav-link" routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a></li>
+    </ul>
+  </div>
+</div>
