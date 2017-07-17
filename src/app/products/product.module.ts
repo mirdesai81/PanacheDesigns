@@ -9,9 +9,11 @@ import {CategoryModule} from '../category/category.module';
 import {ProductService} from './product.service';
 import { ProductViewComponent } from './product-view.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {NavbarModule} from "../navbar/navbar.module";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
-  imports : [FormsModule,ReactiveFormsModule,CommonModule,RouterModule,CategoryModule],
+  imports : [FormsModule,ReactiveFormsModule,CommonModule,RouterModule,CategoryModule,SharedModule],
   declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent],
   exports : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent],
   providers : [ProductService]

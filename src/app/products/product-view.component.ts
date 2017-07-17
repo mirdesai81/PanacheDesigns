@@ -37,6 +37,10 @@ export class ProductViewComponent implements OnInit {
     this.cartItem = this.cartService.removeProduct(this.product);
   }
 
+  isCartEmpty() {
+    return (this.cartItem == null || this.cartItem.count == 0) ? true : false;
+  }
+
   ngOnInit() {
   }
 
