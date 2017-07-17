@@ -38,6 +38,7 @@ export class CartService {
     this.cart.amount += product.price;
     /*console.log(product);
     console.log(this.cart);*/
+    console.log(item);
     return item
   }
 
@@ -45,13 +46,18 @@ export class CartService {
     let item :  CartItem = this.findItem(product.id);
 
     if(item) {
-      item.count--;
-      if(!item.count) {
-        this.remove(item);
-      }
 
+      if(item.count == 1) {
+        this.remove(item);
+        item.amount = 0;
+        item.count = 0;
+      } else {
+        item.count--;
+        item.amount = item.amount - product.price;
+      }
       this.cart.count--;
       this.cart.amount -= product.price;
+      console.log(item);
     }
 
     return item;
