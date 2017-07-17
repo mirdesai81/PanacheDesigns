@@ -5,11 +5,16 @@ import { EmailValidator } from './email.validator';
 import {ZipValidator} from './zip.validator';
 import {PhoneValidator} from './phone.validator';
 import {RouterModule} from '@angular/router';
-
+import {NavbarComponent} from '../navbar/navbar.component';
+import {FooterComponent} from '../navbar/footer.component';
+import {CartMenuComponent} from '../cart/cart-menu.component';
+import {CartService} from "../cart/cart.service";
 @NgModule({
   imports: [
     FormsModule,ReactiveFormsModule,CommonModule,RouterModule
   ],
-  declarations: [EmailValidator,ZipValidator,PhoneValidator]
+  declarations: [EmailValidator,ZipValidator,PhoneValidator,NavbarComponent,FooterComponent,CartMenuComponent],
+  exports: [NavbarComponent,FooterComponent,CartMenuComponent],
+  providers : [CartService]
 })
 export class SharedModule { }

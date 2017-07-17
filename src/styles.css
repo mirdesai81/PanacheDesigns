@@ -6,8 +6,18 @@
 @import "../node_modules/mdbootstrap/css/mdb.css";
 
 body {
+  font-family: 'Roboto';
   padding-top: 51px;
   /*padding-bottom: 51px;*/
+}
+
+.navbar-inverse .navbar-nav .logo {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  color: #aa66cc;
+  font-style: normal;
+  font-size: 32px;
+  padding: 0 1.2rem;
 }
 
 .centered-block {
@@ -243,7 +253,7 @@ input[type=text]:focus:not([readonly]) + .search-link,input[type=text]:focus:not
   padding : 0.6rem 0.8rem;
 }
 
-.navbar-nav .menu-container a {
+.navbar-nav > .menu-container > a {
   padding-top: 0px;
   position: relative;
   display: block;
@@ -302,4 +312,23 @@ fieldset.ng-invalid {
 
 .ng-untouched:not(form) {
   border-left : none;
+}
+
+.card-deck .card {
+  flex: 0 0 250px;
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+.card-deck .product-card {
+  flex: 0 0 230px;
+}
+
+.card .card-footer {
+  padding: 0.75rem 1.25rem;
+}
+
+#main {
+  padding-bottom: 60px;
 }

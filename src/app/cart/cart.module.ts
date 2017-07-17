@@ -6,11 +6,13 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import {CartMenuComponent} from './cart-menu.component';
 import {CartService} from './cart.service';
 import { CartViewComponent } from './cart-view.component';
+import {NavbarComponent} from "../navbar/navbar.component";
+import {FooterComponent} from "../navbar/footer.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
-  imports : [FormsModule,CommonModule,RouterModule],
-  declarations : [CartMenuComponent, CartViewComponent],
-  exports : [CartMenuComponent, CartViewComponent],
-  providers : [CartService]
+  imports : [FormsModule,CommonModule,RouterModule,SharedModule],
+  declarations : [CartViewComponent],
+  exports : [CartViewComponent]
 })
 export class CartModule {}

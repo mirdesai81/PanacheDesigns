@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CartService} from "./cart.service";
 import {CartItem} from "./cart.service";
 import {Cart} from "./cart.service";
+/*import {NavbarComponent} from "../navbar/navbar.component";
+import {FooterComponent} from "../navbar/footer.component";*/
 
 @Component({
   selector: 'app-cart-view',
