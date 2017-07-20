@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="card col-md-8 col-sm-12 offset-2">
+      <div class="card-block">
+        <form [formGroup]="registerForm" novalidate *ngIf="active" (ngSubmit)="register(registerForm.value)">
+          <div class="form-header purple darken-4"><h3><i class="fa fa-lock"></i> Register</h3></div>
+          <fieldset>
+            <div class="form-group">
+              <label>User Name</label>
+              <input type="text" formControlName="userName">
+            </div>
+            <div *ngIf="formErrors.userName" class="alert alert-danger">
+              {{formErrors.userName}}
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" formControlName="password">
+            </div>
+            <div *ngIf="formErrors.password" class="alert alert-danger">
+              {{formErrors.password}}
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" formControlName="email">
+            </div>
+            <div *ngIf="formErrors.email" class="alert alert-danger">
+              {{formErrors.email}}
+            </div>
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" formControlName="firstName">
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" formControlName="lastName">
+            </div>
+            <div class="form-check">
+              <label>Gender</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" formControlName="gender" value="Male"> Male
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" formControlName="gender" value="Female"> Female
+              </label>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="text" formControlName="phone">
+            </div>
+            <div *ngIf="formErrors.phone" class="alert alert-danger">
+              {{formErrors.phone}}
+            </div>
+          </fieldset>
+          <fieldset formGroupName="contact">
+            <div class="form-group">
+              <label>Address 1</label>
+              <input type="text" formControlName="address1">
+            </div>
+            <div class="form-group">
+              <label> Address 2</label>
+              <input type="text" formControlName="address2">
+            </div>
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" formControlName="city">
+            </div>
+            <div class="form-group">
+              <label>State</label>
+              <input type="text" formControlName="state">
+            </div>
+            <div class="form-group">
+              <label>Zip</label>
+              <input type="text" formControlName="zip">
+            </div>
+            <div *ngIf="formErrors.zip" class="alert alert-danger">
+              {{formErrors.zip}}
+            </div>
+            <div class="form-group">
+              <label>Country</label>
+              <input type="text" formControlName="country">
+            </div>
+          </fieldset>
+          <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Save</button>
+        </form>
+      </div>
+      <pre>{{registerForm.value | json }}</pre>
+      <pre>{{registerForm.controls['userName'].valid}}</pre>
+      <!--<pre>Validation status : {{ registerForm.status }}</pre>-->
+      <!-- <pre>Events Changes: {{events | json}}</pre>-->
+    </div>
+  </div>
+</div>
+
