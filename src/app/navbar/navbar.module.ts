@@ -7,6 +7,7 @@ import {CartModule} from '../cart/cart.module';
 import {FooterComponent} from "./footer.component";
 import {SharedModule} from "../shared/shared.module";
 
+
 @NgModule({
   imports: [
     FormsModule,ReactiveFormsModule,CommonModule,RouterModule,SharedModule

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CartService} from "../cart/cart.service";
 import {FormBuilder, FormControl,FormGroup, Validators} from '@angular/forms';
-import {User} from "../admin/User";
+import {User} from "../login/User";
 import {validatePhone} from '../shared/phone.validator';
 import {validateZip} from "../shared/zip.validator";
 import {validateEmail} from "../shared/email.validator";

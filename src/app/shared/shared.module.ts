@@ -9,9 +9,10 @@ import {NavbarComponent} from '../navbar/navbar.component';
 import {FooterComponent} from '../navbar/footer.component';
 import {CartMenuComponent} from '../cart/cart-menu.component';
 import {CartService} from "../cart/cart.service";
+import {LoginModule} from '../login/login.module';
 @NgModule({
   imports: [
-    FormsModule,ReactiveFormsModule,CommonModule,RouterModule
+    FormsModule,ReactiveFormsModule,CommonModule,RouterModule,LoginModule
   ],
   declarations: [EmailValidator,ZipValidator,PhoneValidator,NavbarComponent,FooterComponent,CartMenuComponent],
   exports: [NavbarComponent,FooterComponent,CartMenuComponent],
