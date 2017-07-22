@@ -1,12 +1,12 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import {Category,CategoryService} from "../category/category.service";
-
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   title = 'Dream Bean';
 
   constructor(private categoryService : CategoryService) {
@@ -16,12 +16,27 @@ export class HomeComponent {
   /*@Input() category : Category;*/
 
   // Slide Categories
-  slideCategories: Category[] = [this.categoryService.getCategory('1'), this.categoryService.getCategory('2'), this.categoryService.getCategory('3')];
+  slideCategories: Category[] = [];
 
   // Card categories
-  cardCategories: Category[] = this.categoryService.getCategories();
+  cardCategories: Category[];
 
   /*selectCategory(category: Category) {
     console.log('Selected category', category.title);
   }*/
+
+  ngOnInit() {
+
+    this.categoryService.getCategories()
+      .subscribe(data => {
+                    this.cardCategories = data;
+                    let total = 0;
+                    this.cardCategories.forEach(category =>
+                    { if(total < 3) {
+                        this.slideCategories.push(category);
+                      }
+                      total += 1;
+                    });
+                  });
+  }
 }

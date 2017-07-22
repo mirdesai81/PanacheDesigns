@@ -14,6 +14,8 @@ export class NavItems {
       { href : '/checkout',label : 'Checkout', active : false},
       { href : '/register',label : 'Register', active : false},
       { href : '/login',label : 'Sign In', active : false},
+      { href : '/category',label : 'Category', active : false},
+      { href : '/product',label : 'Product', active : false},
     ];
 
   }

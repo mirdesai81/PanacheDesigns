@@ -7,12 +7,14 @@ import {CartViewComponent} from "./cart/cart-view.component";
 import {CheckoutViewComponent} from "./checkout/checkout-view.component";
 import {LoginComponent} from "./login/login.component";
 import {LoggedInGuard} from "./guard/auth.guard";
+import {CategoryFormComponent} from "./category/category-form.component";
 
 const routes : Routes = [
   {path : '', redirectTo : 'welcome' , pathMatch : 'full'},
  {path : 'welcome', component : HomeComponent},
   {path: 'products', component : ProductListComponent,canActivate : [LoggedInGuard]},
   {path : 'product/:id',component : ProductViewComponent,canActivate : [LoggedInGuard]},
+  {path : 'category',component : CategoryFormComponent, canActivate : [LoggedInGuard]},
   {path : 'register',component : RegisterComponent},
   {path : 'cart',component : CartViewComponent,canActivate : [LoggedInGuard]},
   {path : 'checkout',component : CheckoutViewComponent,canActivate : [LoggedInGuard]},
