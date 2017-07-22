@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
+import * as autoIncrement from 'mongoose-sequence';
 
 const userSchema = new mongoose.Schema({
   username: { type : String, unique: true, trim: true},
@@ -10,9 +11,13 @@ const userSchema = new mongoose.Schema({
   gender:String,
   phone:String,
   contact: { address1 : String, address2 : String,city : String,state:String,zip : Number,country: String},
-  role: { type : String, default : "client" },
+  role: { type : String, default : "buyer" },
   insertedOn : {type : Date, default: Date.now}
-});
+},{collection : 'User'});
+
+
+
+userSchema.plugin(autoIncrement,{ inc_field : 'userId'});
 /*
 userSchema.index({username : 1,email : -1});*/
 
@@ -44,7 +49,5 @@ userSchema.set('toJSON', {
     return ret;
   }
 });
-
-const User = mongoose.model('User', userSchema);
-
+let User = mongoose.model('User', userSchema);
 export default User;

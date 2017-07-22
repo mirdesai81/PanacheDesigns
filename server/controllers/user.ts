@@ -6,6 +6,7 @@ import BaseCtrl from './base';
 
 export default class UserCtrl extends BaseCtrl {
   model = User;
+  identityField = 'userId';
 
   login = (req, res) => {
     this.model.findOne({ username: req.body.username }, (err, user) => {
