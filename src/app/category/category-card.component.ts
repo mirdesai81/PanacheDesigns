@@ -19,6 +19,6 @@ export class CategoryCardComponent {
   }*/
 
   filterCategory(category : Category) {
-    this.router.navigate(['/products'],{queryParams : { category : category.id}});
+    this.router.navigate(['/products'],{queryParams : { category : category.categoryId}});
   }
 }

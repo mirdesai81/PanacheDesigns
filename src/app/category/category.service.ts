@@ -1,7 +1,13 @@
 import {Injectable} from '@angular/core'
+import {Http, Headers, RequestOptions, Request, Response} from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/Observable/throw';
+import {Observable} from "rxjs/Observable";
 
 export class Category {
-  id : string;
+  categoryId : number;
   title : string;
   desc : string;
   imageL : string;
@@ -16,47 +22,46 @@ class CategoryNotFoundException extends Error {
 
 @Injectable()
 export class CategoryService {
-  // Slide Categories
-  categories: Category[] = [
-  { id: '1', title: 'Bread & Bakery',
-    imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
-    imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
-    desc: 'The best cupcakes, cookies, cakes, pies, cheesecakes, fresh bread, biscotti, muffins, bagels, fresh coffee and more.' },
-  { id: '2', title: 'Takeaway',
-    imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
-    imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
-    desc: 'It\'s consistently excellent, dishes are superb and healthily cooked with high quality ingredients.' },
-  { id: '3', title: 'Dairy',
-    imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
-    imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
-    desc: 'A dairy product is food produced from the milk of mammals, primarily cows, water buffaloes, goats, sheep, yaks.' },
-  { id: '4', title: 'Meat',
-    imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
-    imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
-    desc: 'Only superior quality beef, lamb, pork.' },
-  { id: '5', title: 'Seafood',
-    imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
-    imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
-    desc: 'Great place to buy fresh seafood.' },
-  { id: '6', title: 'Fruit & Veg',
-    imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
-    imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
-    desc: 'A variety of fresh fruits and vegetables.' }
-];
 
+  constructor(private http : Http) {
 
-  getCategories() {
-  return this.categories;
-}
-
-  getCategory(id : string) {
-  for(let i = 0; i < this.categories.length; i++) {
-    if(this.categories[i].id === id) {
-      return this.categories[i];
-    }
   }
-  throw new CategoryNotFoundException(`Category ${id} is not found!!!`);
-}
+
+  private headers = new Headers({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
+  private options = new RequestOptions({ headers: this.headers });
+
+
+
+  handleError(error : any){
+    console.log(error);
+    return Observable.throw(error.json().error || "Server Error");
+  }
+
+  getCategories() : Observable<Category[]> {
+    return this.http.get('/api/categories')
+      .map((response : Response) => {console.log(response); return response.json();})
+      .do(data => console.log(JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+
+  getCategory(id : string) : Observable<Category>{
+    return this.http.get('/api/category/' + id)
+      .map((response : Response) => { console.log(response); return response.json();})
+      .do(data => console.log(JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+
+  create(category : Category) {
+    return this.http.post('/api/category',JSON.stringify(category),this.options);
+  }
+
+  update(category : Category) {
+    return this.http.put('/api/category/' + category.categoryId,category);
+  }
+
+  delete(id : string) {
+    return this.http.delete('/api/category/' + id);
+  }
 
 }
 

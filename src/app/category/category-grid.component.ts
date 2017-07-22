@@ -1,5 +1,6 @@
 import {Component,Input} from '@angular/core'
 import {Category,CategoryService} from './category.service'
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector : 'app-category-grid',
   templateUrl : './category-grid.component.html'
@@ -8,8 +9,9 @@ export class CategoryGridComponent {
   categories : any = [];
 
   constructor(private categoryService : CategoryService) {
-    let categories : Category[] = this.categoryService.getCategories();
-    this.categories = this.transform(categories);
+    /*let categories : Category[];*/
+    this.categoryService.getCategories().subscribe(data => {this.categories = this.transform(data)},error => {});
+    /*this.categories = this.transform(categories);*/
 
   }
 

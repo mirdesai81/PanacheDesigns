@@ -1,11 +1,13 @@
 abstract class BaseCtrl {
 
   abstract model: any;
+  abstract identityField : any;
 
   // Get all
   getAll = (req, res) => {
     this.model.find({}, (err, docs) => {
-      if (err) { return console.error(err); }
+      if (err) { console.error(err); throw err; }
+      console.log(docs);
       res.json(docs);
     });
   };
@@ -13,7 +15,7 @@ abstract class BaseCtrl {
   // Count all
   count = (req, res) => {
     this.model.count((err, count) => {
-      if (err) { return console.error(err); }
+      if (err) { console.error(err); throw err; }
       res.json(count);
     });
   };
@@ -35,15 +37,19 @@ abstract class BaseCtrl {
 
   // Get by id
   get = (req, res) => {
-    this.model.findOne({ _id: req.params.id }, (err, obj) => {
-      if (err) { return console.error(err); }
+    var query = {};
+    query[this.identityField] = req.params.id;
+    this.model.findOne(query, (err, obj) => {
+      if (err) { console.error(err); throw err; }
       res.json(obj);
     });
   };
 
   // Update by id
   update = (req, res) => {
-    this.model.findOneAndUpdate({ _id: req.params.id }, req.body, (err) => {
+    var query = {};
+    query[this.identityField] = req.params.id;
+    this.model.findOneAndUpdate(query, req.body, (err) => {
       if (err) { return console.error(err); }
       res.sendStatus(200);
     });
@@ -51,7 +57,9 @@ abstract class BaseCtrl {
 
   // Delete by id
   delete = (req, res) => {
-    this.model.findOneAndRemove({ _id: req.params.id }, (err) => {
+    var query = {};
+    query[this.identityField] = req.params.id;
+    this.model.findOneAndRemove(query, (err) => {
       if (err) { return console.error(err); }
       res.sendStatus(200);
     });
