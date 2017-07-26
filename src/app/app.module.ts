@@ -21,6 +21,17 @@ import {HomeModule} from "./home/home.module";
 import {LoginModule} from './login/login.module';
 import {LoggedInGuard} from "./guard/auth.guard";
 import {SimpleNotificationsModule} from 'angular2-notifications';
+import {customHttpProvider} from './helpers/custom-http';
+import { Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    noTokenScheme : true,
+    noJwtError : true,
+    tokenGetter: (() => sessionStorage.getItem('currentUser'))
+  }), http, options);
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -39,7 +50,11 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
     LoginModule,
     SimpleNotificationsModule.forRoot()
   ],
-  providers: [{provide : LocationStrategy, useClass : PathLocationStrategy}, LoggedInGuard],
+  providers: [{provide : LocationStrategy, useClass : PathLocationStrategy},{
+    provide: AuthHttp,
+    useFactory: authHttpServiceFactory,
+    deps: [Http, RequestOptions]
+  }, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

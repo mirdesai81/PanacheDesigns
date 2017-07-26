@@ -13,7 +13,6 @@ import {NotificationsService,SimpleNotificationsComponent} from "angular2-notifi
 export class LoginComponent implements OnInit {
   public loginForm : FormGroup;
   public user : User;
- /* public submitted : boolean = false;*/
   public returnUrl : string;
 
   public loggedInUser : User;
@@ -32,9 +31,6 @@ export class LoginComponent implements OnInit {
               private _notificationsService : NotificationsService) { }
 
   ngOnInit() {
-
-
-    /*this.authenticationService.logout();*/
 
     this.loginForm = this._fb.group({
       userName : ['',[Validators.required,Validators.minLength(5)]],
@@ -71,18 +67,28 @@ export class LoginComponent implements OnInit {
   public active = true;
 
   login(form : User) {
-    console.log(this.user);
-    /*this.submitted = true;*/
     this.user = this.loginForm.value;
+
     this.authenticationService.login(this.user)
       .subscribe(
         data => {
-          this._notificationsService.success(
-            'Login',
-            'Login Successful'
-          );
-          /*this.user = JSON.parse(data);*/
-          this.router.navigate([this.returnUrl])
+
+          if(data) {
+            this.user = data;
+
+            this._notificationsService.success(
+              'Login',
+              'Login Successful'
+            );
+            /*this.user = JSON.parse(data);*/
+            this.router.navigate([this.returnUrl])
+          } else {
+            this._notificationsService.error(
+              'Login',
+              'Invalid username or password'
+            );
+            this.user = null;
+          }
         },
         error => {
           this._notificationsService.error(
@@ -90,7 +96,7 @@ export class LoginComponent implements OnInit {
             'Invalid username or password'
           );
           this.user = null;
-          /*this.submitted = false;*/console.log(error);
+          console.log(error);
         }
       );
 
