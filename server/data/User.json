@@ -1,7 +1,8 @@
 {
-  "username": "admin",
+  "userName": "admin",
   "email": "test1981@gmail.com",
   "password": "admin",
   "firstName": "Administrator",
+  "lastName" : "",
   "role": "admin"
 }

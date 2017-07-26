@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 import * as autoIncrement from 'mongoose-sequence';
 
 const userSchema = new mongoose.Schema({
-  username: { type : String, unique: true, trim: true},
+  userName: { type : String, unique: true, trim: true},
   email: { type: String, unique: true, lowercase: true, trim: true },
   password: String,
   firstName:String,
