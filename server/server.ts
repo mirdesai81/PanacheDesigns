@@ -12,49 +12,40 @@ import setRoutes from './routes';
 import * as json from 'jsonfile';
 import Category from '../server/models/category';
 import User from '../server/models/user';
+import config from './config';
 const app = express();
 dotenv.load({path: '.env'});
-app.set('port', (process.env.PORT || 3000));
-
+app.set('port', (process.env.PORT || 4000));
+app.set('secret',config.secret);
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '../public')));
-/*app.use('/', express.static(path.join(__dirname, 'dist')));*/
+
 
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
 app.use(morgan('dev'));
+
+app.all('*',function(req,res,next){
+  console.log("set response headers");
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'Cache-Control, Pragma, Origin, Authorization, X-Requested-With, Content-Type, Accept, charset');
+
+  next();
+});
+
 
 // mongodb
 //console.log(process.env.MONGODB_URL);
-mongoose.connect("mongodb://127.0.0.1/ecommerce");
+mongoose.connect(config.db);
 const connection = mongoose.connection;
 (<any>mongoose).Promise = Q.Promise;
-
-/*// Set our api routes
- app.use('/api', api);
-
- // Catch all other routes and return the index file
- app.get('*', function(req, res) {
- res.sendFile(path.join(__dirname, 'dist/index.html'));
- });
-
- /!**
- * Get port from environment and store in Express.
- *!/
- const port = process.env.PORT || '3000';
- app.set('port', port);
-
- /!**
- * Create HTTP server.
- *!/
- const server = http.createServer(app);
-
- /!**
- * Listen on provided port, on all network interfaces.
- *!/
- server.listen(port, function() { console.log('API running on localhost:' + port); });*/
 
 connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', () => {
@@ -83,6 +74,8 @@ connection.once('open', () => {
         });
 
       });
+    } else {
+      console.log("User already defined");
     }
   });
 
@@ -111,6 +104,8 @@ connection.once('open', () => {
           });
         });
       });
+    } else {
+      console.log("Category already defined");
     }
   });
 
