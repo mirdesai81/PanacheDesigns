@@ -51,6 +51,7 @@
     "mdbootstrap": "^4.3.2",
     "mongoose": "^4.10.8",
     "mongoose-sequence": "^3.2.0",
+    "mongoose-url-slugs": "^1.0.0",
     "morgan": "^1.8.2",
     "node-waves": "^0.7.5",
     "q": "^1.5.0",
