@@ -29,7 +29,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     noTokenScheme : true,
     noJwtError : true,
-    tokenGetter: (() => sessionStorage.getItem('currentUser'))
+    tokenName: 'currentUser'
   }), http, options);
 }
 @NgModule({

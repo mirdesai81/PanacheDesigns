@@ -52,6 +52,7 @@ connection.once('open', () => {
   console.log('Connected to MongoDB');
   var dataPath = path.join(__dirname,'data');
   connection.db.listCollections({name : 'User'}).next(function(err,collectionInfo){
+    let insertFailed = false;
     if(!collectionInfo) {
       connection.db.dropCollection('User', function (err, result) {
         if (err) {
@@ -62,7 +63,9 @@ connection.once('open', () => {
       var userPath = path.join(dataPath,'User.json');
       json.readFile(userPath, function (err, obj) {
         if (err) {
+          insertFailed = true;
           console.log(err);
+          return;
         }
 
         var user = new User(obj);
@@ -70,10 +73,19 @@ connection.once('open', () => {
           if (err) {
             console.log("User Insert Failed");
             console.log(err);
+            insertFailed = true;
           }
         });
 
       });
+
+      if(insertFailed) {
+        connection.db.dropCollection('User', function (err, result) {
+          if (err) {
+            console.log("Could not drop 'User' collection after insert failed");
+          }
+        });
+      }
     } else {
       console.log("User already defined");
     }
@@ -81,6 +93,7 @@ connection.once('open', () => {
 
   connection.db.listCollections({name : 'Category'}).next(function(err,collectionInfo){
     if(!collectionInfo) {
+      var insertFailed = false;
       connection.db.dropCollection('Category', function (err, result) {
         if (err) {
           console.log("Could not drop 'Category' collection");
@@ -91,6 +104,7 @@ connection.once('open', () => {
       json.readFile(categoryPath, function (err, docs) {
         if (err) {
           console.log(err);
+          insertFailed = true;
           return;
         }
 
@@ -100,10 +114,19 @@ connection.once('open', () => {
             if(err) {
               console.log("Category Insert Failed");
               console.log(err);
+              insertFailed = true;
             }
           });
         });
       });
+
+      if(insertFailed) {
+        connection.db.dropCollection('Category', function (err, result) {
+          if (err) {
+            console.log("Could not drop 'Category' collection after insert failed");
+          }
+        });
+      }
     } else {
       console.log("Category already defined");
     }

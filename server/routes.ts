@@ -7,21 +7,26 @@ import CategoryCtrl from "./controllers/category";
 import config from './config';
 
 function isAuthenticated(req,res,next){
-
-  var token = req.headers['Authorization'];
-
-  if(req.headers && req.headers['Authorization']) {
-    var token = req.headers['Authorization'].split(' ')[1];
-    jwt.verify(token,config.secret,function(error,decode){
-      if(error) {
-        return res.json({success : false, message : 'Failed to authenticate token.'});
-      }
-      req.user = decode;
-      next();
-    });
+  if(req.method === 'OPTIONS') {
+    next();
   } else {
-    return res.status(403).send({success : false, message : 'token missing'});
+    console.log(req.headers);
+    var token = req.headers['Authorization'] || req.headers['authorization'] ;
+
+    if(token) {
+      /*var token = req.headers['Authorization'].split(' ')[1];*/
+      jwt.verify(token,config.secret,function(error,decode){
+        if(error) {
+          return res.json({success : false, message : 'Failed to authenticate token.'});
+        }
+        req.user = decode;
+        next();
+      });
+    } else {
+      return res.status(403).send({success : false, message : 'token missing'});
+    }
   }
+
 }
 
 export default function setRoutes(app) {
