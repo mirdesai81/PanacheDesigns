@@ -42,6 +42,7 @@ export class CategoryFormComponent implements OnInit {
     this.categoryForm = this._fb.group({
       title : ['',[Validators.required,Validators.minLength(5)]],
       desc : ['',[Validators.required,Validators.minLength(10)]],
+      parent : ['']
     });
 
     this.formSubscribe = new FormSubscription(this.validationMessages,this.formErrors,this.categoryForm);
@@ -50,18 +51,27 @@ export class CategoryFormComponent implements OnInit {
     form.subscribe(data => this.formSubscribe.subscribeToFormChanges(data));
     this.formSubscribe.subscribeToFormChanges();
 
-    this.categoryService.getCategories().subscribe( data => {this.categories = data}, error => {});
+    this.loadCategories();
   }
 
-  save() {
+  save(e) {
     this.category = this.categoryForm.value;
     this.categoryService.create(this.category).subscribe(
       data => {
         this.notificationsService.success('Category',`Category ${this.category.title} Added Successfully`);
-        this.router.navigate(['/']);
+        this.category = null;
+        this.loadCategories();
+        this.categoryForm.reset();
       },
       error => {
         this.notificationsService.error('Category',`Category ${this.category.title} cannot be added`);
       });
+    if(e) {
+      e.preventDefault();
+    }
+  }
+
+  private loadCategories() {
+    this.categoryService.getCategories().subscribe( data => {this.categories = data}, error => {});
   }
 }

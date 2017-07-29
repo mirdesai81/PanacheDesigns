@@ -8,6 +8,7 @@ import {Observable} from "rxjs/Observable";
 import {AuthHttp} from 'angular2-jwt';
 import {appConfig} from '../app.config';
 export class Category {
+  _id : string;
   categoryId : number;
   title : string;
   desc : string;
