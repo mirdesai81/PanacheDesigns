@@ -51,7 +51,7 @@ export class AuthenticationService {
     if(token && !this.isTokenExpired(token)) {
       this.currentUser = this.decodeUserFromToken(token).user;
     } else {
-      this.login();
+      this.logout();
     }
 
     return this.currentUser;
