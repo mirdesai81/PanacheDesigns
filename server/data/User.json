@@ -3,6 +3,5 @@
   "email": "test1981@gmail.com",
   "password": "admin",
   "firstName": "Administrator",
-  "lastName" : "",
-  "role": "admin"
+  "role": "ADMIN"
 }

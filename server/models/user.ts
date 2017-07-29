@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
   gender:String,
   phone:String,
   contact: { address1 : String, address2 : String,city : String,state:String,zip : Number,country: String},
-  role: { type : String, default : "buyer" },
+  role: { type : String, enum : ['BUYER' , 'ADMIN'], default : "BUYER" },
   insertedOn : {type : Date, default: Date.now}
 },{collection : 'User'});
 
