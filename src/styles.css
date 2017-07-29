@@ -315,6 +315,10 @@ fieldset.ng-invalid {
   border-left : none;
 }
 
+select.ng-untouched {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
 .card-deck .card {
   flex: 0 0 250px;
   margin: 0 auto; /* Added */
@@ -340,4 +344,8 @@ fieldset.ng-invalid {
 
 body .simple-notification {
   margin-bottom: 60px;
+}
+
+.table-bordered td:last-child {
+  text-align: center;
 }
