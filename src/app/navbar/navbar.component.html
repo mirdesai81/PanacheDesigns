@@ -1,21 +1,32 @@
-<div id="side-nav" class="sidenav bg-inverse">
+<div id="side-nav" class="sidenav bg-inverse grey darken-3">
   <ul>
     <li *ngFor="let navItem of navItems"><a routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a></li>
   </ul>
 </div>
 
-<div class="product-menu navbar fixed-top navbar-inverse bg-inverse">
+<div class="product-menu navbar fixed-top navbar-inverse bg-inverse grey darken-3">
   <div>
-    <button class="hamburger hamburger--collapse float-md-left" id="hamburger" type="button" onclick="toggleNav();">
+    <button class="hamburger hamburger--collapse float-md-left light-blue-text text-lighten-3" id="hamburger" type="button" onclick="toggleNav();">
             <span class="hamburger-box">
               <span class="hamburger-inner"></span>
             </span>
     </button>
-    <ul class="nav navbar-nav float-md-left">
+    <div class="float-md-left">
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link logo light-blue-text text-lighten-3"  href="#">{{logo.brand}}</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link sub-brand text-lighten-5 text-right" href="#">{{logo.subBrand}}</a>
+        </li>
+      </ul>
+    </div>
+   <!-- <ul class="nav navbar-nav float-md-left">
       <li class="nav-item ">
         <a class="nav-link logo"  href="#">{{appName}}</a>
       </li>
     </ul>
+    <div class="float-md-left"><img src="../../assets/panache.png"></div>-->
     <app-cart-menu></app-cart-menu>
     <app-login [inline]="loginInline"></app-login>
 
