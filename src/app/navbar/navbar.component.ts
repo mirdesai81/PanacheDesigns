@@ -8,7 +8,11 @@ import {LoginComponent} from '../login/login.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  appName : string = "Panache Designs";
+  appName :  "Panache Designs";
+  logo = {
+    brand : "Panache",
+    subBrand : "Designs"
+  };
   navItems : INavItem[] = new NavItems().navs;
   loginInline : boolean = true;
   constructor() { }
