@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="card col-md-8 col-sm-12 offset-2">
+    <div class="card col-md-8 col-sm-12 offset-2 grey-text text-darken-3">
       <div class="card-block">
         <form [formGroup]="registerForm" novalidate *ngIf="active" (ngSubmit)="register(registerForm.value)">
-          <div class="form-header purple darken-4"><h3><i class="fa fa-lock"></i> Register</h3></div>
+          <div class="form-header light-blue lighten-3"><h3 class="grey-text text-darken-3"><i class="fa fa-lock"></i> Register</h3></div>
           <fieldset>
             <div class="form-group">
               <label>User Name</label>
@@ -84,11 +84,11 @@
               <input type="text" formControlName="country">
             </div>
           </fieldset>
-          <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Save</button>
+          <button type="submit" class="light-blue lighten-3 grey-text text-darken-3 btn" [disabled]="!registerForm.valid">Save</button>
         </form>
       </div>
-      <pre>{{registerForm.value | json }}</pre>
-      <pre>{{registerForm.controls['userName'].valid}}</pre>
+     <!-- <pre>{{registerForm.value | json }}</pre>
+      <pre>{{registerForm.controls['userName'].valid}}</pre>-->
       <!--<pre>Validation status : {{ registerForm.status }}</pre>-->
       <!-- <pre>Events Changes: {{events | json}}</pre>-->
     </div>
