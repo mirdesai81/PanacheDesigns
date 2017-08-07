@@ -29,14 +29,14 @@ export class HomeComponent implements OnInit {
 
     this.categoryService.getCategories()
       .subscribe(data => {
-                    this.cardCategories = data;
-                    let total = 0;
+                    this.cardCategories = this.slideCategories = data;
+                    /*let total = 0;
                     this.cardCategories.forEach(category =>
                     { if(total < 3) {
                         this.slideCategories.push(category);
                       }
                       total += 1;
-                    });
+                    });*/
                   });
   }
 }

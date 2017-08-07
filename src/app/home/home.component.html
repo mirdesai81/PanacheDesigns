@@ -1,18 +1,18 @@
 <app-navbar></app-navbar>
 <div class="container" id="main">
-<div class="row">
-  <div class="col-md-12 ">
-    <!-- Carousel container -->
+<!--<div class="row">
+  <div class="col-md-6">
+    &lt;!&ndash; Carousel container &ndash;&gt;
     <div id="carousel-categories" class="carousel slide" data-ride="carousel">
 
-      <!-- Indicators -->
+      &lt;!&ndash; Indicators &ndash;&gt;
       <ol class="carousel-indicators">
         <li data-target="#carousel-categories"
             *ngFor="let category of slideCategories;let first=first; let i=index"
             [attr.data-slide-to]="i" [ngClass]="{active: first}"></li>
       </ol>
 
-      <!-- Content -->
+      &lt;!&ndash; Content &ndash;&gt;
       <div class="carousel-inner" role="listbox">
 
         <div *ngFor="let category of slideCategories;let first=first"
@@ -24,7 +24,7 @@
 
       </div>
 
-      <!-- Previous/Next controls -->
+      &lt;!&ndash; Previous/Next controls &ndash;&gt;
       <a class="left carousel-control" href="#carousel-categories" role="button" data-slide="prev">
         <span class="icon-prev" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -36,7 +36,7 @@
 
     </div>
   </div>
-</div>
+</div>-->
 
 <!-- <div class="row">
    <div class="col-md-3 col-xs-6 col-sm-4">
