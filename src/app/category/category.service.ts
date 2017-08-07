@@ -14,6 +14,7 @@ export class Category {
   desc : string;
   imageL : string;
   imageS : string;
+  parent : string;
 }
 
 class CategoryNotFoundException extends Error {
@@ -33,21 +34,18 @@ export class CategoryService {
   private options = new RequestOptions({ headers: this.headers });
 
   handleError(error : any){
-    console.log(error);
     return Observable.throw(error.json().error || "Server Error");
   }
 
   getCategories() : Observable<Category[]> {
     return this.http.get(appConfig.apiUrl + '/api/categories')
-      .map((response : Response) => {console.log(response); return response.json();})
-      .do(data => console.log(JSON.stringify(data)))
+      .map((response : Response) => {return response.json();})
       .catch(this.handleError);
   }
 
   getCategory(id : string) : Observable<Category>{
     return this.http.get(appConfig.apiUrl + '/api/category/' + id)
-      .map((response : Response) => { console.log(response); return response.json();})
-      .do(data => console.log(JSON.stringify(data)))
+      .map((response : Response) => {  return response.json();})
       .catch(this.handleError);
   }
 
@@ -56,13 +54,16 @@ export class CategoryService {
   }
 
   update(category : Category) {
-    return this.http.put('/api/category/' + category.categoryId,category);
+    return this.http.put(appConfig.apiUrl +'/api/category/' + category.categoryId,category);
   }
 
-  delete(id : string) {
-    return this.http.delete('/api/category/' + id);
+  delete(id : number) {
+    return this.http.delete(appConfig.apiUrl +'/api/category/' + id);
   }
 
+  deleteImage(filename:string) {
+    return this.http.delete(appConfig.apiUrl +'/api/category/file/'+filename);
+  }
 }
 
 

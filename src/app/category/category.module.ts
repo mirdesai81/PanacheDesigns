@@ -14,7 +14,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   imports : [CommonModule,RouterModule,FormsModule,ReactiveFormsModule,SharedModule],
   declarations : [CategoryGridComponent,CategoryListComponent,CategoryCardComponent,CategorySlideComponent, CategoryTitlePipe, CategoryFormComponent],
-  exports : [CategoryGridComponent,CategoryListComponent,CategoryCardComponent,CategorySlideComponent, CategoryTitlePipe],
+  exports : [CategoryFormComponent,CategoryGridComponent,CategoryListComponent,CategoryCardComponent,CategorySlideComponent, CategoryTitlePipe],
   providers : [CategoryService]
 })
 export class CategoryModule {}
