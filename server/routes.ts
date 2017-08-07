@@ -5,12 +5,13 @@ import UserCtrl from './controllers/user';
 import User from './models/user';
 import CategoryCtrl from "./controllers/category";
 import config from './config';
+import * as Grid from 'gridfs-stream';
+
 
 function isAuthenticated(req,res,next){
   if(req.method === 'OPTIONS') {
     next();
   } else {
-    console.log(req.headers);
     var token = req.headers['Authorization'] || req.headers['authorization'] ;
 
     if(token) {
@@ -34,6 +35,7 @@ export default function setRoutes(app) {
   const router = express.Router();
   const authRouter = express.Router();
   const userCtrl = new UserCtrl();
+
   const categoryCtrl = new CategoryCtrl();
 
   // Users
@@ -52,7 +54,9 @@ export default function setRoutes(app) {
   router.route('/category/:id').get(categoryCtrl.get);
   authRouter.use(isAuthenticated).route('/category/:id').put(categoryCtrl.update);
   authRouter.use(isAuthenticated).route('/category/:id').delete(categoryCtrl.delete);
-
+  authRouter.use(isAuthenticated).route('/category/upload').post(categoryCtrl.uploadFile);
+  router.route('/category/file/:filename').get(categoryCtrl.getFile);
+  router.route('/category/file/:filename').delete(categoryCtrl.deleteFile);
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
   app.use('/api',authRouter);
