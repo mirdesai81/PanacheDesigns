@@ -468,3 +468,29 @@ body .simple-notification {
 
 .grey-text.text-darken-4 {
   color: #818181 !important; }
+
+.input-file {
+  width : 0.1px;
+  height : 0.1px;
+  position : absolute;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.input-file + label {
+  padding: 0.2rem 0.4rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  background-color: #818181;
+  display: inline-block;
+  outline: 1px dotted #818181;
+  outline: -webkit-focus-ring-color auto 5px;
+  cursor: pointer;
+}
+
+.input-file:focus + label,
+.input-file + label:hover {
+  background-color: salmon;
+}
