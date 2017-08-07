@@ -13,6 +13,9 @@ import * as json from 'jsonfile';
 import Category from '../server/models/category';
 import User from '../server/models/user';
 import config from './config';
+import * as Grid from 'gridfs-stream';
+import * as multer from 'multer';
+import * as GridFsStorage from 'multer-gridfs-storage';
 const app = express();
 dotenv.load({path: '.env'});
 app.set('port', (process.env.PORT || 4000));
@@ -22,12 +25,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 // Parsers for POST data
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('dev'));
 
+
 app.all('*',function(req,res,next){
-  console.log("set response headers");
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
@@ -37,6 +41,10 @@ app.all('*',function(req,res,next){
   // Request headers you wish to allow
   res.setHeader('Access-Control-Allow-Headers', 'Cache-Control, Pragma, Origin, Authorization, X-Requested-With, Content-Type, Accept, charset');
 
+/*  // Request methods you wish to allow
+  res.setHeader('ALLOW', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');*/
+
+  res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
 
@@ -46,6 +54,27 @@ app.all('*',function(req,res,next){
 mongoose.connect(config.db);
 const connection = mongoose.connection;
 (<any>mongoose).Promise = Q.Promise;
+Grid.mongo = mongoose.mongo;
+let gfs = Grid(connection.db);
+app.set("gridfs-settings",gfs);
+
+var storage = GridFsStorage({
+  gfs : gfs,
+  filename: function (req, file, cb) {
+    var datetimestamp = Date.now();
+    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+  },
+  metadata: function(req, file, cb) {
+    cb(null, { originalname: file.originalname });
+  },
+  root: "ctFiles" //root name for collection to store files into
+});
+var upload =  multer({ //multer settings for single upload
+  storage: storage
+}).single('file');
+
+app.set("storage-settings",storage);
+app.set("multer-settings",upload);
 
 connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', () => {
@@ -134,6 +163,8 @@ connection.once('open', () => {
 
 
 });
+
+
 setRoutes(app);
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '..public/index.html'));
