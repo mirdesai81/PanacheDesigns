@@ -1,0 +1,6 @@
+<div class="form-group">
+  <img [style.marginBottom.rem]="1.2" *ngIf="fileUploaded || image" [src]="imageURL" class="img-fluid" width="200" height="200" />
+  <input type="file" class="input-file"  [name]="fieldname" [id]="fieldname" ng2FileSelect [uploader]="uploader" />
+  <label *ngIf="fieldname == 'imageL'; else displayLabel" [for]="fieldname">Banner Image</label>
+  <ng-template #displayLabel><label [for]="fieldname">Card Image</label></ng-template>
+</div>
