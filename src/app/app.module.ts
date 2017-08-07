@@ -24,6 +24,9 @@ import {SimpleNotificationsModule} from 'angular2-notifications';
 import {customHttpProvider} from './helpers/custom-http';
 import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
+import {CategoryDeactivateGuard} from "./guard/category-deactivate.guard";
+
+
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -34,7 +37,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -54,7 +57,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,
     deps: [Http, RequestOptions]
-  }, LoggedInGuard],
+  }, LoggedInGuard, CategoryDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
