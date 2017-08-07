@@ -7,7 +7,6 @@ abstract class BaseCtrl {
   getAll = (req, res) => {
     this.model.find({}, (err, docs) => {
       if (err) { console.error(err); throw err; }
-      console.log(docs);
       res.json(docs);
     });
   };

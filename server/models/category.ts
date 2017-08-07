@@ -43,7 +43,9 @@ categorySchema.plugin(slugs('title'));
 
 categorySchema.pre('save',function(next){
   var category = this;
-  category.imageS = "https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150";
+  if(!category.imageS)
+    category.imageS = "https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150";
+  if(!category.imageL)
   category.imageL = "https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350";
   next();
 });
