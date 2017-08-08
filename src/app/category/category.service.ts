@@ -15,6 +15,7 @@ export class Category {
   imageL : string;
   imageS : string;
   parent : string;
+  slug : string;
 }
 
 class CategoryNotFoundException extends Error {
@@ -54,7 +55,7 @@ export class CategoryService {
   }
 
   update(category : Category) {
-    return this.http.put(appConfig.apiUrl +'/api/category/' + category.categoryId,category);
+    return this.http.put(appConfig.apiUrl +'/api/category/' + category.slug,category);
   }
 
   delete(id : number) {

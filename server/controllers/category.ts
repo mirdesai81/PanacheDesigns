@@ -8,7 +8,7 @@ const connection = mongoose.connection;
 
 class CategoryCtrl extends BaseCtrl {
   model = Category;
-  identityField : string = 'categoryId';
+  identityField : string = 'slug';
 
   uploadFile = (req,res) => {
     let gfs = req.app.get("gridfs-settings");
@@ -59,30 +59,18 @@ class CategoryCtrl extends BaseCtrl {
 
   deleteFile = (req,res) => {
     let gfs = req.app.get("gridfs-settings");
-   /* gfs.collection("ctFiles");*/ //set collection name to lookup into
 
-    gfs.exist({filename : req.params.filename, root : "ctFiles"}, function(err,found){
-
+    gfs.remove({
+      filename : req.params.filename,
+      root : "ctFiles"
+    }, function (err) {
       if(err) {
         res.status(400).json({success : false, message : err});
         return;
       }
 
-      console.log(found);
-      if(found) {
-        gfs.remove({
-          filename : req.params.filename,
-          root : "ctFiles"
-        }, function (err) {
-          if(err) {
-            res.status(400).json({success : false, message : err});
-            return;
-          }
-
-          console.log(req.params.filename);
-          res.status(200).json({success : true, message : req.params.filename});
-        });
-      }
+      console.log(req.params.filename);
+      res.status(200).json({success : true, message : req.params.filename});
     });
 
   };

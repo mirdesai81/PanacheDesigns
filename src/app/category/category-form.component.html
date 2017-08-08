@@ -1,6 +1,17 @@
 <app-navbar></app-navbar>
 <div class="container" id="main">
   <div class="row mb-2">
+    <div class="col-md-2">
+      <img *ngIf="category && category.imageL; else previewL" [style.marginBottom.rem]="1.2"  [src]="category.imageL" class="img-thumbnail"/>
+      <ng-template #previewL>
+        <img [style.marginBottom.rem]="1.2"  src="https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=Preview&w=1100&h=350" class="img-thumbnail" />
+      </ng-template>
+      <img *ngIf="category && category.imageS; else previewS" [src]="category.imageS" class="img-thumbnail"/>
+      <ng-template #previewS>
+        <img [style.marginBottom.rem]="1.2"  src="https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=Preview&w=1100&h=350" class="img-thumbnail" />
+      </ng-template>
+
+    </div>
     <form [formGroup]="categoryForm" class="col-md-4" novalidate *ngIf="active" (ngSubmit)="save($event)">
       <div class="form-group">
         <label for="title">Category Name</label>
@@ -19,22 +30,31 @@
       <div class="form-group">
         <label for="parent">Parent Category</label>
         <select formControlName="parent" class="form-control">
+          <option [value]=""></option>
           <option *ngFor="let c of categories" [value]="c._id">{{c.title}}</option>
         </select>
       </div>
       <div class="text-md-center">
+        <!--<input type="text" formControlName="imageL" [style.display]="none">
+        <input type="text" formControlName="imageS" [style.display]="none">-->
         <button type="submit" class="btn btn-primary" [disabled]="!categoryForm.valid">Save</button>
         <button type="button" (click)="cancel()" class="btn btn-secondary">Cancel</button>
       </div>
     </form>
-    <form class="col-md-4">
-      <app-file-upload *ngIf="model && imageL" [fieldname]="imageL" [model]="model" [image]="category?.imageL"
+    <div class="col-md-4">
+    <form>
+      <app-file-upload *ngIf="model && imageL" [fieldname]="imageL" [model]="model"
+                       (onUploadSuccess)="setImage($event)"></app-file-upload>
+
+    </form>
+    <form>
+      <app-file-upload *ngIf="model && imageS" [fieldname]="imageS" [model]="model"
                        (onUploadSuccess)="setImage($event)"></app-file-upload>
     </form>
-    <form class="col-md-4">
-      <app-file-upload *ngIf="model && imageS" [fieldname]="imageS" [model]="model" [image]="category?.imageS"
-                       (onUploadSuccess)="setImage($event)"></app-file-upload>
-    </form>
+    </div>
+   <!-- <form class="col-md-4">
+
+    </form>-->
   </div>
   <table class="table table-striped table-bordered">
     <thead>

@@ -43,7 +43,7 @@ export class FileUploadComponent implements OnInit,OnChanges {
   constructor() { }
 
   ngOnChanges(){
-    console.log(this.image);
+    /*console.log(this.image);*/
     if(this.image) {
       this.imageURL = this.image;
     } else {
@@ -63,17 +63,17 @@ export class FileUploadComponent implements OnInit,OnChanges {
     this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
     //overide the onCompleteItem property of the uploader so we are
     //able to deal with the server response.
-    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+   /* this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
       console.log("ImageUpload:uploaded:", item, status, response);
     };
-
+*/
     this.uploader.onErrorItem = (item, response, status, headers) => this.onErrorItem(item, response, status, headers);
     this.uploader.onSuccessItem = (item, response, status, headers) => this.onSuccessItem(item, response, status, headers);
   }
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
     let data = JSON.parse(response); //success server response
-    console.log(data);
+    /*console.log(data);*/
     this.fileUploaded = true;
     this.imageURL = `${appConfig.apiUrl}/api/${this.model}/file/${data.message}`;
     var  obj = {};

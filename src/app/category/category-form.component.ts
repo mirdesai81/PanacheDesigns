@@ -21,6 +21,8 @@ export class CategoryFormComponent implements OnInit {
   imageS : string = 'imageS';
   public active = true;
   update : boolean = false;
+  isUpdatedImageL : boolean = false;
+  isUpdatedImageS : boolean = false;
   validationMessages = {
     'title' : {
       'required' : 'Category Name is required.',
@@ -48,7 +50,8 @@ export class CategoryFormComponent implements OnInit {
       desc : ['',[Validators.required,Validators.minLength(10)]],
       parent : [''],
       imageL : [''],
-      imageS : ['']
+      imageS : [''],
+      slug : ['']
     });
 
     this.formSubscribe = new FormSubscription(this.validationMessages,this.formErrors,this.categoryForm);
@@ -67,24 +70,25 @@ export class CategoryFormComponent implements OnInit {
       delete this.category.parent;
     }
 
+    if(!this.category.slug) {
+      delete this.category.slug;
+    }
+
     if(!this.update) {
       this.categoryService.create(this.category).subscribe(
         data => {
           this.notificationsService.success('Category',`Category ${this.category.title} added successfully`);
-          this.category = null;
-          this.loadCategories();
-          this.categoryForm.reset();
+          this.reset();
         },
         error => {
           this.notificationsService.error('Category',`Category ${this.category.title} cannot be added`);
         });
     } else {
+      console.log(this.category);
       this.categoryService.update(this.category).subscribe(
         data => {
           this.notificationsService.success('Category',`Category ${this.category.title} updated successfully`);
-          this.category = null;
-          this.loadCategories();
-          this.categoryForm.reset();
+          this.reset();
         },
         error => {
           this.notificationsService.error('Category',`Category ${this.category.title} cannot be updated`);
@@ -96,19 +100,38 @@ export class CategoryFormComponent implements OnInit {
     }
   }
 
+  private reset() {
+    this.category = null;
+    this.loadCategories();
+    this.categoryForm.reset();
+    this.isUpdatedImageL = false;
+    this.isUpdatedImageS = false;
+  }
+
   setImage(data:any) {
     if(data && data.imageL) {
+      if(this.category && this.category.imageL) {
+        this.deleteImage(this.category.imageL);
+      }
+
       this.categoryForm.controls['imageL'].patchValue(data.imageL);
+      this.isUpdatedImageL = true;
     } else if (data && data.imageS) {
+      if(this.category && this.category.imageS) {
+        this.deleteImage(this.category.imageS);
+      }
       this.categoryForm.controls['imageS'].patchValue(data.imageS);
+      this.isUpdatedImageS = true;
     }
+
+    this.category = this.categoryForm.value;
   }
 
   edit(category : Category) {
     this.update = true;
     let formUpdate = new FormUpdate();
     formUpdate.initFormGroup(this.categoryForm,category);
-    this.category = this.categoryForm.value;
+    this.category = category;
   }
 
   cancel() {
@@ -128,17 +151,23 @@ export class CategoryFormComponent implements OnInit {
   }
 
   canDeactivate() : Promise<boolean> | boolean {
+
     this.category = this.categoryForm.value;
     console.log(this.category);
-    if(this.category && this.category.imageS) {
+    if(this.category && this.category.imageS && this.isUpdatedImageS) {
       this.deleteImage(this.category.imageS);
     }
 
-    if(this.category && this.category.imageL) {
+    if(this.category && this.category.imageL && this.isUpdatedImageL) {
       this.deleteImage(this.category.imageL);
     }
 
     return true;
+  }
+
+  private isImageChanged(field : string) {
+    console.log(`${field} : ${this.categoryForm.controls[field].touched}`);
+    return this.categoryForm.controls[field].touched
   }
 
   private loadCategories() {
