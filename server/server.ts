@@ -76,88 +76,84 @@ var upload =  multer({ //multer settings for single upload
 app.set("storage-settings",storage);
 app.set("multer-settings",upload);
 
+function addCategory(dataPath) {
+  var categoryPath = path.join(dataPath,'Category.json');
+  json.readFile(categoryPath, function (err, docs) {
+    if (err) {
+      console.log(err);
+
+      return;
+    }
+
+    docs.forEach(doc => {
+      var category = new Category(doc);
+      category.save(function(err,data){
+        if(err) {
+          console.log("Category Insert Failed");
+          console.log(err);
+
+        }
+      });
+    });
+  });
+}
+
+function addUser(dataPath) {
+  var userPath = path.join(dataPath,'User.json');
+  json.readFile(userPath, function (err, obj) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    var user = new User(obj);
+    user.save(function(err,doc){
+      if (err) {
+        console.log("User Insert Failed");
+        console.log(err);
+      }
+    });
+
+  });
+}
 connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', () => {
   console.log('Connected to MongoDB');
   var dataPath = path.join(__dirname,'data');
   connection.db.listCollections({name : 'User'}).next(function(err,collectionInfo){
-    let insertFailed = false;
-    if(!collectionInfo) {
-      connection.db.dropCollection('User', function (err, result) {
-        if (err) {
-          console.log("Could not drop 'User' collection");
-        }
-      });
 
-      var userPath = path.join(dataPath,'User.json');
-      json.readFile(userPath, function (err, obj) {
-        if (err) {
-          insertFailed = true;
+    if(!collectionInfo) {
+     addUser(dataPath);
+    } else {
+      console.log("User already defined");
+      User.count({},function(err,count){
+        if(err) {
           console.log(err);
           return;
         }
 
-        var user = new User(obj);
-        user.save(function(err,doc){
-          if (err) {
-            console.log("User Insert Failed");
-            console.log(err);
-            insertFailed = true;
-          }
-        });
-
+        if(count === 0) {
+          addUser(dataPath);
+        }
       });
-
-      if(insertFailed) {
-        connection.db.dropCollection('User', function (err, result) {
-          if (err) {
-            console.log("Could not drop 'User' collection after insert failed");
-          }
-        });
-      }
-    } else {
-      console.log("User already defined");
     }
   });
 
   connection.db.listCollections({name : 'Category'}).next(function(err,collectionInfo){
     if(!collectionInfo) {
-      var insertFailed = false;
-      connection.db.dropCollection('Category', function (err, result) {
-        if (err) {
-          console.log("Could not drop 'Category' collection");
-        }
-      });
-
-      var categoryPath = path.join(dataPath,'Category.json');
-      json.readFile(categoryPath, function (err, docs) {
-        if (err) {
+      addCategory(dataPath);
+    } else {
+      console.log("Category already defined");
+      Category.count({},function(err,count){
+        if(err) {
           console.log(err);
-          insertFailed = true;
           return;
         }
 
-        docs.forEach(doc => {
-          var category = new Category(doc);
-          category.save(function(err,data){
-            if(err) {
-              console.log("Category Insert Failed");
-              console.log(err);
-              insertFailed = true;
-            }
-          });
-        });
+        if(count === 0) {
+          addCategory(dataPath);
+        }
       });
-
-      if(insertFailed) {
-        connection.db.dropCollection('Category', function (err, result) {
-          if (err) {
-            console.log("Could not drop 'Category' collection after insert failed");
-          }
-        });
-      }
-    } else {
-      console.log("Category already defined");
     }
   });
 
