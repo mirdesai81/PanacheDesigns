@@ -77,6 +77,16 @@ class CategoryCtrl extends BaseCtrl {
 
 
   // Get all
+  getAllByPath = (req, res) => {
+
+    this.model.find({path : /^,Home,/}).populate('parent ancestors children').exec((err,docs) => {
+      if (err) { console.error(err); throw err; }
+
+      res.json(docs);
+    });
+  };
+
+  // Get all
   getAll = (req, res) => {
 
     this.model.find({}).populate('parent ancestors children').exec((err,docs) => {

@@ -1,8 +1,4 @@
 [
-  { "title": "Clothing",
-    "desc": "Clothing for men and women - pants, shorts, shirts, dresses, Top & tees, skirts"},
-  { "title": "Jewelery",
-    "desc": "Necklaces , Earnings , Bracelets and Rings for fashion statement" },
-  { "title": "Shoes",
-    "desc": "Shoes for women and men. Custom handmade with love" }
+  { "title": "Home",
+    "desc": "Parent Category" }
 ]

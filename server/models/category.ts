@@ -10,9 +10,9 @@ import * as slugs from 'mongoose-url-slugs';
 const categorySchema = new mongoose.Schema({
   categoryId : {type : Number},
   title : { type : String, trim : true},
-  imageL : String,
-  imageS : String,
+  images : [{ url : { type : String, trim : true }, type : { type : String, trim : true}, width : String, height : String, displayOrder : Number}],
   desc : String,
+  path : {type : String, default : null},
   parent : {type : mongoose.Schema.Types.ObjectId , ref : 'Category'},
   ancestors : [{type : mongoose.Schema.Types.ObjectId , ref : 'Category'}],
   children : [{type : mongoose.Schema.Types.ObjectId, ref : 'Category'}]
@@ -43,10 +43,28 @@ categorySchema.plugin(slugs('title'));
 
 categorySchema.pre('save',function(next){
   var category = this;
-  if(!category.imageS)
-    category.imageS = "https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150";
-  if(!category.imageL)
-  category.imageL = "https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350";
+  if(!category.images || category.images.length == 0) {
+    var image = {
+      url : 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=Category&w=1100&h=350',
+      type : 'carousel',
+      width : '1100px',
+      height : '350px',
+      displayOrder : 1
+    };
+
+    category.images.push(image);
+
+    image = {
+      url : 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=Category&w=270&h=150',
+      type : 'card',
+      width : '270px',
+      height : '150px',
+      displayOrder : 2
+    };
+
+    category.images.push(image);
+  }
+
   next();
 });
 
