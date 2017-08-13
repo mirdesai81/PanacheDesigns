@@ -20,7 +20,7 @@ export class CartService {
   cart : Cart = new Cart();
 
   addProduct(product : Product) : CartItem {
-    let item :  CartItem = this.findItem(product.id);
+    let item :  CartItem = this.findItem(product.title);
 
     if(item) {
       item.count++;
@@ -43,7 +43,7 @@ export class CartService {
   }
 
   removeProduct(product : Product) : CartItem {
-    let item :  CartItem = this.findItem(product.id);
+    let item :  CartItem = this.findItem(product.title);
 
     if(item) {
 
@@ -80,7 +80,7 @@ export class CartService {
   findItem(id : String) : CartItem {
     if(this.cart && this.cart.items && this.cart.items.length > 0) {
       for(let i = 0; i < this.cart.items.length;i++) {
-        if(this.cart.items[i].product.id === id) {
+        if(this.cart.items[i].product.title == id) {
           return this.cart.items[i];
         }
       }
