@@ -76,15 +76,9 @@ export class FileUploadComponent implements OnInit,OnChanges {
     /*console.log(data);*/
     this.fileUploaded = true;
     this.imageURL = `${appConfig.apiUrl}/api/${this.model}/file/${data.message}`;
-    var  obj = {};
-    if(this.fieldname === 'imageL') {
-      obj['imageL'] = this.imageURL;
-    } else {
-      obj['imageS'] = this.imageURL;
-    }
 
 
-    this.onUploadSuccess.emit(obj);
+    this.onUploadSuccess.emit(this.imageURL);
   }
 
   onErrorItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
