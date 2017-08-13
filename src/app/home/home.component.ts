@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.categoryService.getCategories()
+    this.categoryService.getCategoriesByPath()
       .subscribe(data => {
                     this.cardCategories = this.slideCategories = data;
                     /*let total = 0;

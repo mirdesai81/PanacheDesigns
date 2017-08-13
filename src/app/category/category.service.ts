@@ -7,14 +7,15 @@ import 'rxjs/Observable/throw';
 import {Observable} from "rxjs/Observable";
 import {AuthHttp} from 'angular2-jwt';
 import {appConfig} from '../app.config';
+import {Image} from '../shared/image';
 export class Category {
   _id : string;
   categoryId : number;
   title : string;
   desc : string;
-  imageL : string;
-  imageS : string;
-  parent : string;
+  path : string;
+  images : Image[];
+  parent : string = null;
   slug : string;
 }
 
@@ -40,6 +41,12 @@ export class CategoryService {
 
   getCategories() : Observable<Category[]> {
     return this.http.get(appConfig.apiUrl + '/api/categories')
+      .map((response : Response) => {return response.json();})
+      .catch(this.handleError);
+  }
+
+  getCategoriesByPath() : Observable<Category[]> {
+    return this.http.get(appConfig.apiUrl + '/api/categories/path')
       .map((response : Response) => {return response.json();})
       .catch(this.handleError);
   }

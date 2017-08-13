@@ -4,7 +4,7 @@
 
     <!--Card image-->
     <div class="view overlay hm-white-slight">
-      <img [src]="category.imageS" alt="{{category.title}}" class="img-fluid" [style.width.px]="250" [style.height.px]="150" >
+      <img [src]="category.images[0].url" alt="{{category.title}}" class="img-fluid" [style.width.px]="250" [style.height.px]="150" >
       <a (click)="filterCategory(category)">
         <div class="mask"></div>
       </a>
