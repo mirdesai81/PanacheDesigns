@@ -1,5 +1,5 @@
 let config = {
-  secret : 'eatfreshforlife',
+  secret : 'buypanache',
   db : 'mongodb://127.0.0.1/ecommerce'
 };
 
