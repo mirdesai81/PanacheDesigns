@@ -17,10 +17,10 @@
         <div class="card-block">
           <p class="card-text">Availability: In Stock</p>
         </div>
-        <div class="card-footer card-inverse card-danger rgba-red-strong" *ngIf="product.isSpecial">
+        <div class="card-footer card-inverse card-danger rgba-red-strong" *ngIf="product.onSale">
           <p class="card-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
         </div>
-        <div class="card-footer card-inverse rgba-blue-strong" *ngIf="!product.isSpecial">
+        <div class="card-footer card-inverse rgba-blue-strong" *ngIf="!product.onSale">
           <p class="card-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
         </div>
       </div>

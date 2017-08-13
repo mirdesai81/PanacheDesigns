@@ -16,8 +16,8 @@ export class ProductCardComponent {
   setClasses(product : Product) {
 
     return {
-      "rgba-red-strong" : product.isSpecial,
-      "rgba-blue-strong" : !product.isSpecial
+      "rgba-red-strong" : product.onSale,
+      "rgba-blue-strong" : !product.onSale
     };
   }
 

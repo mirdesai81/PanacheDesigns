@@ -1,22 +1,48 @@
 import {Injectable} from '@angular/core';
 
+//TODO add displayOrder. type = dropdown , textbox, radio , checkbox, colorsquare, imagesquare
+export interface Attributes {
+  attributeId : number;
+  attributeName : string;
+  attributeType : string;
+  attributeTypeId : number;
+  values : string[];
+  displayOrder : number;
+}
+
+// TODO add displayOrder , showOnProduct page, allow filtering
+export interface Specifications {
+  attributeType : string;
+  attributeName : string;
+  attributeValue : string;
+  showOnProductPage : boolean;
+  displayOrder : number;
+}
+
 export interface Product {
-// Unique Id
-id: string;
-// Ref on category belongs to
-categoryId: string;
-// The title
- title: string;
-// Price
- price: number;
-// Mark product with specialproce
- isSpecial: boolean;
-// Description
-  desc: string;
-  // Path to small image
-  imageS: string;
-  // Path to large image
-  imageL: string;
+  _id : number;
+  title : string;
+  shortDescription : string;
+  description : string;
+  price : number;
+  onSale : boolean;
+  tags : string[];
+  showOnHomePage : boolean;
+  markAsNew : boolean; // display under new products
+  ratings : number;
+  allowReviews : boolean;
+  totalReviews : number;
+  sku : number;
+  stockQuantity : number;
+  displayStockAvailability : boolean;
+  displayStockQuantity : boolean;
+  notifyQuantityBelow : boolean;
+  displayOrder : number;
+  published : boolean;
+  relatedProducts : Product[];
+  attributes : Attributes[];
+  specifications : Specifications[];
+  categories : string;
 }
 
 class ProductNotFoundException extends Error {
@@ -32,7 +58,7 @@ export class ProductService {
 
   }
 
-  products: Product[] = [
+  /*products: Product[] = [
     { id: '1', categoryId: '1', title: 'Baguette/ French Bread', price: 1.5, isSpecial: false,
       imageL: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=1110%C3%97350&w=1100&h=350',
       imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
@@ -120,26 +146,27 @@ export class ProductService {
       imageS: 'https://placeholdit.imgix.net/~text?txtsize=33&bg=373a3c&txtclr=ffffff&txt=270%C3%97150&w=270&h=150',
       desc: 'The pear is any of several tree and shrub species of genus Pyrus, in the family Rosaceae.'
     }
-  ];
+  ];*/
 
   getProducts(category? : string, search? : string) : Product[] {
-    if(category) {
+    /*if(category) {
       return this.products.filter((product : Product, index : number, array : Product[]) => { return product.categoryId == category})
     } else if(search) {
       let toSearch = search.toLocaleLowerCase();
       return this.products.filter((product : Product, index : number, array : Product[]) => { return product.title.toLocaleLowerCase().indexOf(toSearch) != -1 })
     }
-
-    return this.products;
+*/
+    return null;
   }
 
   getProduct(id : string) : Product {
-    for(let i = 0; i < this.products.length; i++) {
-      if(this.products[i].id === id) {
+   /* for(let i = 0; i < this.products.length; i++) {
+      if(this.products[i]._id === id) {
         return this.products[i];
       }
     }
-    throw new ProductNotFoundException(`Product ${id} not found!!!`);
+    throw new ProductNotFoundException(`Product ${id} not found!!!`);*/
+    return null;
   }
 }
 

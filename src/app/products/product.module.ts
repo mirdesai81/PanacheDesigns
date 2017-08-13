@@ -11,10 +11,11 @@ import { ProductViewComponent } from './product-view.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {NavbarModule} from "../navbar/navbar.module";
 import {SharedModule} from "../shared/shared.module";
+import { ProductFormComponent } from './product-form.component';
 
 @NgModule({
   imports : [FormsModule,ReactiveFormsModule,CommonModule,RouterModule,CategoryModule,SharedModule],
-  declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent],
+  declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent, ProductFormComponent],
   exports : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent],
   providers : [ProductService]
 })

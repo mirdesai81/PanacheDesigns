@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="container" id="main">
+  <form [formGroup]="productForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" formControl="title">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input type="text" formControl="desc">
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#details" role="tab">Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#attributes" role="tab">Product Attributes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#pricing" role="tab">Pricing</a>
+      </li>
+    </ul>
+    <div id="details">
+      Details.....
+    </div>
+    <div id="attributes">
+      <div class="form-group row">
+          <label class="col-form-label col-2">Attribute Name</label>
+          <input type="text" class="form-control col-3" formControl="attributeName">
+          <label class="col-form-label col-2">Attribute Value</label>
+          <input type="text" class="col-3" formControl="attributeValue">
+          <button class="btn btn-primary col-2">Add</button>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <th>Attribute Name</th>
+          <th>Attribute Value</th>
+          <th>Delete</th>
+        </thead>
+      </table>
+    </div>
+    <div id="pricing">
+      <div class="form-group">
+        <label>Retail Price</label>
+        <input type="number" formControl="price">
+      </div>
+      <div class="form-group">
+        <label>Sales Price</label>
+        <input type="number" formControl="salesPrice">
+      </div>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>
