@@ -1,8 +1,8 @@
-import {FormControl, FormGroup,Validators,FormArray} from '@angular/forms';
+import {FormControl, FormGroup,Validators,FormArray,FormBuilder} from '@angular/forms';
 import * as _ from 'lodash';
 export class FormUpdate {
 
-  constructor() {
+  constructor(private _fb : FormBuilder) {
 
   }
 
@@ -19,14 +19,30 @@ export class FormUpdate {
           this.initFormGroup(<FormGroup>form.controls[key],data[key]);
         }
       } else if(form.controls[key] instanceof FormArray) {
-        var control = <FormArray>form.controls[key];
-        if(data[key])
+        /*var control = <FormArray>form.controls[key];
+        if(data[key]) {
+
           this.initFormArray(control, data[key]);
+        }
+*/
       }
     }
   }
   initFormArray(array: FormArray, data: Array<any>){
     if(data.length>0){
+     /* if(!array.controls[0]) {
+        for(var key in data) {
+          if(data.hasOwnProperty(key)) {
+            const group : FormGroup = new FormGroup({});
+            for(var field in data[key]) {
+              const control : FormControl = new FormControl('');
+              group.addControl(field,control);
+
+            }
+            array.push(group);
+          }
+        }
+      }*/
       var clone = array.controls[0];
       array.removeAt(0);
       for(var idx in data) {

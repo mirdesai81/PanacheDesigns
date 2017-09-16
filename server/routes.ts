@@ -48,7 +48,7 @@ export default function setRoutes(app) {
   router.route('/user/:id').delete(userCtrl.delete);
 
   //Category
-  router.route('/categories/path').get(categoryCtrl.getAllByPath);
+  /*router.route('/categories/path').get(categoryCtrl.getAllByPath);*/
   router.route('/categories').get(categoryCtrl.getAll);
   router.route('/categories/count').get(categoryCtrl.count);
   authRouter.use(isAuthenticated).route('/category').post(categoryCtrl.insert);

@@ -46,7 +46,7 @@ export class CategoryService {
   }
 
   getCategoriesByPath() : Observable<Category[]> {
-    return this.http.get(appConfig.apiUrl + '/api/categories/path')
+    return this.http.get(appConfig.apiUrl + '/api/categories?path=Home')
       .map((response : Response) => {return response.json();})
       .catch(this.handleError);
   }
@@ -65,8 +65,8 @@ export class CategoryService {
     return this.http.put(appConfig.apiUrl +'/api/category/' + category.slug,category);
   }
 
-  delete(id : number) {
-    return this.http.delete(appConfig.apiUrl +'/api/category/' + id);
+  delete(slug : string) {
+    return this.http.delete(appConfig.apiUrl +'/api/category/' + slug);
   }
 
   deleteImage(filename:string) {

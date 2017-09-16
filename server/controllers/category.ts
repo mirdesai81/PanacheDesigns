@@ -2,7 +2,9 @@ import Category from "../models/category";
 import BaseCtrl from "./base";
 import * as mongoose from 'mongoose';
 import * as multer from 'multer';
+import * as sharp from 'sharp';
 import * as GridFsStorage from 'multer-gridfs-storage';
+import * as multiparty from 'multiparty'
 var Grid = require('gridfs-stream');
 const connection = mongoose.connection;
 
@@ -12,7 +14,7 @@ class CategoryCtrl extends BaseCtrl {
 
   uploadFile = (req,res) => {
     let gfs = req.app.get("gridfs-settings");
-    let upload = req.app.get("multer-settings");
+/*    let upload = req.app.get("multer-settings");
     upload(req,res,err => {
 
       if(err) {
@@ -22,7 +24,60 @@ class CategoryCtrl extends BaseCtrl {
 
       res.json({success : true, message : req.file.filename});
 
+    });*/
+
+
+    var form = new multiparty.Form();
+    var context = {};
+    form.on('field', function(name, value){
+      context[name] = value;
+      console.log(context);
     });
+
+    form.on('part', function(part){
+      // handle events only if file part
+      if (!part.filename) { return; }
+
+      let timestamp = Date.now();
+      let generatedFilename = `image-${timestamp}-${part.filename}`;
+
+      var options =
+      {
+        filename: generatedFilename,
+        metadata: context,
+        mode: 'w',
+        root: 'ctFiles'
+      };
+      var ws = gfs.createWriteStream(options);
+
+      // success GridFS
+      ws.on('close', function (file) {
+        console.log(file.filename);
+        res.json({success : true, message : file.filename});
+      });
+
+      // error GridFS
+      ws.on('error', function (errMsg) {
+        console.log('An error occurred!', errMsg);
+        res.json({success : false, message : errMsg});
+      });
+
+      const transformer = sharp().resize(250,null,
+        { kernel : sharp.kernel.nearest,
+          interpolator : sharp.interpolator.nearest
+        })
+        .max()
+        .on('info',function(info){console.log(info)});
+
+      part.pipe(transformer).pipe(ws);
+    });
+
+    // Close emitted after form parsed
+    form.on('close', function() {
+      console.log('Upload completed!');
+    });
+
+    form.parse(req);
 
   };
 
@@ -49,6 +104,9 @@ class CategoryCtrl extends BaseCtrl {
         filename: files[0].filename,
         root: "ctFiles"
       });
+
+/*      const transformer = sharp().resize(300,150)
+                            .max().on('info',function(info){console.log(info)});*/
 
       /** set the proper content type */
       res.set('Content-Type', files[0].contentType);
@@ -79,9 +137,9 @@ class CategoryCtrl extends BaseCtrl {
   // Get all
   getAllByPath = (req, res) => {
 
-    this.model.find({path : /^,Home,/}).populate('parent ancestors children').exec((err,docs) => {
+    this.model.find({path : /^,Home,/}).populate('ancestors children').exec((err,docs) => {
       if (err) { console.error(err); throw err; }
-
+      console.log(docs);
       res.json(docs);
     });
   };
@@ -89,11 +147,22 @@ class CategoryCtrl extends BaseCtrl {
   // Get all
   getAll = (req, res) => {
 
-    this.model.find({}).populate('parent ancestors children').exec((err,docs) => {
-      if (err) { console.error(err); throw err; }
+    if(req.query.path) {
+      var query = new RegExp(`^,${req.query.path},$`,'i');
+      this.model.find({path : query}).populate('ancestors children').exec((err,docs) => {
+        if (err) { console.error(err); throw err; }
+        console.log(docs);
+        res.json(docs);
+      });
+    } else {
+      this.model.find({}).populate('ancestors children').exec((err,docs) => {
+        if (err) { console.error(err); throw err; }
 
-      res.json(docs);
-    });
+        res.json(docs);
+      });
+    }
+
+
   };
 
   insert = (req, res) => {

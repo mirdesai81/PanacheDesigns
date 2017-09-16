@@ -10,7 +10,7 @@ export class CategoryGridComponent {
 
   constructor(private categoryService : CategoryService) {
     /*let categories : Category[];*/
-    this.categoryService.getCategories().subscribe(data => {this.categories = this.transform(data)},error => {});
+    this.categoryService.getCategoriesByPath().subscribe(data => {this.categories = this.transform(data)},error => {});
     /*this.categories = this.transform(categories);*/
 
   }

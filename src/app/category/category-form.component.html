@@ -27,7 +27,7 @@
         <label for="parent">Parent Category</label>
         <select formControlName="parent" class="form-control">
           <option [value]=""></option>
-          <option *ngFor="let c of categories" [value]="c.title">{{c.title}}</option>
+          <option *ngFor="let c of categories" [value]="c._id">{{c.title}}</option>
         </select>
       </div>
       <div class="text-md-center">
@@ -37,7 +37,7 @@
         <button type="button" (click)="cancel()" class="btn btn-secondary">Cancel</button>
       </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8" *ngIf="uploads && uploads.length > 0" formArrayName="images" >
         <table class="table table-striped table-bordered">
           <thead>
           <th>Image</th>
@@ -47,13 +47,13 @@
           <th>Display Order</th>
           <th>Delete</th>
           </thead>
-          <tr *ngFor="let image of images.controls, index as i">
-            <td><img [src]="image.get('url').value" width="100px" height="100px"></td>
-            <td>{{image.get('type').value}}</td>
-            <td>{{image.get('width').value}}</td>
-            <td>{{image.get('height').value}}</td>
-            <td>{{image.get('displayOrder').value}}</td>
-            <td><a (click)="deleteCategory(category)"><i class="fa fa-trash"></i></a></td>
+          <tr [formGroupName]="i" *ngFor="let image of categoryForm.controls.images.controls, index as i">
+            <td ><img [src]="uploads[i].url" [style.width.px]="100" [style.height.px]="100"></td>
+            <td><input type="text" formControlName="type"></td>
+            <td><input type="text" formControlName="width"></td>
+            <td><input type="text" formControlName="height"></td>
+            <td><input type="text" formControlName="displayOrder"></td>
+            <td><a (click)="deleteImage(uploads[i].url)"><i class="fa fa-trash"></i></a></td>
           </tr>
         </table>
       </div>
