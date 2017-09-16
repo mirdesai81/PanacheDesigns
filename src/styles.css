@@ -168,18 +168,18 @@ body {
 
 
 @media (min-width: 576px) {
-  .card-deck {
+ /* .card-deck {
     display: flex;
   }
 
   .card-deck .card {
-   /* flex: 0 0 250px;*/
-    width: 230px;
+   !* flex: 0 0 250px;*!
+    width: 200px;
     flex-shrink: 0;
     margin-bottom: 0;
     vertical-align: top;
     margin: 0 0.8rem;
-  }
+  }*/
 /*
   .card {
     max-width: 250px;
