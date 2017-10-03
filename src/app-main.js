@@ -27,6 +27,17 @@ $(document).ready(function() {
     }
   }*/
 
+  function toggleNav() {
+    if($('#hamburger').hasClass('is-active')) {
+      $("#side-nav").css("width","0");
+      $("#main").css("margin-left","auto");
+      $("#hamburger").removeClass("is-active");
+    } else {
+      $("#side-nav").css("width","250px");
+      $("#main").css("margin-left","250px");
+      $("#hamburger").addClass("is-active");
+    }
+  }
   Waves.attach('.btn',['waves-light']);
 });
 
