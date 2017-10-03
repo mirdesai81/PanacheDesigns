@@ -1,11 +1,11 @@
 <div class="container" *ngIf="!inline; else inlineForm">
   <div class="row">
-    <div class="card col-md-8 col-sm-12 offset-2 grey-text text-darken-3">
-      <div class="card-block">
+    <div class="card col-md-8 col-sm-12 offset-2 grey-text mx-auto">
+      <div class="card-body">
+        <div class="form-header indigo">
+          <h3 class="white-text"><i class="fa fa-lock"></i> Sign In</h3>
+        </div>
         <form [formGroup]="loginForm" novalidate *ngIf="active" (ngSubmit)="login(loginForm.value)">
-          <div class="form-header light-blue lighten-3">
-            <h3 class="grey-text text-darken-3"><i class="fa fa-lock"></i> Sign In</h3>
-          </div>
           <div class="md-form form-group">
             <i class="fa fa-envelope prefix"></i>
             <input type="text" formControlName="userName" class="form-control validate">
@@ -23,7 +23,7 @@
             {{formErrors.password}}
           </div>
           <div class="md-form form-group">
-            <button type="submit" [disabled]="!loginForm.valid" class="light-blue lighten-3 grey-text text-darken-3 btn"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;Sign In</button>
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-indigo"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;Sign In</button>
           </div>
         </form>
       </div>
@@ -37,24 +37,24 @@
   </div>
 </div>
 <ng-template #inlineForm>
-<form class="form-inline float-md-right log-in-inline"  [formGroup]="loginForm" novalidate *ngIf="!isLoggedIn(); else loggedInInfo" (ngSubmit)="login(loginForm.value)">
+<form class="form-inline float-right log-in-inline"  [formGroup]="loginForm" novalidate *ngIf="!isLoggedIn(); else loggedInInfo" (ngSubmit)="login(loginForm.value)">
   <div class="md-form form-group">
     <i class="fa fa-envelope prefix"></i>
-    <input type="text" formControlName="userName" class="form-control validate light-blue-text text-lighten-3">
-    <label for="userName" >Type your email</label>
+    <input type="text" formControlName="userName" class="form-control validate white-text">
+    <label for="userName" class="grey-text lighten-5" >Type your email</label>
   </div>
   <div class="md-form form-group">
     <i class="fa fa-lock prefix"></i>
-    <input type="password" formControlName="password" class="form-control validate light-blue-text text-lighten-3">
-    <label for="password">Type your password</label>
+    <input type="password" formControlName="password" class="form-control validate white-text">
+    <label for="password" class="grey-text lighten-5">Type your password</label>
   </div>
   <div class="md-form form-group">
-    <div> <button type="submit" [disabled]="!loginForm.valid" class="btn btn-elegant btn-outline-info"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;&nbsp;Sign In</button>
-      <div class="d-block text-md-center"><a  class="light-blue-text text-lighten-3" [routerLink]="['/register']">Register Account</a></div></div>
+    <div> <button type="submit" [disabled]="!loginForm.valid" class="btn btn-default btn-outline-default"><i class="fa fa-sign-in btn-outline-default border-0"></i>&nbsp;&nbsp;&nbsp;Sign In</button>
+      <div class="d-block text-md-center"><a  class="white-text" [routerLink]="['/register']">Register Account</a></div></div>
   </div>
 </form>
   <ng-template #loggedInInfo>
-    <div class="float-md-right light-blue-text text-lighten-3 mr-2 logged-in">
+    <div class="float-md-right white-text mr-2 logged-in">
       <span><i class="fa fa-user-circle"></i> {{loggedInUser.firstName}} {{loggedInUser.lastName}}</span>
       <a class="ml-2" (click)="logout()">
           <i class="fa fa-sign-out"></i>&nbsp;&nbsp;&nbsp;Sign Out
