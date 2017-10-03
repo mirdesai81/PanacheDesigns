@@ -25,6 +25,7 @@ import {customHttpProvider} from './helpers/custom-http';
 import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import {CategoryDeactivateGuard} from "./guard/category-deactivate.guard";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 
@@ -51,7 +52,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     CheckoutModule,
     HomeModule,
     LoginModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [{provide : LocationStrategy, useClass : PathLocationStrategy},{
     provide: AuthHttp,
