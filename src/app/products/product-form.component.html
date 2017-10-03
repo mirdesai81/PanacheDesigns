@@ -1,54 +1,201 @@
 <app-navbar></app-navbar>
 <div class="container" id="main">
   <form [formGroup]="productForm" (ngSubmit)="submit()">
-    <div class="form-group">
-      <label>Title</label>
-      <input type="text" formControl="title">
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Product Name</label>
+          <div class="col-8">
+            <input type="text" formControlName="title">
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Short Description</label>
+          <div class="col-8">
+            <input type="text" formControlName="shortDescription">
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Description</label>
-      <input type="text" formControl="desc">
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">SKU</label>
+          <div class="col-8">
+            <input type="number" formControlName="sku">
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Stock Quantity</label>
+          <div class="col-8">
+            <input type="number" formControlName="stockQuantity">
+          </div>
+        </div>
+      </div>
     </div>
-    <ul class="nav nav-tabs" role="tablist">
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Show on Home Page</label>
+          <div class="col-8">
+            <input type="checkbox" formControlName="showOnHomePage">
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Mark as New</label>
+          <div class="col-8">
+            <input type="checkbox" formControlName="markAsNew">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Published</label>
+          <div class="col-8">
+            <input type="checkbox" formControlName="published">
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Allow Reviews</label>
+          <div class="col-8">
+            <input type="checkbox" formControlName="allowReviews">
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="nav nav-tabs mt-2" role="tablist" id="productTabs">
       <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#details" role="tab">Details</a>
+        <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-expanded="true">Details</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#attributes" role="tab">Product Attributes</a>
+        <a class="nav-link" id="mappings-tab" data-toggle="tab" href="#mappings" role="tab" aria-controls="mappings">Mappings</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#pricing" role="tab">Pricing</a>
+        <a class="nav-link" id="variations-tab" data-toggle="tab" href="#variations" role="tab" aria-controls="variations">Product Variations</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pricing-tab" data-toggle="tab" href="#pricing" role="tab" aria-controls="pricing">Pricing</a>
       </li>
     </ul>
-    <div id="details">
-      Details.....
-    </div>
-    <div id="attributes">
-      <div class="form-group row">
-          <label class="col-form-label col-2">Attribute Name</label>
-          <input type="text" class="form-control col-3" formControl="attributeName">
-          <label class="col-form-label col-2">Attribute Value</label>
-          <input type="text" class="col-3" formControl="attributeValue">
-          <button class="btn btn-primary col-2">Add</button>
+    <div class="tab-content" id="productTabsContent">
+      <div class="tab-pane fade ml-lg-4 show active" role="tabpanel" aria-labelledby="details-tab" id="details">
+        <div class="form-group mt-2">
+          <label>Product Details</label>
+          <textarea [froalaEditor] formControlName="fullDescription"></textarea>
+        </div>
       </div>
-      <table class="table table-striped">
-        <thead>
-          <th>Attribute Name</th>
-          <th>Attribute Value</th>
-          <th>Delete</th>
-        </thead>
-      </table>
-    </div>
-    <div id="pricing">
-      <div class="form-group">
-        <label>Retail Price</label>
-        <input type="number" formControl="price">
+      <div class="tab-pane fade ml-lg-4" role="tabpanel" aria-labelledby="mappings-tab" id="mappings">
+        <div class="form-group row mt-2">
+          <label class="col-form-label col-4">Parent Category</label>
+          <select [(ngModel)]="category" [ngModelOptions]="{standalone : true}" class="form-control col-6">
+            <option [value]=""></option>
+            <option *ngFor="let c of categories" [value]="c.slug">{{c.title}}</option>
+          </select>
+          <button type="button"(click)="addCategory()" class="btn btn-primary col-2">Add Category</button>
+        </div>
+        <ul class="tag-editor" *ngIf="productForm.controls.categories?.length > 0" formArrayName="categories">
+          <li [formGroupName]="i" *ngFor="let category of productForm.controls.categories.controls, index as i">
+            <div class="tag-editor-spacer">&nbsp;,</div>
+            <div class="tag-editor-tag">{{category.value}}</div>
+            <div class="tag-editor-delete"><a (click)="deleteCategory(i)"><i class="fa fa-trash"></i></a></div>
+          </li>
+        </ul>
       </div>
-      <div class="form-group">
-        <label>Sales Price</label>
-        <input type="number" formControl="salesPrice">
+      <div class="tab-pane fade ml-lg-4" role="tabpanel" aria-labelledby="variations-tab" id="variations">
+        <!--<div class="row">
+          <div class="col-4"></div>
+          <div class="col-8">
+            <table class="table table-striped">
+              <thead>
+                <td></td>
+              </thead>
+            </table>
+          </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2">Attribute Name</label>
+            <input type="text" class="form-control col-3" [ngModel]="attributeName">
+            <label class="col-form-label col-2">Display Type</label>
+            <input type="text" class="col-3" [ngModel]="displayType">
+            <button (click)="AddAttribute()" class="btn btn-primary col-2">Add</button>
+        </div>-->
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addVariations">Add Variations</button>
+      </div>
+      <div class="tab-pane fade ml-lg-4" role="tabpanel" aria-labelledby="pricing-tab" id="pricing">
+        <div class="form-group mt-2">
+          <label>Retail Price</label>
+          <input type="number" formControlName="price">
+        </div>
+        <div class="form-group">
+          <label>Sales Price</label>
+          <input type="number" formControlName="salesPrice">
+        </div>
       </div>
     </div>
+
+
+
+
   </form>
+  <div class="modal fade" id="addVariations" tabindex="-1" role="dialog" aria-labelledby="variationTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="variationTitle">Add Variations</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+        <div class="modal-body">
+          <form [formGroup]="variationForm" novalidate *ngIf="active" (ngSubmit)="saveVariations($event)">
+            <div *ngIf="variationForm.controls.variation?.length > 0" formArrayName="variation">
+              <div class="form-group" [formGroupName]="i" *ngFor="let variation of variationForm.controls.variation.controls, index as i">
+                <div class="row">
+                  <div class="col-md-6 my-auto"><span class="font-bold font-up">{{variation.get('name').value}}</span><a (click)="deleteVariationValue(i,i1)" class="ml-3"><i class="fa fa-trash"></i></a></div>
+                  <div class="input-group col-md-6">
+                    <input type="text" class="form-control" placeholder="Add Value.." [(ngModel)]="variationValues" [ngModelOptions]="{standalone : true}" >
+                    <span class="input-group-btn ml-2">
+                      <button class="btn btn-default"  (click)="addVariationValue(i)" type="button">Add</button>
+                    </span>
+                  </div>
+                </div>
+                <ul class="tag-editor" *ngIf="variation.get('values')?.length > 0" formArrayName="values">
+                   <li [formControlName]="i1" *ngFor="let variationValue of variation.get('values').controls, index as i1">
+                      <div class="tag-editor-spacer">&nbsp;,</div>
+                      <div class="tag-editor-tag">{{variationValue.value}}</div>
+                      <div class="tag-editor-delete"><a (click)="deleteVariationValue(i,i1)"><i class="fa fa-trash"></i></a></div>
+                    </li>
+                </ul>
+              </div>
+            </div>
+            <div class="hr-light border-light" *ngIf="variationForm.controls.variation?.length > 0"></div>
+            <div class="form-group">
+              <label>Add a variation</label>
+              <select #variation (change)="addVariation(variation.value)" class="form-control col-4">
+                <option [value]=""></option>
+                <option *ngFor="let v of variations" [value]="v.name">{{v.name}}</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </form>
+        </div>
+       <!--<div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+       </div>-->
+      </div>
+    </div>
+  </div>
 </div>
 <app-footer></app-footer>

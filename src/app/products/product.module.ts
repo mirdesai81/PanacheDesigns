@@ -12,9 +12,9 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {NavbarModule} from "../navbar/navbar.module";
 import {SharedModule} from "../shared/shared.module";
 import { ProductFormComponent } from './product-form.component';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 @NgModule({
-  imports : [FormsModule,ReactiveFormsModule,CommonModule,RouterModule,CategoryModule,SharedModule],
+  imports : [FormsModule,ReactiveFormsModule,CommonModule,RouterModule,CategoryModule,SharedModule,FroalaEditorModule.forRoot(),FroalaViewModule.forRoot()],
   declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent, ProductFormComponent],
   exports : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent],
   providers : [ProductService]
