@@ -21,10 +21,12 @@
         "styles.css"
       ],
       "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/tether/dist/js/tether.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js",
+
+        "../node_modules/mdbootstrap/js/jquery-3.2.1.min.js",
+        "../node_modules/mdbootstrap/js/popper.min.js",
+        "../node_modules/mdbootstrap/js/bootstrap.js",
         "../node_modules/node-waves/dist/waves.js",
+        "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
         "../node_modules/mdbootstrap/js/mdb.js",
         "app-main.js"
       ],
