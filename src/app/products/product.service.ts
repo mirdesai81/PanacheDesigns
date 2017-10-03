@@ -1,4 +1,15 @@
 import {Injectable} from '@angular/core';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/Observable/throw';
+import 'rxjs/Observable/from';
+import {Observable} from "rxjs/Observable";
+import * as Rx from 'rxjs/Rx'
+export interface Variation {
+  name : string;
+  id : number;
+}
 
 //TODO add displayOrder. type = dropdown , textbox, radio , checkbox, colorsquare, imagesquare
 export interface Attributes {
@@ -57,6 +68,33 @@ export class ProductService {
   constructor() {
 
   }
+
+  variations : Variation[] = [
+    {
+      name : "Size",
+      id : 1
+    },
+    {
+      name : "Fabric",
+      id : 2
+    },
+    {
+      name : "Color",
+      id : 3
+    },
+    {
+      name : "Style",
+      id : 4
+    },
+    {
+      name : "Pattern",
+      id : 5
+    },
+    {
+      name : "Dimensions",
+      id : 6
+    }
+  ];
 
   /*products: Product[] = [
     { id: '1', categoryId: '1', title: 'Baguette/ French Bread', price: 1.5, isSpecial: false,
@@ -167,6 +205,10 @@ export class ProductService {
     }
     throw new ProductNotFoundException(`Product ${id} not found!!!`);*/
     return null;
+  }
+
+  getVariations() : Observable<Variation[]> {
+    return Rx.Observable.of(this.variations);
   }
 }
 
