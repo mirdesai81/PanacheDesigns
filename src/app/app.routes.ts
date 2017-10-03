@@ -9,6 +9,7 @@ import {LoginComponent} from "./login/login.component";
 import {LoggedInGuard} from "./guard/auth.guard";
 import {CategoryDeactivateGuard} from "./guard/category-deactivate.guard";
 import {CategoryFormComponent} from "./category/category-form.component";
+import {ProductFormComponent} from "./products/product-form.component";
 
 const routes : Routes = [
   {path : '', redirectTo : 'welcome' , pathMatch : 'full'},
@@ -16,6 +17,7 @@ const routes : Routes = [
   {path: 'products', component : ProductListComponent,canActivate : [LoggedInGuard]},
   {path : 'product/:id',component : ProductViewComponent,canActivate : [LoggedInGuard]},
   {path : 'category',component : CategoryFormComponent, canActivate : [LoggedInGuard], canDeactivate : [CategoryDeactivateGuard]},
+  {path : 'product',component : ProductFormComponent, canActivate : [LoggedInGuard]},
   {path : 'register',component : RegisterComponent},
   {path : 'cart',component : CartViewComponent,canActivate : [LoggedInGuard]},
   {path : 'checkout',component : CheckoutViewComponent,canActivate : [LoggedInGuard]},
