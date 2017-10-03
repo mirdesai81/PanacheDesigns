@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/froala-editor/css/froala_editor.pkgd.min.css";
+@import "../node_modules/froala-editor/css/froala_style.min.css";
 @import "../node_modules/hamburgers/dist/hamburgers.css";
 @import "../node_modules/font-awesome/css/font-awesome.css";
 @import "../node_modules/mdbootstrap/css/bootstrap.css";
@@ -12,13 +14,30 @@ body {
   /*padding-bottom: 51px;*/
 }
 
+ul {
+  list-style-type: none;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+}
+
+li {
+  display: block;
+}
+
+.navbar .nav-link {
+  color: #fff;
+}
+
 .navbar-inverse .navbar-nav .logo {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 56px;
+  font-size: 48px;
   padding: 0 1.2rem;
-  margin-top: -14px;
+  margin-top: -8px;
 }
 
 .logo:hover {
@@ -29,7 +48,7 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 26px;
+  font-size: 20px;
   padding: 0 1.2rem;
   margin-top: -26px;
 }
@@ -106,9 +125,7 @@ body {
 }
 */
 
-.hamburger .hamburger-inner, .hamburger .hamburger-inner:after, .hamburger .hamburger-inner:before {
-  background-color: #fff;
-}
+
 
 .hamburger-box {
   margin-top: 10px;
@@ -373,7 +390,6 @@ body .simple-notification {
 
 .hamburger .hamburger-inner, .hamburger .hamburger-inner:after, .hamburger .hamburger-inner:before {
   background-color: #fff;
-  background-color: #81d4fa !important;
 }
 
 .btn-outline-info {
@@ -408,14 +424,14 @@ body .simple-notification {
 .log-in-inline input[type=password]:focus:not([readonly]),
 .log-in-inline input[type=email]:focus:not([readonly])
  {
-  border-bottom: 1px solid #81d4fa;
-  color: #81d4fa;
-  box-shadow: 0 1px 0 0 #81d4fa; }
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  box-shadow: 0 1px 0 0 #fff; }
 .log-in-inline input[type=text]:focus:not([readonly]) + label,
 .log-in-inline input[type=password]:focus:not([readonly]) + label,
 .log-in-inline input[type=email]:focus:not([readonly]) + label
  {
-  color: #81d4fa; }
+  color: #fff; }
 .log-in-inline input[type=text].valid, input[type=text]:focus.valid,
 .log-in-inline input[type=password].valid,
 .log-in-inline input[type=password]:focus.valid,
@@ -454,10 +470,10 @@ body .simple-notification {
 }
 
 .log-in-inline .md-form .prefix {
-  color: #eeeeee; }
+  color: #eee !important; }
 
 .log-in-inline .md-form .prefix.active {
-  color: #81d4fa; }
+  color: #fff; }
 
 .log-in-inline .md-form label {
   top : 0rem;
@@ -493,4 +509,61 @@ body .simple-notification {
 .input-file:focus + label,
 .input-file + label:hover {
   background-color: salmon;
+}
+
+.tag-editor {
+  list-style-type: none;
+  padding: 0 5px 0 0;
+  margin: 0;
+  overflow: hidden;
+  /*border: 1px solid #eee;*/
+  cursor: text;
+  /*font: normal 14px sans-serif;*/
+  color: #555;
+  background: #fff;
+  line-height: 20px;
+}
+
+.tag-editor .tag-editor-spacer {
+  padding: 0;
+  width: 8px;
+  overflow: hidden;
+  color: transparent;
+  background: none;
+}
+
+.tag-editor .tag-editor-tag {
+  padding-left: 5px;
+  color: #46799b;
+  background: #e0eaf1;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px 0 0 2px;
+}
+
+.tag-editor .tag-editor-delete {
+  background: #e0eaf1;
+  cursor: pointer;
+  border-radius: 0 2px 2px 0;
+  padding-left: 3px;
+  padding-right: 4px;
+}
+
+.tag-editor div {
+  float: left;
+  padding: 4px 4px;
+}
+
+.light-blue-text.lighten-3 {
+  color: #81d4fa !important;
+}
+
+.form-header {
+  color: #fff;
+  text-align: center;
+  margin-top: -50px;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border-radius: 2px;
 }
