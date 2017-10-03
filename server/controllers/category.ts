@@ -62,7 +62,7 @@ class CategoryCtrl extends BaseCtrl {
         res.json({success : false, message : errMsg});
       });
 
-      const transformer = sharp().resize(250,null,
+      const transformer = sharp().resize(1000,840,
         { kernel : sharp.kernel.nearest,
           interpolator : sharp.interpolator.nearest
         })
