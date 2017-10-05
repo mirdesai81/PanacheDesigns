@@ -29,6 +29,7 @@ export class ProductFormComponent implements OnInit {
   displayType : string[] = ['Checkbox','Radio','Dropdown','Text'];
   variations : Variation[];
   variationForm : FormGroup;
+  optionValues : string[][] = [];
   validationMessages = {
     'title' : {
       'required' : 'Product Name is required.',
@@ -73,6 +74,7 @@ export class ProductFormComponent implements OnInit {
       published : false,
       relatedProducts : this._fb.array([]),
       attributes : this._fb.array([]),
+      variations : this._fb.array([]),
       specifications : this._fb.array([]),
       shortDescription : '',
       categories : this._fb.array([]),
@@ -169,38 +171,51 @@ export class ProductFormComponent implements OnInit {
   }
 
 
-  addVariation(value : any) {
+  addVariation(index : any) {
     const control = <FormArray> this.variationForm.controls["variation"];
-    control.push(this.addVariationGroup(value));
+    control.push(this.addVariationGroup(index));
+    this.variationValues = "";
   }
 
-  addVariationGroup(value : any) {
+  selectedVariation(name : string) {
+    console.log(name);
+    return this.variations.filter(variation => variation.name === name).map((variation : Variation) => variation.values);
+  }
+
+  addVariationGroup(index : any) {
+
+
+    this.optionValues.push(this.variations[index].values);
     return this._fb.group({
-      name : value,
+      name : this.variations[index].name,
       values : this._fb.array([])
     });
   }
 
   deleteVariation(index:number){
-    const control = <FormArray> this.variationForm.controls["variation"];
+    const control = <FormArray> this.variationForm.get('variation');
     control.removeAt(index);
   }
 
+
   addVariationValue(index : number) {
-    const control = <FormArray>(<FormArray>this.variationForm.controls["variation"]).at(index).get('values');
+    const control = this.variationForm.get(`variation.${index}.values`) as FormArray;
     control.push(this.initVariationValue());
   }
 
   initVariationValue() {
-    return this._fb.control(this.variationValues);
+    return this._fb.group({value : this.variationValues, price : 0, quantity : 0, visible : true});
   }
 
   deleteVariationValue(index1 : any,index2 : number){
-    const control = <FormArray>(<FormArray>this.variationForm.controls["variation"]).at(index1).get('values');
+    const control = this.variationForm.get(`variation.${index1}.values`) as FormArray;
     control.removeAt(index2);
   }
 
-  saveVariations(data : any) {
-    console.log(this.variationForm.value);
+  saveVariations() {
+    const variation = this.variationForm.get('variation') as FormArray;
+    this.productForm.setControl('variations',variation);
+    console.log(this.productForm.get('variations').value);
   }
+
 }

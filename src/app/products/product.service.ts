@@ -9,6 +9,12 @@ import * as Rx from 'rxjs/Rx'
 export interface Variation {
   name : string;
   id : number;
+  values : string[];
+}
+
+export interface Option {
+  name : string;
+  values : string[];
 }
 
 //TODO add displayOrder. type = dropdown , textbox, radio , checkbox, colorsquare, imagesquare
@@ -72,29 +78,21 @@ export class ProductService {
   variations : Variation[] = [
     {
       name : "Size",
-      id : 1
-    },
-    {
-      name : "Fabric",
-      id : 2
+      id : 1,
+      values : ["3 US/Canada","3.5 US/Canada","4 US/Canada",
+        "4.5 US/Canada","5 US/Canada","5.5 US/Canada","6 US/Canada","6.5 US/Canada",
+        "7 US/Canada","7.5 US/Canada","8 US/Canada","8.5 US/Canada","9 US/Canada","10 US/Canada",
+        "10.5 US/Canada","11 US/Canada","11.5 US/Canada","12 US/Canada"]
     },
     {
       name : "Color",
-      id : 3
+      id : 3,
+      values : []
     },
-    {
-      name : "Style",
-      id : 4
-    },
-    {
-      name : "Pattern",
-      id : 5
-    },
-    {
-      name : "Dimensions",
-      id : 6
-    }
+
   ];
+
+
 
   /*products: Product[] = [
     { id: '1', categoryId: '1', title: 'Baguette/ French Bread', price: 1.5, isSpecial: false,
