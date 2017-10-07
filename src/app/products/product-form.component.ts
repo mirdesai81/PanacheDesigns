@@ -18,7 +18,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 })
 export class ProductFormComponent implements OnInit {
   @Input() category : string;
-  @Input() variationValues : string;
+  @Input() variationValues : string[] = [];
   product : Product;
   productForm : FormGroup;
   formSubscribe : FormSubscription;
@@ -53,6 +53,13 @@ export class ProductFormComponent implements OnInit {
   variationFormErrors = {
     name : ''
   };
+
+  public editorOptions: Object = {
+    placeholderText: 'Edit Your Content Here!',
+    heightMin: 200,
+    heightMax : 300
+  };
+
   constructor(private productService : ProductService,
               private router : Router,
               private _fb : FormBuilder,private notificationsService : NotificationsService,private categoryService : CategoryService) { }
@@ -78,6 +85,7 @@ export class ProductFormComponent implements OnInit {
       specifications : this._fb.array([]),
       shortDescription : '',
       categories : this._fb.array([]),
+      images : this._fb.array([]),
       price : 0,
       salesPrice : 0,
       slug : ''
@@ -174,7 +182,6 @@ export class ProductFormComponent implements OnInit {
   addVariation(index : any) {
     const control = <FormArray> this.variationForm.controls["variation"];
     control.push(this.addVariationGroup(index));
-    this.variationValues = "";
   }
 
   selectedVariation(name : string) {
@@ -183,9 +190,15 @@ export class ProductFormComponent implements OnInit {
   }
 
   addVariationGroup(index : any) {
-
-
     this.optionValues.push(this.variations[index].values);
+
+    if(this.variations[index].name === 'Color') {
+      this.variationValues.push('#fff');
+    } else {
+      this.variationValues.push('');
+    }
+
+
     return this._fb.group({
       name : this.variations[index].name,
       values : this._fb.array([])
@@ -200,11 +213,11 @@ export class ProductFormComponent implements OnInit {
 
   addVariationValue(index : number) {
     const control = this.variationForm.get(`variation.${index}.values`) as FormArray;
-    control.push(this.initVariationValue());
+    control.push(this.initVariationValue(index));
   }
 
-  initVariationValue() {
-    return this._fb.group({value : this.variationValues, price : 0, quantity : 0, visible : true});
+  initVariationValue(index : number) {
+    return this._fb.group({value : this.variationValues[index], price : 0, quantity : 0, visible : true});
   }
 
   deleteVariationValue(index1 : any,index2 : number){

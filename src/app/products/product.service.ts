@@ -5,7 +5,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/Observable/throw';
 import 'rxjs/Observable/from';
 import {Observable} from "rxjs/Observable";
-import * as Rx from 'rxjs/Rx'
+import * as Rx from 'rxjs/Rx';
+import {Image} from '../shared/image';
 export interface Variation {
   name : string;
   id : number;
@@ -37,10 +38,11 @@ export interface Specifications {
 }
 
 export interface Product {
-  _id : number;
+  _id : string;
+  productId : number;
   title : string;
   shortDescription : string;
-  description : string;
+  fullDescription : string;
   price : number;
   onSale : boolean;
   tags : string[];
@@ -58,8 +60,11 @@ export interface Product {
   published : boolean;
   relatedProducts : Product[];
   attributes : Attributes[];
+  variations : Variation[];
   specifications : Specifications[];
-  categories : string;
+  categories : string[];
+  slug : string;
+  images : Image[];
 }
 
 class ProductNotFoundException extends Error {
