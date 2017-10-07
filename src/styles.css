@@ -495,20 +495,26 @@ body .simple-notification {
 }
 
 .input-file + label {
+
   padding: 0.2rem 0.4rem;
-  font-size: 1.25rem;
+  /*font-size: 1.25rem;*/
+  font-size: 0.8rem;
   font-weight: 700;
-  color: white;
-  background-color: #818181;
+  width: 100px;
+  height: 100px;
+  color: rgb(237, 117, 73);
+  background-color: rgba(237, 117, 73,0.2);
   display: inline-block;
-  outline: 1px dotted #818181;
-  outline: -webkit-focus-ring-color auto 5px;
+  /*outline: 1px dotted rgb(237, 117, 73);
+  outline: -webkit-focus-ring-color auto 5px;*/
+  border-radius: 10px;
+  border: 2px solid rgb(237, 117, 73);
   cursor: pointer;
 }
 
 .input-file:focus + label,
 .input-file + label:hover {
-  background-color: salmon;
+  background-color: rgba(237, 117, 73,0.7);
 }
 
 .tag-editor {
@@ -555,6 +561,16 @@ body .simple-notification {
   padding: 4px 4px;
 }
 
+.variation-color {
+  border: 2px solid #6e6e6e !important;
+  border-radius: 50%;
+  width : 28px;
+  height : 28px;
+  line-height: 28px;
+  display: block;
+  float: left;
+}
+
 .light-blue-text.lighten-3 {
   color: #81d4fa !important;
 }
@@ -566,4 +582,49 @@ body .simple-notification {
   margin-bottom: 3rem;
   padding: 1rem;
   border-radius: 2px;
+}
+
+.thumbnail {
+  list-style-type: none;
+  padding: 0 5px 0 0;
+  margin: 0;
+  overflow: hidden;
+  /*border: 1px solid #eee;*/
+  cursor: text;
+  /*font: normal 14px sans-serif;*/
+  color: #555;
+  background: #fff;
+  line-height: 100px;
+  transition: all 0.2s ease-in-out;
+}
+
+.thumbnail .thumbnail-spacer {
+  padding: 0;
+  width: 8px;
+  overflow: hidden;
+  color: transparent;
+  background: none;
+}
+
+.thumbnail .thumbnail-image {
+  padding-left: 5px;
+  color: #46799b;
+  background: #e0eaf1;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px 0 0 2px;
+}
+
+.thumbnail .thumbnail-delete {
+  background: #e0eaf1;
+  cursor: pointer;
+  border-radius: 0 2px 2px 0;
+  padding-left: 3px;
+  padding-right: 4px;
+}
+
+.thumbnail div {
+  float: left;
+  padding: 4px 4px;
 }
