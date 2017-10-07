@@ -6,6 +6,7 @@ import User from './models/user';
 import CategoryCtrl from "./controllers/category";
 import config from './config';
 import * as Grid from 'gridfs-stream';
+import ProductsCtrl from "./controllers/products";
 
 
 function isAuthenticated(req,res,next){
@@ -37,6 +38,7 @@ export default function setRoutes(app) {
   const userCtrl = new UserCtrl();
 
   const categoryCtrl = new CategoryCtrl();
+  const productsCtrl = new ProductsCtrl();
 
   // Users
   router.route('/login').post(userCtrl.login);
@@ -58,6 +60,18 @@ export default function setRoutes(app) {
   authRouter.use(isAuthenticated).route('/category/upload').post(categoryCtrl.uploadFile);
   router.route('/category/file/:filename').get(categoryCtrl.getFile);
   router.route('/category/file/:filename').delete(categoryCtrl.deleteFile);
+
+
+  router.route('/products').get(productsCtrl.getAll);
+  router.route('/products/count').get(productsCtrl.count);
+  authRouter.use(isAuthenticated).route('/category').post(productsCtrl.insert);
+  router.route('/product/:id').get(productsCtrl.get);
+  authRouter.use(isAuthenticated).route('/product/:id').put(productsCtrl.update);
+  authRouter.use(isAuthenticated).route('/product/:id').delete(productsCtrl.delete);
+  authRouter.use(isAuthenticated).route('/product/upload').post(productsCtrl.uploadFile);
+  router.route('/product/file/:filename').get(productsCtrl.getFile);
+  router.route('/product/file/:filename').delete(productsCtrl.deleteFile);
+
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
   app.use('/api',authRouter);
