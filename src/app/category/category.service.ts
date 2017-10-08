@@ -3,7 +3,7 @@ import {Http, Headers, RequestOptions, Request, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
-import 'rxjs/Observable/throw';
+import 'rxjs/observable/throw';
 import {Observable} from "rxjs/Observable";
 import {AuthHttp} from 'angular2-jwt';
 import {appConfig} from '../app.config';

@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
-import * as autoIncrement from 'mongoose-sequence';
 import * as slugs from 'mongoose-url-slugs';
+const autoIncrement = require('mongoose-sequence')(mongoose);
 
 /*_id : number;
  title : string;
@@ -111,6 +111,6 @@ productSchema.pre('save',function(next){
   next();
 });
 
-let Products = mongoose.model('Products', categorySchema);
+let Products = mongoose.model('Products', productSchema);
 export default Products;
 

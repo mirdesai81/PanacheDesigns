@@ -8,9 +8,14 @@
 @import "../node_modules/mdbootstrap/css/mdb.css";
 @import "../node_modules/node-waves/dist/waves.css";
 
+html {
+  font-size: 1rem;
+}
+
 body {
   font-family: 'Roboto';
   padding-top: 51px;
+  font-size: 1rem;
   /*padding-bottom: 51px;*/
 }
 
@@ -31,26 +36,26 @@ li {
   color: #fff;
 }
 
-.navbar-inverse .navbar-nav .logo {
+.navbar .logo {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 48px;
+  font-size: 2.5rem;
   padding: 0 1.2rem;
-  margin-top: -8px;
+  margin-top: 8px;
 }
 
 .logo:hover {
   color : rgba(129, 212, 250, 0.5);
 }
 
-.navbar-inverse .navbar-nav .sub-brand {
+.navbar .sub-brand {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: bold;
   font-style: normal;
-  font-size: 20px;
+  font-size: 1.4rem;
   padding: 0 1.2rem;
-  margin-top: -26px;
+  margin-top: 6px;
 }
 
 .centered-block {
@@ -80,15 +85,15 @@ li {
   padding: 8px 8px 8px 8px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #e5e5e5;
   display: block;
   transition: 0.3s
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover,  .sidenav a.active {
-  color: #f1f1f1;
-  border-left: 4px solid #81d4fa;
+  color: #fff;
+  border-left: 4px solid #fff;
 }
 
 
@@ -124,8 +129,6 @@ li {
  padding: 0px 0px;
 }
 */
-
-
 
 .hamburger-box {
   margin-top: 10px;
@@ -212,7 +215,7 @@ li {
 }
 
 .btn.btn-md , .btn-md {
-  font-size: 0.7rem;
+  font-size: 1.2rem;
   padding: 0.5rem 0.8rem;
 }
 

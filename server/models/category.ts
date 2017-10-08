@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import * as autoIncrement from 'mongoose-sequence';
+const autoIncrement = require('mongoose-sequence')(mongoose);
 import * as slugs from 'mongoose-url-slugs';
 
 /*{id: '1', title: 'Bread & Bakery',

@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
-import * as autoIncrement from 'mongoose-sequence';
+const autoIncrement = require('mongoose-sequence')(mongoose);
 
 const userSchema = new mongoose.Schema({
   userName: { type : String, unique: true, trim: true},

@@ -7,7 +7,7 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
-import * as Q from 'Q';
+import * as Q from 'q';
 import setRoutes from './routes';
 import * as json from 'jsonfile';
 import Category from '../server/models/category';
@@ -59,7 +59,7 @@ let gfs = Grid(connection.db);
 app.set("gridfs-settings",gfs);
 
 var storage = GridFsStorage({
-  gfs : gfs,
+  url : config.db,
   filename: function (req, file, cb) {
     var datetimestamp = Date.now();
     cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
