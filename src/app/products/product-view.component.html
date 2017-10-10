@@ -8,11 +8,11 @@
       <div class="card">
         <div class="card-block">
           <h4 class="card-title">{{product.title}}</h4>
-          <p class="card-text">{{product.desc}}</p>
+          <p class="card-text">{{product.shortDescription}}</p>
         </div>
         <ul class="list-group list-group-flush no-shadow">
-          <li class="list-group-item">Product Code : {{product.id}}</li>
-          <li class="list-group-item">Category : {{product.categoryId | categoryTitle}}</li>
+          <li class="list-group-item">Product Code : {{product.sku}}</li>
+          <li class="list-group-item">Category : <span *ngFor="let category of product.categories, index as i, last as iLast">{{category | categoryTitle}}<span *ngIf="!iLast"> , </span></span></li>
         </ul>
         <div class="card-block">
           <p class="card-text">Availability: In Stock</p>

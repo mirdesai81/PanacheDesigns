@@ -16,7 +16,9 @@ export class ProductViewComponent implements OnInit {
   constructor(private route : ActivatedRoute,private productService : ProductService,private cartService : CartService) {
     this.route.params.subscribe(params => {
       let id : string = params['id'];
-      this.product = this.productService.getProduct(id);
+      this.productService.getProduct(id).subscribe(data => {this.product = data}, error => {
+        console.log(error);
+      });
       this.cartItem = this.cartService.findItem(id);
     });
   }
