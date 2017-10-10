@@ -6,8 +6,8 @@
         <h3><span class=" my-auto align-middle">Add New Product</span></h3>
       </div>
       <div class="col-md-4 col-sm-6">
-        <button class="btn btn-indigo">Save</button>
-        <button type="button" (click)="cancel()" class="btn btn-grey">Cancel</button>
+        <button class="btn btn-rounded indigo-gradient waves-effect">Save</button>
+        <button type="button" (click)="cancel()" class="btn btn-rounded grey-gradient waves-effect">Cancel</button>
       </div>
     </div>
     <div class="row">
@@ -113,7 +113,7 @@
             <option [value]=""></option>
             <option *ngFor="let c of categories" [value]="c.slug">{{c.title}}</option>
           </select>
-          <button type="button"(click)="addCategory()" class="btn btn-indigo col-2">Add Category</button>
+          <button type="button"(click)="addCategory()" class="btn btn-rounded indigo-gradient waves-effect col-2">Add Category</button>
         </div>
         <ul class="tag-editor" *ngIf="productForm.controls.categories?.length > 0" formArrayName="categories">
           <li [formGroupName]="i" *ngFor="let category of productForm.controls.categories.controls, index as i">
@@ -169,7 +169,7 @@
            </div>
          </div>
         </div>
-        <button type="button" class="btn btn-indigo" data-toggle="modal" data-target="#addVariations">Add Variations</button>
+        <button type="button" class="btn btn-rounded indigo-gradient" data-toggle="modal" data-target="#addVariations">Add Variations</button>
       </div>
       <div class="tab-pane fade ml-lg-4 my-lg-4" role="tabpanel" aria-labelledby="pricing-tab" id="pricing">
         <div class="form-group">
@@ -241,21 +241,21 @@
                         <option *ngFor="let value of optionValues[i], index as i" [value]="value">{{value}}</option>
                       </select>
                       <span class="input-group-btn ml-2">
-                        <button class="btn btn-grey"  (click)="addVariationValue(i)" type="button">Add</button>
+                        <button class="btn btn-rounded grey-gradient waves-effect"  (click)="addVariationValue(i)" type="button">Add</button>
                       </span>
                     </ng-container>
                     <ng-container *ngSwitchCase="'Color'">
                       <input type="text"  class="form-control"  [(colorPicker)]="variationValues[i]" [value]="variationValues[i]" [cpPosition]="'left'"
-                             [cpOKButton]="true" [cpSaveClickOutside]="false" [cpOKButtonClass]= "'btn btn-indigo btn-sm'"
-                             [cpCancelButton]="true" [cpCancelButtonClass]= "'btn btn-grey btn-sm'"  [style.background]="variationValues" >
+                             [cpOKButton]="true" [cpSaveClickOutside]="false" [cpOKButtonClass]= "'btn btn-rounded indigo-gradient waves-effect btn-sm'"
+                             [cpCancelButton]="true" [cpCancelButtonClass]= "'btn btn-rounded grey-gradient waves-effect btn-sm'"  [style.background]="variationValues" >
                       <span class="input-group-btn ml-2">
-                        <button class="btn btn-grey"  (click)="addVariationValue(i)" type="button">Add</button>
+                        <button class="btn btn-rounded grey-gradient waves-effect"  (click)="addVariationValue(i)" type="button">Add</button>
                       </span>
                     </ng-container>
                     <ng-container *ngSwitchDefault>
                       <input type="text"   class="form-control" placeholder="Add Value.." (ngModel)="variationValues[i]" [ngModelOptions]="{standalone : true}"  >
                       <span class="input-group-btn ml-2">
-                        <button class="btn btn-grey"  (click)="addVariationValue(i)" type="button">Add</button>
+                        <button class="btn btn-rounded grey-gradient waves-effect"  (click)="addVariationValue(i)" type="button">Add</button>
                       </span>
                     </ng-container>
                   </div>
@@ -283,8 +283,8 @@
                 <option *ngFor="let v of variations, index as i" [value]="i">{{v.name}}</option>
               </select>
             </div>
-            <button type="button" class="btn btn-grey" data-dismiss="modal">Close</button>
-            <button type="button" (click)="saveVariations()" class="btn btn-indigo" data-dismiss="modal">Save changes</button>
+            <button type="button" class="btn btn-rounded grey-gradient waves-effect" data-dismiss="modal">Close</button>
+            <button type="button" (click)="saveVariations()" class="btn btn-rounded indigo-gradient waves-effect" data-dismiss="modal">Save changes</button>
           </form>
         </div>
        <!--<div class="modal-footer">
