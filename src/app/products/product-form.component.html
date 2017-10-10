@@ -82,14 +82,66 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-12">
+        <div class="row">
+          <label class="col-form-label col-4">Tags</label>
+          <div class="col-8">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Tags for search..." [(ngModel)]="tag" [ngModelOptions]="{standalone : true}">
+              <span class="input-group-btn">
+                <button type="button" class="btn grey-gradient waves-effect" (click)="addTag()">Add</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-12 col-md-6">
+        <div class="row">
+          <label class="col-form-label col-4">Category</label>
+          <div class="col-8">
+            <div class="input-group">
+              <select [(ngModel)]="category" [ngModelOptions]="{standalone : true}" class="form-control form-control-lg my-auto">
+                <option [value]=""></option>
+                <option *ngFor="let c of categories" [value]="c.slug">{{c.title}}</option>
+              </select>
+              <span class="input-group-btn">
+                <button type="button" (click)="addCategory()"
+                        class="btn grey-gradient waves-effect">Add</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6 col-sm-12">
+        <ul class="tag-editor" *ngIf="productForm.controls.tags?.length > 0" formArrayName="tags">
+          <li [formGroupName]="i" class="mx-3" *ngFor="let tag of productForm.controls.tags.controls, index as i">
+            <!--<div class="tag-editor-spacer">&nbsp;,</div>-->
+            <div class="tag-editor-tag ml-3">{{tag.value}}</div>
+            <div class="tag-editor-delete"><a (click)="deleteTag(i)"><i class="fa fa-trash"></i></a></div>
+          </li>
+        </ul>
+      </div>
+      <div class="form-group col-md-6 col-sm-12">
+        <ul class="tag-editor" *ngIf="productForm.controls.categories?.length > 0" formArrayName="categories">
+          <li [formGroupName]="i" *ngFor="let category of productForm.controls.categories.controls, index as i">
+            <div class="tag-editor-spacer">&nbsp;,</div>
+            <div class="tag-editor-tag">{{category.value}}</div>
+            <div class="tag-editor-delete"><a (click)="deleteCategory(i)"><i class="fa fa-trash"></i></a></div>
+          </li>
+        </ul>
+      </div>
+    </div>
     <ul class="nav nav-tabs mt-2" role="tablist" id="productTabs">
       <li class="nav-item">
         <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details"
            aria-expanded="true">Details</a>
       </li>
-      <li class="nav-item">
+     <!-- <li class="nav-item">
         <a class="nav-link" id="mappings-tab" data-toggle="tab" href="#mappings" role="tab" aria-controls="mappings">Mappings</a>
-      </li>
+      </li>-->
       <li class="nav-item">
         <a class="nav-link" id="variations-tab" data-toggle="tab" href="#variations" role="tab"
            aria-controls="variations">Product Variations</a>
@@ -108,7 +160,7 @@
           <textarea [froalaEditor]="editorOptions" formControlName="fullDescription"></textarea>
         </div>
       </div>
-      <div class="tab-pane fade ml-lg-4 my-lg-4" role="tabpanel" aria-labelledby="mappings-tab" id="mappings">
+     <!-- <div class="tab-pane fade ml-lg-4 my-lg-4" role="tabpanel" aria-labelledby="mappings-tab" id="mappings">
         <div class="form-group row">
           <label class="col-form-label col-4">Parent Category</label>
           <select [(ngModel)]="category" [ngModelOptions]="{standalone : true}" class="form-control col-6">
@@ -126,7 +178,7 @@
             <div class="tag-editor-delete"><a (click)="deleteCategory(i)"><i class="fa fa-trash"></i></a></div>
           </li>
         </ul>
-      </div>
+      </div>-->
       <div class="tab-pane fade ml-lg-4" role="tabpanel" aria-labelledby="variations-tab" id="variations">
         <div *ngIf="productForm.controls.variations?.length > 0" formArrayName="variations" class="my-3">
           <div class="row py-3" *ngFor="let variation of productForm.controls.variations.controls, index as i"
@@ -231,7 +283,7 @@
                         <option *ngFor="let value of optionValues[i], index as i" [value]="value">{{value}}</option>
                       </select>
                       <span class="input-group-btn ml-2">
-                        <button class="btn btn-rounded grey-gradient waves-effect" (click)="addVariationValue(i)"
+                        <button class="btn grey-gradient waves-effect" (click)="addVariationValue(i)"
                                 type="button">Add
                         </button>
                       </span>
@@ -245,7 +297,7 @@
                              [cpCancelButtonClass]="'btn btn-rounded grey-gradient waves-effect btn-sm'"
                              [style.background]="variationValues">
                       <span class="input-group-btn ml-2">
-                        <button class="btn btn-rounded grey-gradient waves-effect" (click)="addVariationValue(i)"
+                        <button class="btn grey-gradient waves-effect" (click)="addVariationValue(i)"
                                 type="button">Add
                         </button>
                       </span>
@@ -254,7 +306,7 @@
                       <input type="text" class="form-control" placeholder="Add Value.." (ngModel)="variationValues[i]"
                              [ngModelOptions]="{standalone : true}">
                       <span class="input-group-btn ml-2">
-                        <button class="btn btn-rounded grey-gradient waves-effect" (click)="addVariationValue(i)"
+                        <button class="btn grey-gradient waves-effect" (click)="addVariationValue(i)"
                                 type="button">Add
                         </button>
                       </span>

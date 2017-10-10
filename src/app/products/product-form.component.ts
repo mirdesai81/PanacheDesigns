@@ -19,6 +19,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 export class ProductFormComponent implements OnInit {
   @Input() category : string;
   @Input() variationValues : string[] = [];
+  @Input() tag : string;
   product : Product;
   productForm : FormGroup;
   formSubscribe : FormSubscription;
@@ -113,6 +114,24 @@ export class ProductFormComponent implements OnInit {
     this.product = null;
     this.buildForm();
   }
+
+  /** Tags **/
+
+  addTag() {
+    const control = <FormArray>this.productForm.controls["tags"];
+    control.push(this.initTag());
+  }
+
+  initTag() {
+    return this._fb.control(this.tag);
+  }
+
+  deleteTag(i : number) {
+    const control = <FormArray>this.productForm.controls["tags"];
+    control.removeAt(i);
+  }
+
+  /** Category **/
 
   addCategory() {
     const control = <FormArray>this.productForm.controls["categories"];

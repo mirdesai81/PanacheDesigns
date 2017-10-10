@@ -562,7 +562,12 @@ body .simple-notification {
 .tag-editor div {
   float: left;
   padding: 4px 4px;
+  margin-top: 0.5rem;
 }
+
+/*.tag-editor li > div:first-child {
+  mar
+}*/
 
 .variation-color {
   border: 2px solid #6e6e6e !important;
