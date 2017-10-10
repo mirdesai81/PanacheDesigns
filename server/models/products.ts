@@ -56,10 +56,11 @@ const productSchema = new mongoose.Schema({
   published : Boolean,
   relatedProducts : [{type : mongoose.Schema.Types.ObjectId , ref : 'Products'}],
   variations : [variation],
-  categories : [{type : mongoose.Schema.Types.ObjectId , ref : 'Category'}],
+  categories : {type : [String] , index : true},
   slug : String,
 },{collection : 'Product'});
 
+productSchema.index({slug : 1, title : -1});
 
 /*categorySchema.methods = {
   addChild : function(child) {
