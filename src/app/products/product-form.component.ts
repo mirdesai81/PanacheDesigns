@@ -65,6 +65,22 @@ export class ProductFormComponent implements OnInit {
               private _fb : FormBuilder,private notificationsService : NotificationsService,private categoryService : CategoryService) { }
 
   ngOnInit() {
+    this.buildForm();
+    this.formSubscribe = new FormSubscription(this.validationMessages,this.formErrors,this.productForm);
+
+    var form = this.productForm.valueChanges;
+    form.subscribe(data => this.formSubscribe.subscribeToFormChanges(data));
+    this.formSubscribe.subscribeToFormChanges();
+
+    this.variationForm = this._fb.group({
+      variation : this._fb.array([])
+    });
+
+    this.loadCategories();
+    this.productService.getVariations().subscribe(data => { this.variations = data }, error => { console.log("Failed to load variations");})
+  }
+
+  buildForm() {
     this.productForm = this._fb.group({
       title : ['',[Validators.required,Validators.minLength(5)]],
       fullDescription : ['',[Validators.required,Validators.minLength(10)]],
@@ -72,7 +88,7 @@ export class ProductFormComponent implements OnInit {
       showOnHomePage : false,
       markAsNew : false,
       allowReviews : true,
-      sku : 0,
+      sku : '',
       stockQuantity : 0,
       displayStockAvailability : false,
       displayStockQuantity : true,
@@ -91,18 +107,11 @@ export class ProductFormComponent implements OnInit {
       slug : ''
     });
 
-    this.formSubscribe = new FormSubscription(this.validationMessages,this.formErrors,this.productForm);
+  }
 
-    var form = this.productForm.valueChanges;
-    form.subscribe(data => this.formSubscribe.subscribeToFormChanges(data));
-    this.formSubscribe.subscribeToFormChanges();
-
-    this.variationForm = this._fb.group({
-      variation : this._fb.array([])
-    });
-
-    this.loadCategories();
-    this.productService.getVariations().subscribe(data => { this.variations = data }, error => { console.log("Failed to load variations");})
+  reset() {
+    this.product = null;
+    this.buildForm();
   }
 
   addCategory() {
@@ -142,40 +151,38 @@ export class ProductFormComponent implements OnInit {
 
 
   save(e) {
-  /*  this.category = this.productForm.value;
+    this.product = this.productForm.value;
 
-    if(!this.category.parent) {
-      delete this.category.parent;
+
+    if(!this.product.slug) {
+      delete this.product.slug;
     }
 
-    if(!this.category.slug) {
-      delete this.category.slug;
-    }
-
+    console.log(this.product);
     if(!this.update) {
-      this.productService.create(this.category).subscribe(
+      this.productService.create(this.product).subscribe(
         data => {
-          this.notificationsService.success('Category',`Category ${this.category.title} added successfully`);
+          this.notificationsService.success('Product',`Product ${this.product.title} added successfully`);
           this.reset();
         },
         error => {
-          this.notificationsService.error('Category',`Category ${this.category.title} cannot be added`);
+          this.notificationsService.error('Product',`Product ${this.product.title} cannot be added`);
         });
     } else {
-      console.log(this.category);
-      this.categoryService.update(this.category).subscribe(
+      console.log(this.product);
+      this.productService.update(this.product).subscribe(
         data => {
-          this.notificationsService.success('Category',`Category ${this.category.title} updated successfully`);
+          this.notificationsService.success('Product',`Product ${this.product.title} updated successfully`);
           this.reset();
         },
         error => {
-          this.notificationsService.error('Category',`Category ${this.category.title} cannot be updated`);
+          this.notificationsService.error('Product',`Product ${this.product.title} cannot be updated`);
         });
     }
 
     if(e) {
       e.preventDefault();
-    }*/
+    }
   }
 
 
