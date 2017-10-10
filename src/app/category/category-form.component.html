@@ -1,36 +1,32 @@
 <app-navbar></app-navbar>
-<div class="container" id="main">
-    <form [formGroup]="categoryForm" class="row" novalidate *ngIf="active" (ngSubmit)="save($event)">
-      <div class="col-md-4">
-      <div class="form-group">
-        <label for="title">Category Name</label>
-        <input type="text" formControlName="title" class="form-control">
+<div class="container-fluid" id="main">
+    <form [formGroup]="categoryForm" novalidate *ngIf="active" (ngSubmit)="save($event)">
+      <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="form-group">
+          <label for="title">Category Name</label>
+          <input type="text" formControlName="title" class="form-control">
+        </div>
+        <div *ngIf="formErrors.title" class="alert alert-danger">
+          {{formErrors.title}}
+        </div>
+        <div class="form-group">
+          <label for="title">Category Description</label>
+          <input type="text" formControlName="desc" class="form-control">
+        </div>
+        <div *ngIf="formErrors.desc" class="alert alert-danger">
+          {{formErrors.desc}}
+        </div>
+        <div class="form-group">
+          <label for="parent">Parent Category</label>
+          <select formControlName="parent" class="form-control">
+            <option [value]=""></option>
+            <option *ngFor="let c of categories" [value]="c._id">{{c.title}}</option>
+          </select>
+        </div>
+
       </div>
-      <div *ngIf="formErrors.title" class="alert alert-danger">
-        {{formErrors.title}}
-      </div>
-      <div class="form-group">
-        <label for="title">Category Description</label>
-        <input type="text" formControlName="desc" class="form-control">
-      </div>
-      <div *ngIf="formErrors.desc" class="alert alert-danger">
-        {{formErrors.desc}}
-      </div>
-      <div class="form-group">
-        <label for="parent">Parent Category</label>
-        <select formControlName="parent" class="form-control">
-          <option [value]=""></option>
-          <option *ngFor="let c of categories" [value]="c._id">{{c.title}}</option>
-        </select>
-      </div>
-      <div class="text-md-center">
-        <!--<input type="text" formControlName="imageL" [style.display]="none">
-        <input type="text" formControlName="imageS" [style.display]="none">-->
-        <button type="submit" class="btn btn-primary" [disabled]="!categoryForm.valid">Save</button>
-        <button type="button" (click)="cancel()" class="btn btn-secondary">Cancel</button>
-      </div>
-      </div>
-      <div class="col-md-8"  >
+      <div class="col-md-8 col-sm-8" >
         <app-file-upload *ngIf="model" [fieldname]="categoryImage" [model]="model"
                          (onUploadSuccess)="setImage($event)"></app-file-upload>
     <!--    <table class="table table-striped table-bordered" *ngIf="uploads && uploads.length > 0" formArrayName="images">
@@ -60,9 +56,18 @@
             </li>
           </ul>
       </div>
+      </div>
+      <div class="row">
+        <div class="text-md-left col-md-12 col-sm-12">
+          <!--<input type="text" formControlName="imageL" [style.display]="none">
+          <input type="text" formControlName="imageS" [style.display]="none">-->
+          <button type="submit" class="btn btn-rounded indigo-gradient waves-effect" [disabled]="!categoryForm.valid">Save</button>
+          <button type="button" (click)="cancel()" class="btn btn-rounded grey-gradient waves-effect">Cancel</button>
+        </div>
+      </div>
     </form>
 
-  <table *ngIf="categories && categories.length > 0" class="table table-striped table-bordered">
+  <table *ngIf="categories && categories.length > 0" class="table table-responsive table-striped table-bordered mt-4">
     <thead>
     <th>Title</th>
     <th>Description</th>
