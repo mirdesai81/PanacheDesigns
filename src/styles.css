@@ -42,7 +42,7 @@ li {
   font-style: normal;
   font-size: 2.5rem;
   padding: 0 1.2rem;
-  margin-top: 8px;
+  /*margin-top: -8px;*/
 }
 
 .logo:hover {
@@ -55,7 +55,7 @@ li {
   font-style: normal;
   font-size: 1.4rem;
   padding: 0 1.2rem;
-  margin-top: 6px;
+  margin-top: -20px;
 }
 
 .centered-block {
@@ -505,19 +505,19 @@ body .simple-notification {
   font-weight: 700;
   width: 100px;
   height: 100px;
-  color: rgb(237, 117, 73);
-  background-color: rgba(237, 117, 73,0.2);
+  /*color: rgb(237, 117, 73);*/
+  /*background-color: rgba(237, 117, 73,0.1);*/
   display: inline-block;
   /*outline: 1px dotted rgb(237, 117, 73);
   outline: -webkit-focus-ring-color auto 5px;*/
   border-radius: 10px;
-  border: 2px solid rgb(237, 117, 73);
+  border: 1px solid rgb(237, 117, 73);
   cursor: pointer;
 }
 
 .input-file:focus + label,
 .input-file + label:hover {
-  background-color: rgba(237, 117, 73,0.7);
+  /*background-color: rgba(237, 117, 73,0.3);*/
 }
 
 .tag-editor {
@@ -623,11 +623,56 @@ body .simple-notification {
   background: #e0eaf1;
   cursor: pointer;
   border-radius: 0 2px 2px 0;
-  padding-left: 3px;
-  padding-right: 4px;
+  height: 109px;
+ /* padding-left: 4px;
+  padding-right: 4px;*/
 }
 
 .thumbnail div {
   float: left;
   padding: 4px 4px;
+}
+
+.btn-rounded {
+  border-radius: 10rem;
+}
+
+.indigo-gradient {
+  background: -webkit-linear-gradient(50deg,#3d5afe,#3949ab);
+  background: linear-gradient(50deg,#3d5afe,#3949ab);
+}
+
+.peach-gradient {
+  background: -webkit-linear-gradient(50deg,#FFD86F,#FC6262);
+  background: linear-gradient(40deg,#FFD86F,#FC6262);
+}
+
+.blue-gradient {
+  background: -webkit-linear-gradient(50deg,#45cafc,#303f9f);
+  background: linear-gradient(40deg,#45cafc,#303f9f);
+}
+
+.grey-gradient {
+  background: -webkit-linear-gradient(50deg,#9e9e9e,#757575);
+  background: linear-gradient(40deg,#9e9e9e,#757575);
+}
+
+.peach-gradient.lighten-1 {
+  background: -webkit-linear-gradient(50deg,rgba(255, 216, 111, 0.1),rgba(252, 98, 98, 0.1));
+  background: linear-gradient(40deg,rgba(255, 216, 111, 0.1),rgba(252, 98, 98, 0.1));
+}
+
+.peach-gradient.lighten-2 {
+  background: -webkit-linear-gradient(50deg,rgba(255, 216, 111, 0.25),rgba(252, 98, 98, 0.25));
+  background: linear-gradient(40deg,rgba(255, 216, 111, 0.25),rgba(252, 98, 98, 0.25));
+}
+
+.peach-gradient.lighten-3 {
+  background: -webkit-linear-gradient(50deg,rgba(255, 216, 111, 0.50),rgba(252, 98, 98, 0.50));
+  background: linear-gradient(40deg,rgba(255, 216, 111, 0.50),rgba(252, 98, 98, 0.50));
+}
+
+.peach-gradient.lighten-4 {
+  background: -webkit-linear-gradient(50deg,rgba(255, 216, 111, 0.50),rgba(252, 98, 98, 0.75));
+  background: linear-gradient(40deg,rgba(255, 216, 111, 0.50),rgba(252, 98, 98, 0.75));
 }
