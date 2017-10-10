@@ -49,8 +49,9 @@ export default function setRoutes(app) {
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
 
-  //Category
-  /*router.route('/categories/path').get(categoryCtrl.getAllByPath);*/
+  //  Category API
+
+  /* router.route('/categories/path').get(categoryCtrl.getAllByPath); */
   router.route('/categories').get(categoryCtrl.getAll);
   router.route('/categories/count').get(categoryCtrl.count);
   authRouter.use(isAuthenticated).route('/category').post(categoryCtrl.insert);
@@ -61,11 +62,12 @@ export default function setRoutes(app) {
   router.route('/category/file/:filename').get(categoryCtrl.getFile);
   router.route('/category/file/:filename').delete(categoryCtrl.deleteFile);
 
-
+  //  Products API
   router.route('/products').get(productsCtrl.getAll);
   router.route('/products/count').get(productsCtrl.count);
-  authRouter.use(isAuthenticated).route('/category').post(productsCtrl.insert);
+  authRouter.use(isAuthenticated).route('/product').post(productsCtrl.insert);
   router.route('/product/:id').get(productsCtrl.get);
+  router.route('/product/search').get(productsCtrl.search);
   authRouter.use(isAuthenticated).route('/product/:id').put(productsCtrl.update);
   authRouter.use(isAuthenticated).route('/product/:id').delete(productsCtrl.delete);
   authRouter.use(isAuthenticated).route('/product/upload').post(productsCtrl.uploadFile);
