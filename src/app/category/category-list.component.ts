@@ -15,6 +15,6 @@ export class CategoryListComponent {
   }
 
   filterProducts(category : Category) {
-    this.router.navigate(['/products'],{queryParams : { category : category.categoryId}});
+    this.router.navigate(['/products'],{queryParams : { category : category.slug}});
   }
 }
