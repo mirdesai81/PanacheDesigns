@@ -51,7 +51,7 @@
         <div class="row">
           <label class="col-form-label col-4">Show on Home Page</label>
           <div class="col-8">
-            <input type="checkbox" formControlName="showOnHomePage">
+            <label class="switch"><input type="checkbox" formControlName="showOnHomePage"><span class="slider"></span></label>
           </div>
         </div>
       </div>
@@ -59,7 +59,7 @@
         <div class="row">
           <label class="col-form-label col-4">Mark as New</label>
           <div class="col-8">
-            <input type="checkbox" formControlName="markAsNew">
+            <label class="switch"><input type="checkbox" formControlName="markAsNew"><span class="slider"></span></label>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
         <div class="row">
           <label class="col-form-label col-4">Published</label>
           <div class="col-8">
-            <input type="checkbox" formControlName="published">
+            <label class="switch"><input type="checkbox" formControlName="published"><span class="slider"></span></label>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
         <div class="row">
           <label class="col-form-label col-4">Allow Reviews</label>
           <div class="col-8">
-            <input type="checkbox" formControlName="allowReviews">
+            <label class="switch"><input type="checkbox" formControlName="allowReviews"><span class="slider"></span></label>
           </div>
         </div>
       </div>
@@ -197,9 +197,9 @@
                 <tbody formArrayName="values">
                 <tr *ngFor="let options of variation.controls.values.controls, index as i1" [formGroupName]="i1">
                   <td>{{options.get('value').value}}</td>
-                  <td>{{options.get('price').value}}</td>
-                  <td>{{options.get('quantity').value}}</td>
-                  <td>{{options.get('visible').value}}</td>
+                  <td><input type="text" formControlName="price"></td>
+                  <td><input type="text" formControlName="quantity"></td>
+                  <td><label class="switch"><input type="checkbox" formControlName="visible"><span class="slider"></span></label></td>
                 </tr>
                 </tbody>
               </table>
