@@ -26,7 +26,7 @@ import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import {CategoryDeactivateGuard} from "./guard/category-deactivate.guard";
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-
+import {ProductDeactivateGuard} from "./guard/product-deactive.guard";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -60,7 +60,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,
     deps: [Http, RequestOptions]
-  }, LoggedInGuard, CategoryDeactivateGuard],
+  }, LoggedInGuard, CategoryDeactivateGuard, ProductDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

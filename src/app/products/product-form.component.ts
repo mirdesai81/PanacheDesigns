@@ -257,4 +257,91 @@ export class ProductFormComponent implements OnInit {
     console.log(this.productForm.get('variations').value);
   }
 
+  edit(product : Product) {
+    console.log(product);
+    this.reset();
+    this.update = true;
+    let formUpdate = new FormUpdate(this._fb);
+    product.images.forEach(image => this.addImages(image));
+    formUpdate.initFormGroup(this.productForm,product);
+    this.product = product;
+  }
+
+  cancel() {
+    if(this.update) {
+      this.edit(this.product);
+    } else {
+      this.update = false;
+      this.product = this.productForm.value;
+      this.deleteImages(this.product);
+      this.reset();
+    }
+  }
+
+  canDeactivate() : Promise<boolean> | boolean {
+    if(!this.update) {
+      this.product = this.productForm.value;
+      console.log(this.product);
+      this.deleteImages(this.product);
+    }
+    return true;
+  }
+
+
+  initImage(image : Image) {
+    return this._fb.group({
+      url : image.url,
+      type : image.type,
+      width : image.width,
+      height : image.height,
+      displayOrder : image.displayOrder
+    })
+  }
+
+  addImages(image : Image) {
+    const control = <FormArray>this.productForm.controls["images"];
+    control.push(this.initImage(image));
+  }
+
+  setImage(data:any) {
+    if(data) {
+      const image : Image = new Image(data);
+      this.addImages(image);
+    }
+
+    this.product = this.productForm.value;
+  }
+
+  private deleteImages(product) {
+    if(product && product.images) {
+      product.images.forEach( (data : Image) => {
+        this.deleteImage(data.url,false,false);
+      });
+    }
+  }
+
+  public deleteImage(field : string,notify : boolean = false,updateProduct : boolean = true) : void {
+    this.productService.deleteImage(field.substr(field.lastIndexOf('/') + 1))
+      .subscribe(data => {
+          if(notify) {
+            this.notificationsService.success('Category','Image deleted successfully');
+          }
+
+          /*if(updateProduct) {
+            let images : Image[];
+            images = this.product.images.filter(image => {
+              return image.url.indexOf(field) === -1;
+            });
+
+            this.product.images = images;
+            this.updateProduct(false);
+            this.edit(this.product);
+          }*/
+        },
+        error => {
+          if(notify){
+            this.notificationsService.error('Category','Image cannot be deleted');
+          }
+        });
+  }
 }

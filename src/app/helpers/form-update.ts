@@ -19,12 +19,10 @@ export class FormUpdate {
           this.initFormGroup(<FormGroup>form.controls[key],data[key]);
         }
       } else if(form.controls[key] instanceof FormArray) {
-        /*var control = <FormArray>form.controls[key];
         if(data[key]) {
-
-          this.initFormArray(control, data[key]);
+          this.initFormArray(<FormArray>form.controls[key], data[key]);
         }
-*/
+
       }
     }
   }
