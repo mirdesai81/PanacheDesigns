@@ -15,26 +15,30 @@ class ProductsCtrl extends BaseCtrl {
   };
 
   search = (req,res) => {
+    console.log("Product Search API called!!!");
     var type = req.query.type;
     if(type && type === 'category') {
-      this.model.find({ categories : req.query.path}).exec((err,docs) => {
+      console.log("Product Search by category");
+      this.model.find({ categories : req.query.path},(err,docs) => {
           if (err) { console.error(err); throw err; }
           console.log(docs);
           res.json(docs);
         });
     } else if(type && type === 'title') {
+      console.log("Product Search by title");
       var query = new RegExp(`^${req.query.path}$`,'i');
-      this.model.find({ title : query}).exec((err,docs) => {
+      this.model.find({ title : query}, (err,docs) => {
         if (err) { console.error(err); throw err; }
         console.log(docs);
         res.json(docs);
       });
     } else {
-      this.model.find({}).exec((err,docs) => {
+      console.log("Product Search all");
+      this.model.find({},(err,docs) => {
         if (err) { console.error(err); throw err; }
         console.log(docs);
         res.json(docs);
-      })
+      });
     }
   }
 }

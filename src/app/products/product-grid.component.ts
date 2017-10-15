@@ -13,6 +13,7 @@ export class ProductGridComponent {
     this.route.queryParams.subscribe(params => {
       let category : string = params['category'];
       let search : string = params['search'];
+      console.log("Category : "+category+" , Search : "+search);
       this.productService.getProducts(category,search).subscribe( data => {this.products = this.transform(data)} , error => {console.log(error)});
       console.log("Transformed Products - ",this.products);
     });

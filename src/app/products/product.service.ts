@@ -108,15 +108,20 @@ export class ProductService {
   }
 
   getProducts(category? : string, search? : string) : Observable<Product[]> {
+    var url = `${appConfig.apiUrl}/api/product/search`;
+
     if(category) {
-      return this.http.get(appConfig.apiUrl + '/api/product/search?type=category&path' + category)
-        .map((response : Response) => {  return response.json();})
-        .catch(this.handleError);
-    } else {
-      return this.http.get(appConfig.apiUrl + '/api/product/search?type=title&path' + search)
-        .map((response : Response) => {  return response.json();})
-        .catch(this.handleError);
+      url = url + '&type=category&path=' + category;
+    } else if (search) {
+      url = url + '&type=title&path=' + search;
     }
+
+    url = `${appConfig.apiUrl}/api/products`;
+
+    return this.http.get(url)
+      .map((response : Response) => {  return response.json();})
+      .catch(this.handleError);
+
   }
 
   getProduct(id : string) : Observable<Product> {

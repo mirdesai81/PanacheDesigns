@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container" id="main">
-  <form [formGroup]="productForm" (ngSubmit)="submit()">
+  <form [formGroup]="productForm" (ngSubmit)="save()">
     <div class="row">
       <div class="col-md-8 col-sm-6">
         <h3><span class=" my-auto align-middle">Add New Product</span></h3>
@@ -244,12 +244,12 @@
               </tr>
             </table>-->
 
-        <ul class="thumbnail" *ngIf="uploads && uploads.length > 0" formArrayName="images">
-          <li [formGroupName]="i" *ngFor="let image of categoryForm.controls.images.controls, index as i">
+        <ul class="thumbnail" *ngIf="productForm.controls.images?.length > 0" formArrayName="images">
+          <li [formGroupName]="i" *ngFor="let image of productForm.controls.images.controls, index as i">
             <div class="thumbnail-spacer">&nbsp;,</div>
-            <div class="thumbnail-image"><img [src]="uploads[i].url" [style.width.px]="100" [style.height.px]="100">
+            <div class="thumbnail-image"><img [src]="image.get('url').value" [style.width.px]="100" [style.height.px]="100">
             </div>
-            <div class="thumbnail-delete"><a (click)="deleteImage(uploads[i].url)"><i class="fa fa-trash"></i></a></div>
+            <div class="thumbnail-delete"><a (click)="deleteImage(image.get('url').value)"><i class="fa fa-trash"></i></a></div>
           </li>
         </ul>
       </div>
