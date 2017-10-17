@@ -108,15 +108,15 @@ export class ProductService {
   }
 
   getProducts(category? : string, search? : string) : Observable<Product[]> {
-    var url = `${appConfig.apiUrl}/api/product/search`;
+    var url = `${appConfig.apiUrl}/api/products/search`;
 
     if(category) {
-      url = url + '&type=category&path=' + category;
+      url = url + '?type=category&path=' + category;
     } else if (search) {
-      url = url + '&type=title&path=' + search;
+      url = url + '?type=title&path=' + search;
     }
 
-    url = `${appConfig.apiUrl}/api/products`;
+    /*url = `${appConfig.apiUrl}/api/products`;*/
 
     return this.http.get(url)
       .map((response : Response) => {  return response.json();})
