@@ -160,25 +160,6 @@
           <textarea [froalaEditor]="editorOptions" formControlName="fullDescription"></textarea>
         </div>
       </div>
-     <!-- <div class="tab-pane fade ml-lg-4 my-lg-4" role="tabpanel" aria-labelledby="mappings-tab" id="mappings">
-        <div class="form-group row">
-          <label class="col-form-label col-4">Parent Category</label>
-          <select [(ngModel)]="category" [ngModelOptions]="{standalone : true}" class="form-control col-6">
-            <option [value]=""></option>
-            <option *ngFor="let c of categories" [value]="c.slug">{{c.title}}</option>
-          </select>
-          <button type="button" (click)="addCategory()" class="btn btn-rounded indigo-gradient waves-effect col-2">Add
-            Category
-          </button>
-        </div>
-        <ul class="tag-editor" *ngIf="productForm.controls.categories?.length > 0" formArrayName="categories">
-          <li [formGroupName]="i" *ngFor="let category of productForm.controls.categories.controls, index as i">
-            <div class="tag-editor-spacer">&nbsp;,</div>
-            <div class="tag-editor-tag">{{category.value}}</div>
-            <div class="tag-editor-delete"><a (click)="deleteCategory(i)"><i class="fa fa-trash"></i></a></div>
-          </li>
-        </ul>
-      </div>-->
       <div class="tab-pane fade ml-lg-4" role="tabpanel" aria-labelledby="variations-tab" id="variations">
         <div *ngIf="productForm.controls.variations?.length > 0" formArrayName="variations" class="my-3">
           <div class="row py-3" *ngFor="let variation of productForm.controls.variations.controls, index as i"
