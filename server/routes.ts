@@ -67,7 +67,7 @@ export default function setRoutes(app) {
   router.route('/products/count').get(productsCtrl.count);
   authRouter.use(isAuthenticated).route('/product').post(productsCtrl.insert);
   router.route('/product/:id').get(productsCtrl.get);
-  router.route('/product/search').get(productsCtrl.search);
+  router.route('/products/search').get(productsCtrl.search);
   authRouter.use(isAuthenticated).route('/product/:id').put(productsCtrl.update);
   authRouter.use(isAuthenticated).route('/product/:id').delete(productsCtrl.delete);
   authRouter.use(isAuthenticated).route('/product/upload').post(productsCtrl.uploadFile);
