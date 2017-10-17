@@ -2,14 +2,45 @@
 <div class="container" id="main">
   <div class="row" *ngIf="available">
     <div class="col-md-5">
-      <img [src]="image.url" class="img-fluid" alt="{{product.title}}">
+   <!--   <img [src]="image.url" class="img-fluid" alt="{{product.title}}">
       <ul class="thumbnail" *ngIf="product.images">
         <li *ngFor="let image of product.images, index as i" (click)="displayImage(i)">
           <div class="thumbnail-spacer mt-2">&nbsp;,</div>
           <div class="thumbnail-image mt-2"><img [src]="image?.url" [style.width.px]="100" [style.height.px]="100">
           </div>
         </li>
-      </ul>
+      </ul>-->
+
+      <!--Carousel Wrapper-->
+      <div id="carousel-images" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+        <!--Indicators-->
+      <!--  <ol class="carousel-indicators">
+          <li data-target="#carousel-images"
+              *ngFor="let image of product.images;first as first; index as i"
+              [attr.data-slide-to]="i" [ngClass]="{active: first}"></li>
+        </ol>-->
+        <!--/.Indicators-->
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+          <!-- slides -->
+          <div *ngFor="let image of product.images;first as first; index as i"
+               class="carousel-item" [ngClass]="{active: first}">
+            <img [src]="image.url" [alt]="product.title" class="d-block w-100">
+          </div>
+        </div>
+        <!--/.Slides-->
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#carousel-images" role="button" data-slide="prev">
+          <span class="grey-gradient p-2"><i class="fa fa-3x fa-chevron-left" aria-hidden="true"></i></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-images" role="button" data-slide="next">
+          <span class="grey-gradient p-2"><i class="fa fa-3x fa-chevron-right" aria-hidden="true"></i></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <!--/.Controls-->
+      </div>
+      <!--/.Carousel Wrapper-->
     </div>
     <div class="col-md-4">
       <div class="card">

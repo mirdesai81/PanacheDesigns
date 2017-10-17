@@ -948,3 +948,31 @@ input + .slider:active:after {
     width: 34px;
   }
 }
+
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+  /* turn off bootstrap default svg chevrons */
+  background-image: none;
+
+  /* override bootstraps fixed size */
+  width: auto;
+  height: auto;
+
+  /* set the size and color of the FontAwesome chevrons */
+  font-size: 1.5rem;
+  color: #9e9e9e;
+
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon,
+.carousel-caption {
+  /* add a text shadow to the chevrons and caption (inner text) to make them visible on white backgrounds */
+  text-shadow: 0 0 0.8rem black;
+}
+
+.carousel-indicators li {
+  /* add a box shadow to the indicators to make them visible on white backgrounds */
+  box-shadow: 0 1px 0.4rem rgba(0, 0, 0, 0.5);
+}
+
+
