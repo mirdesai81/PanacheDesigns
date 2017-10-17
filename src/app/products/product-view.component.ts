@@ -4,7 +4,8 @@ import {Product} from "./product.service";
 import {CartService} from "../cart/cart.service";
 import {ActivatedRoute} from '@angular/router';
 import {ProductService} from "./product.service";
-
+import {Image} from "../shared/image";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 @Component({
   selector: 'app-product-view',
   templateUrl: './product-view.component.html',
@@ -13,10 +14,12 @@ import {ProductService} from "./product.service";
 export class ProductViewComponent implements OnInit {
   product : Product;
   cartItem : CartItem;
+  image : Image;
+  available : boolean = false;
   constructor(private route : ActivatedRoute,private productService : ProductService,private cartService : CartService) {
     this.route.params.subscribe(params => {
       let id : string = params['id'];
-      this.productService.getProduct(id).subscribe(data => {this.product = data}, error => {
+      this.productService.getProduct(id).subscribe(data => {console.log(data); this.product = data; this.image = this.product.images[0]; this.available = true;}, error => {
         console.log(error);
       });
       this.cartItem = this.cartService.findItem(id);
@@ -41,6 +44,10 @@ export class ProductViewComponent implements OnInit {
 
   isCartEmpty() {
     return (this.cartItem == null || this.cartItem.count == 0) ? true : false;
+  }
+
+  displayImage(index : number) {
+    this.image = this.product.images[index];
   }
 
   ngOnInit() {

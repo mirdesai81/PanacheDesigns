@@ -1,33 +1,39 @@
 <app-navbar></app-navbar>
 <div class="container" id="main">
-  <div class="row">
+  <div class="row" *ngIf="available">
     <div class="col-md-5">
-      <img [src]="product.imageL" class="img-fluid" [style.height.%]="100" alt="{{product.title}}">
+      <img [src]="image.url" class="img-fluid" alt="{{product.title}}">
+      <ul class="thumbnail" *ngIf="product.images">
+        <li *ngFor="let image of product.images, index as i" (click)="displayImage(i)">
+          <div class="thumbnail-spacer mt-2">&nbsp;,</div>
+          <div class="thumbnail-image mt-2"><img [src]="image?.url" [style.width.px]="100" [style.height.px]="100">
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="col-md-4">
       <div class="card">
-        <div class="card-block">
+        <div class="card-body">
           <h4 class="card-title">{{product.title}}</h4>
-          <p class="card-text">{{product.shortDescription}}</p>
         </div>
         <ul class="list-group list-group-flush no-shadow">
           <li class="list-group-item">Product Code : {{product.sku}}</li>
-          <li class="list-group-item">Category : <span *ngFor="let category of product.categories, index as i, last as iLast">{{category | categoryTitle}}<span *ngIf="!iLast"> , </span></span></li>
+          <li class="list-group-item">Category : {{product.categories}}<!--<span *ngFor="let category of product.categories, index as i, last as iLast">{{category | categoryTitle}}<span *ngIf="!iLast"> , </span></span>--></li>
         </ul>
-        <div class="card-block">
+        <div class="card-body">
           <p class="card-text">Availability: In Stock</p>
         </div>
-        <div class="card-footer card-inverse card-danger rgba-red-strong" *ngIf="product.onSale">
+        <!--<div class="card-footer card-inverse card-danger rgba-red-strong" *ngIf="product.onSale">
           <p class="card-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
-        </div>
-        <div class="card-footer card-inverse rgba-blue-strong" *ngIf="!product.onSale">
-          <p class="card-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
+        </div>-->
+        <div class="card-footer card-inverse indigo">
+          <p class="card-text white-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
         </div>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card">
-        <div class="card-block">
+        <div class="card-body">
           <form class="">
             <div class="form-group row">
               <div class="col-sm-3">
@@ -47,16 +53,42 @@
             </div>
             <div class="form-group row">
               <div class="col-sm-12">
-                <button type="button" class="btn btn-primary btn-block"  (click)="addToCart()">Add to Cart</button>
-                <button type="button" class="btn btn-warning btn-block" [disabled]="isCartEmpty()" [style.marginTop.rem]="0.4" (click)="removeFromCart()">Remove from Cart</button>
+                <button type="button" class="btn btn-rounded indigo-gradient btn-block"  (click)="addToCart()">Add to Cart</button>
+                <button type="button" class="btn btn-rounded grey-gradient btn-block" [disabled]="isCartEmpty()" [style.marginTop.rem]="0.4" (click)="removeFromCart()">Remove from Cart</button>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-12">
-                <a routerLink="['/products']" class="btn btn-outline-secondary btn-block">Continue Shopping</a>
+                <a routerLink="['/products']" class="btn btn-outline-deep-orange btn-rounded">Continue Shopping</a>
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="available">
+    <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-expanded="true">Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews">Reviews</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="related-tab" data-toggle="tab" href="#related" role="tab" aria-controls="related">Related Products</a>
+      </li>
+    </ul>
+    <div class="tab-content clearfix" id="myTabContent">
+      <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+        <div [froalaView]="product.fullDescription" class="m-lg-4"></div>
+      </div>
+      <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+        <div class="m-lg-4">Customer Reviews</div>
+      </div>
+      <div class="tab-pane fade" id="related" role="tabpanel" aria-labelledby="related-tab">
+        <div class="m-lg-4">
+          Related Products
         </div>
       </div>
     </div>
