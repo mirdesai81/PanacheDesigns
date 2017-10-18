@@ -50,15 +50,23 @@
         <ul class="list-group list-group-flush no-shadow">
           <li class="list-group-item">Product Code : {{product.sku}}</li>
           <li class="list-group-item">Category : {{product.categories}}<!--<span *ngFor="let category of product.categories, index as i, last as iLast">{{category | categoryTitle}}<span *ngIf="!iLast"> , </span></span>--></li>
+          <li class="list-group-item">Stock : {{product | ProductStockQuantity}}</li>
         </ul>
-        <div class="card-body">
-          <p class="card-text">Availability: In Stock</p>
+        <div class="card-body py-1" *ngIf="product.variations?.length > 0">
+          <div class="form-group row mb-0" *ngFor="let variation of product.variations, index as i">
+            <label class="form-control-label col-form-label col-sm-3">{{variation.name}}</label>
+            <div class="col-sm-7 d-inline-block">
+              <select class="form-control mb-0" #variationValues (change)="setPrice(variationValues.value)">
+                <option *ngFor="let v of variation.values, index as i" [value]="i">{{v.value}} [{{v.price | currency:'USD':true:'1.2-2'}}]</option>
+              </select>
+            </div>
+          </div>
         </div>
         <!--<div class="card-footer card-inverse card-danger rgba-red-strong" *ngIf="product.onSale">
           <p class="card-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
         </div>-->
         <div class="card-footer card-inverse indigo">
-          <p class="card-text white-text">Price per item : {{product.price | currency:'USD':true:'1.2-2'}}</p>
+          <p class="card-text white-text">Price per item : {{price | currency:'USD':true:'1.2-2'}}</p>
         </div>
       </div>
     </div>

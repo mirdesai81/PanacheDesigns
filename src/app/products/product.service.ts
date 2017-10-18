@@ -10,10 +10,18 @@ import {Image} from '../shared/image';
 import {appConfig} from "../app.config";
 import {AuthHttp} from "angular2-jwt/angular2-jwt";
 import {Http, Headers, RequestOptions, Request, Response} from '@angular/http';
+
+export interface Values {
+  value : string;
+  price : number;
+  quantity : number;
+  visible : boolean;
+}
+
 export interface Variation {
   name : string;
   id : number;
-  values : string[];
+  values : Values[];
 }
 
 export interface Option {
@@ -47,6 +55,7 @@ export interface Product {
   shortDescription : string;
   fullDescription : string;
   price : number;
+  salesPrice : number;
   onSale : boolean;
   tags : string[];
   showOnHomePage : boolean;
@@ -83,7 +92,7 @@ export class ProductService {
 
   }
 
-  variations : Variation[] = [
+  variations : Array<any> = [
     {
       name : "Size",
       id : 1,
@@ -147,7 +156,7 @@ export class ProductService {
     return this.http.delete(appConfig.apiUrl +'/api/product/file/'+filename);
   }
 
-  getVariations() : Observable<Variation[]> {
+  getVariations() : Observable<Array<any>> {
     return Rx.Observable.of(this.variations);
   }
 }

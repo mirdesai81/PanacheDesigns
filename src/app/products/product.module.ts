@@ -14,13 +14,14 @@ import {SharedModule} from "../shared/shared.module";
 import { ProductFormComponent } from './product-form.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import {ColorPickerModule} from 'ngx-color-picker';
+import {ProductStockQuantityPipe} from './product-stock-quantity.pipe';
 @NgModule({
   imports : [FormsModule,ReactiveFormsModule,CommonModule,
     RouterModule,CategoryModule,SharedModule,
     FroalaEditorModule.forRoot(),FroalaViewModule.forRoot(),
     ColorPickerModule],
-  declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent, ProductFormComponent],
-  exports : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent],
+  declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent, ProductFormComponent,ProductStockQuantityPipe],
+  exports : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent,ProductStockQuantityPipe],
   providers : [ProductService]
 })
 export class ProductModule {}

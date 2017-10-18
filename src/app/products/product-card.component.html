@@ -11,9 +11,14 @@
         <!--<div class="overlay-title grey-text">
           {{product.title}}
         </div>-->
-        <span class="price h4-responsive" [ngClass]="setClasses(product)">
-          ${{product.price}}
+        <span class="price h4-responsive" *ngIf="product.variations?.length > 0 && product.variations[0].values[0].price > 0; else productPrice" [ngClass]="setClasses(product)">
+          ${{product.variations[0].values[0].price}}
         </span>
+        <ng-template #productPrice>
+          <span class="price h4-responsive" [ngClass]="setClasses(product)">
+          ${{product.salesPrice}}
+        </span>
+        </ng-template>
         <a>
           <div class="mask"></div>
         </a>

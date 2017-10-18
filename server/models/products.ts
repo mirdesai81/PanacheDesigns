@@ -40,6 +40,7 @@ const productSchema = new mongoose.Schema({
   shortDescription : String,
   fullDescription : String,
   price : {type : Number},
+  salesPrice : {type : Number},
   onSale : Boolean,
   tags : [{type : String}],
   showOnHomePage : {type : Boolean, default : false},

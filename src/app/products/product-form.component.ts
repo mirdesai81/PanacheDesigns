@@ -28,7 +28,7 @@ export class ProductFormComponent implements OnInit {
   update : boolean = false;
   categories : Category[];
   displayType : string[] = ['Checkbox','Radio','Dropdown','Text'];
-  variations : Variation[];
+  variations : Array<any>;
   variationForm : FormGroup;
   optionValues : string[][] = [];
   validationMessages = {

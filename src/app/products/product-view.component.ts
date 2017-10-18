@@ -16,10 +16,17 @@ export class ProductViewComponent implements OnInit {
   cartItem : CartItem;
   image : Image;
   available : boolean = false;
+  price : number;
   constructor(private route : ActivatedRoute,private productService : ProductService,private cartService : CartService) {
     this.route.params.subscribe(params => {
       let id : string = params['id'];
-      this.productService.getProduct(id).subscribe(data => {console.log(data); this.product = data; this.image = this.product.images[0]; this.available = true;}, error => {
+      this.productService.getProduct(id).subscribe(data =>
+      {
+        this.product = data;
+        this.image = this.product.images[0];
+        this.available = true;
+        this.setPrice(0);
+      }, error => {
         console.log(error);
       });
       this.cartItem = this.cartService.findItem(id);
@@ -50,7 +57,13 @@ export class ProductViewComponent implements OnInit {
     this.image = this.product.images[index];
   }
 
+
   ngOnInit() {
   }
 
+  setPrice(index : number) {
+    this.product.variations.forEach(variation => {
+      this.price = variation.values[index].price;
+    });
+  }
 }
