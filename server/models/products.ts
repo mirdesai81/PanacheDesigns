@@ -59,6 +59,10 @@ const productSchema = new mongoose.Schema({
   variations : [variation],
   categories : {type : [String] , index : true},
   slug : String,
+  createdBy : String,
+  updatedBy : String,
+  createdOn : {type : Date , default : Date.now},
+  updatedOn : {type : Date , default : Date.now}
 },{collection : 'Product'});
 
 productSchema.index({slug : 1, title : -1});

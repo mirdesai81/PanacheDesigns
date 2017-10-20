@@ -5,6 +5,22 @@ class ProductsCtrl extends BaseCtrl {
   model = Products;
   identityField : string = 'slug';
 
+
+  // Insert
+  insert = (req, res) => {
+    const obj = new this.model(req.body);
+    obj.save((err, item) => {
+      // 11000 is the code for duplicate key error
+      if (err && err.code === 11000) {
+        res.sendStatus(400);
+      }
+      if (err) {
+        return console.error(err);
+      }
+      res.status(200).json(item);
+    });
+  };
+
   delete = (req, res) => {
     var query = {};
     query[this.identityField] = req.params.id;
