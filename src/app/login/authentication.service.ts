@@ -56,4 +56,18 @@ export class AuthenticationService {
 
     return this.currentUser;
   }
+
+  isAdmin() : boolean {
+    let token = localStorage.getItem('currentUser');
+
+    if(token && !this.isTokenExpired(token)) {
+      let user : User = null;
+       user = this.decodeUserFromToken(token).user;
+        if(user.role && user.role === 'ADMIN') {
+          return true;
+        }
+    }
+
+    return false;
+  }
 }

@@ -15,4 +15,5 @@ export interface User {
     zip? : string;
     country? : string;
   }
+  role : string;
 }
