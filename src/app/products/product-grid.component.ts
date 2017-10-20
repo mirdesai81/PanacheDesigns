@@ -26,12 +26,12 @@ export class ProductGridComponent {
     let products  = [];
     while (length) {
       let row:Product[] = [];
-      if (length >= 3) {
-        for (let i = 0; i < 3; i++) {
+      if (length >= 4) {
+        for (let i = 0; i < 4; i++) {
           row.push(source[index++]);
         }
         products.push(row);
-        length -= 3;
+        length -= 4;
       } else {
         for (; length > 0; length--) {
           row.push(source[index++]);

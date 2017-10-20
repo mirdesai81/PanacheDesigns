@@ -15,12 +15,13 @@ import { ProductFormComponent } from './product-form.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import {ColorPickerModule} from 'ngx-color-picker';
 import {ProductStockQuantityPipe} from './product-stock-quantity.pipe';
+import { ProductAdminListComponent } from './product-admin-list.component';
 @NgModule({
   imports : [FormsModule,ReactiveFormsModule,CommonModule,
     RouterModule,CategoryModule,SharedModule,
     FroalaEditorModule.forRoot(),FroalaViewModule.forRoot(),
     ColorPickerModule],
-  declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent, ProductFormComponent,ProductStockQuantityPipe],
+  declarations : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent, ProductFormComponent,ProductStockQuantityPipe, ProductAdminListComponent],
   exports : [ProductCardComponent,ProductGridComponent,ProductListComponent,ProductSearchComponent, ProductViewComponent,ProductStockQuantityPipe],
   providers : [ProductService]
 })

@@ -77,6 +77,10 @@ export interface Product {
   categories : string[];
   slug : string;
   images : Image[];
+  createdBy : string;
+  createdOn : Date;
+  updatedOn : Date;
+  updatedBy : string;
 }
 
 class ProductNotFoundException extends Error {
