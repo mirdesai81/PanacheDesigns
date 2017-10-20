@@ -975,4 +975,9 @@ input + .slider:active:after {
   box-shadow: 0 1px 0.4rem rgba(0, 0, 0, 0.5);
 }
 
-
+.sidenav .nav-link[data-toggle].collapsed:after {
+  content: " ▾";
+}
+.sidenav .nav-link[data-toggle]:not(.collapsed):after {
+  content: " ▴";
+}
