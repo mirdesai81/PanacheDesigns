@@ -3,6 +3,7 @@ export interface INavItem {
   label : string;
   active:boolean;
   icon? : string;
+  navs? : INavItem[];
 }
 
 export class NavItems {
@@ -13,8 +14,8 @@ export class NavItems {
       { href : '/products',label : 'Products', active : false},
       { href : '/checkout',label : 'Checkout', active : false},
       { href : '/register',label : 'Register', active : false},
-      { href : '/category',label : 'Category', active : false},
-      { href : '/product',label : 'Product', active : false},
+      {href : 'admin-menu' , label : 'Admin' , active : false, navs : [{ href : '/admin/category',label : 'Category', active : false},
+        { href : '/admin/product',label : 'Product', active : false}]}
     ];
 
   }

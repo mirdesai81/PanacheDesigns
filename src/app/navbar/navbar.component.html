@@ -1,6 +1,18 @@
 <div id="side-nav" class="sidenav indigo">
   <ul>
-    <li *ngFor="let navItem of navItems"><a routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a></li>
+    <li *ngFor="let navItem of navItems">
+      <a *ngIf="!navItem.navs; else submenu" routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a>
+      <ng-template #submenu>
+        <a *ngIf="isAdmin()" href="#{{navItem.href}}" class="nav-link collapsed" data-toggle="collapse" data-target="#{{navItem.href}}">{{navItem.label}}</a>
+        <div class="collapse" [id]="navItem.href" aria-expanded="false">
+          <ul>
+            <li *ngFor="let nav of navItem.navs">
+              <a class="pl-4" routerLink="{{nav.href}}" [routerLinkActive]="['active']" >{{nav.label}}</a>
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+    </li>
   </ul>
 </div>
 

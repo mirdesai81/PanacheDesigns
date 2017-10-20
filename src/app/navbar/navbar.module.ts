@@ -6,11 +6,12 @@ import {RouterModule} from '@angular/router';
 import {CartModule} from '../cart/cart.module';
 import {FooterComponent} from "./footer.component";
 import {SharedModule} from "../shared/shared.module";
-
+import {AuthenticationService} from '../login/authentication.service';
 
 @NgModule({
   imports: [
     FormsModule,ReactiveFormsModule,CommonModule,RouterModule,SharedModule
-  ]
+  ],
+  providers : [AuthenticationService]
 })
 export class NavbarModule { }

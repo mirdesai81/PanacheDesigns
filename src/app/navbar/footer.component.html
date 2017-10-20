@@ -20,7 +20,7 @@
 
       <!--Grid column-->
       <div class="col-md-2 mb-3" *ngFor="let navItem of navItems">
-        <h6 class="title font-bold"><a  class="nav-link" routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a></h6>
+        <h6 class="title font-bold"><a  class="nav-link" *ngIf="!navItem.navs" routerLink="{{navItem.href}}" [routerLinkActive]="['active']" >{{navItem.label}}</a></h6>
       </div>
     </div>
     <!--Grid row-->
