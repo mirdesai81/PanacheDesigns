@@ -11,6 +11,8 @@ import {Image} from '../shared/image';
 import {CategoryService,Category} from "../category/category.service";
 import {Variation} from "./product.service";
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import {User} from '../login/User';
+import {AuthenticationService} from '../login/authentication.service';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -31,6 +33,7 @@ export class ProductFormComponent implements OnInit {
   variations : Array<any>;
   variationForm : FormGroup;
   optionValues : string[][] = [];
+  user : User;
   validationMessages = {
     'title' : {
       'required' : 'Product Name is required.',
@@ -63,7 +66,10 @@ export class ProductFormComponent implements OnInit {
 
   constructor(private productService : ProductService,
               private router : Router,
-              private _fb : FormBuilder,private notificationsService : NotificationsService,private categoryService : CategoryService) { }
+              private _fb : FormBuilder,
+              private notificationsService : NotificationsService,
+              private categoryService : CategoryService,
+              private authService : AuthenticationService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -79,6 +85,7 @@ export class ProductFormComponent implements OnInit {
 
     this.loadCategories();
     this.productService.getVariations().subscribe(data => { this.variations = data }, error => { console.log("Failed to load variations");})
+    this.user = this.authService.loggedInUser();
   }
 
   buildForm() {
@@ -105,7 +112,11 @@ export class ProductFormComponent implements OnInit {
       images : this._fb.array([]),
       price : 0,
       salesPrice : 0,
-      slug : ''
+      slug : '',
+      createdBy : '',
+      updatedBy : '',
+      updatedOn : '',
+      createdOn : ''
     });
 
   }
@@ -170,13 +181,20 @@ export class ProductFormComponent implements OnInit {
 
 
   save(e) {
-    this.product = this.productForm.value;
+    var userObj = {
+      createdBy : this.user.userName,
+      updatedBy : this.user.userName,
+      };
 
+    this.productForm.patchValue(userObj);
+    this.product = this.productForm.value;
 
     if(!this.product.slug) {
       delete this.product.slug;
     }
 
+    delete this.product.updatedOn;
+    delete this.product.createdOn;
     console.log(this.product);
     if(!this.update) {
       this.productService.create(this.product).subscribe(
